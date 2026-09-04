@@ -19,8 +19,10 @@ Stand: 04.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualis
 - Bebas lokal inklusive Lizenz; vorhandenes Logo-Symbol eingebunden.
 - Leistungsübersicht, Teamtexte, Prozess, FAQ, Kontakt- und Projektplätze.
 - Anleitung für Repo, Theme-ZIP, WordPress.com und späteren Launch.
-- Privates Repository erstellt: https://github.com/kevin1337pro/phinix-media-website.
-- Kontaktbutton führt zum bestehenden Kontaktformular; direkte neue Formularintegration bleibt offen.
+- Öffentliches Repository: https://github.com/kevin1337pro/phinix-media-website.
+- Direkte E-Mail-/Telefonkontakte aus dem öffentlichen Impressum; zusätzliche Formularintegration bleibt offen.
+- Fünf Leistungsseiten, LocalBusiness-/Service-Daten, Metadaten und regionaler Inhalt für Gelsenkirchen, Gladbeck und Umgebung.
+- Aktueller [SEO-/GEO-Plan mit 90-Tage-Roadmap](04-seo-geo-plan-2026-09-04.md).
 
 Den aktuellen Prüfstand und Paketstatus enthält die README. Die Website ist noch nicht auf WordPress.com aktiviert.
 
@@ -29,13 +31,13 @@ Den aktuellen Prüfstand und Paketstatus enthält die README. Die Website ist no
 | Priorität | Fehlend | Wozu? | Nächste mögliche Arbeit |
 |---|---|---|---|
 | P0 | WordPress.com-Tarif und Zugriff auf die Test-/Livesite | Theme-Installation und passenden Uploadweg verifizieren | Lokal kann weitergebaut werden. |
-| P0 | Janines geschäftliche Empfängeradresse; optional Telefon | Echte Kontaktaufnahme statt Platzhalter | Formularstruktur vorbereiten. |
+| P1 | Janines Zustelladresse für ein zusätzliches Formular | Zustellung prüfen; öffentliche E-Mail/Telefon bereits eingebaut | Formularintegration und Testanfrage. |
 | P0 | Vollständige aktuelle Unternehmens-/Pflichtangaben und passende Datenschutztexte | Bestehende Rechtstexte übernehmen und passend ergänzen | Seitenstruktur ist vorhanden. |
 | P0 | Freigabe der finalen Texte, insbesondere Kevins genaue Rollenbeschreibung | Verbindliche, korrekte Außendarstellung | Textentwurf präzisieren. |
 | Erledigt | Repository kevin1337pro/phinix-media-website | Code ist hochgeladen | Weitere Änderungen dorthin pushen. |
 | P1 | Zwei Porträts oder gemeinsames Foto | Persönlichkeit und Vertrauen | Bildplätze und Layout sind vorbereitet. |
 | P1 | Zwei bis drei echte Projekte mit Freigabe | Referenzen und fachliche Belege | Case-Study-Texte aus gelieferten Fakten erstellen. |
-| P1 | Wunschregion und wichtigste Kundengruppen | Suchintention und regionale Landingpages | Ruhrgebiet bleibt Arbeitshypothese. |
+| P1 | Wichtigste Kundengruppen, Google-Unternehmensprofil-Link und Search-Console-Zugriff | Region Gelsenkirchen/Gladbeck bestätigt; reale Sichtbarkeit messen | Profile prüfen, Sitemap einreichen und Ausgangswerte erfassen. |
 | P1 | Genauer Angebotsumfang, ggf. Preisrahmen und Betreuung | Passende Anfragen und klare Erwartungen | Pakete kalkulieren und Texte schärfen. |
 | P2 | Aktueller Stand und Umfang von PHINIX.SCREENS | Beratung, Pilot und tatsächlich buchbares Angebot unterscheiden | Beratungstext ohne Verfügbarkeitsbehauptung vorhanden. |
 | P2 | Genaue Bebas-Bold-Datei oder Pfadexport der Wortbildmarke | Original-Wortbildmarke ohne Schriftabweichung einsetzen | Bebas Neue Regular und Logo-Symbol funktionieren bereits. |

@@ -17,3 +17,11 @@ add_action( 'wp_enqueue_scripts', function () {
 add_action( 'init', function () {
     register_block_pattern_category( 'phinix', array( 'label' => 'Phinix Media' ) );
 } );
+
+require_once get_theme_file_path( 'inc/seo.php' );
+require_once get_theme_file_path( 'inc/service-pages.php' );
+
+add_shortcode( 'phinix_breadcrumbs', function () {
+    if ( ! is_singular() || is_front_page() ) { return ''; }
+    return '<nav class="phinix-breadcrumbs" aria-label="Brotkrümelnavigation"><a href="' . esc_url( home_url( '/' ) ) . '">Startseite</a><span aria-hidden="true"> / </span><span aria-current="page">' . esc_html( get_the_title( get_queried_object_id() ) ) . '</span></nav>';
+} );

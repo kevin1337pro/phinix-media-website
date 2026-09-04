@@ -7,9 +7,9 @@
  */
 if ( ! defined( "ABSPATH" ) ) { exit; }
 ?>
-<!-- wp:group {"className":"phinix-hero","layout":{"type":"default"}} --><div class="wp-block-group phinix-hero"><!-- wp:group {"className":"hero-layout","layout":{"type":"default"}} --><div class="wp-block-group hero-layout"><!-- wp:group {"className":"hero-copy","layout":{"type":"default"}} --><div class="wp-block-group hero-copy"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">Design. Strategie. Sichtbarkeit.</p><!-- /wp:paragraph -->
+<!-- wp:group {"className":"phinix-hero","layout":{"type":"default"}} --><div class="wp-block-group phinix-hero"><!-- wp:group {"className":"hero-layout","layout":{"type":"default"}} --><div class="wp-block-group hero-layout"><!-- wp:group {"className":"hero-copy","layout":{"type":"default"}} --><div class="wp-block-group hero-copy"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">Webdesign · Branding · Marketing in Gelsenkirchen</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":1,"className":"hero-title"} --><h1 class="wp-block-heading hero-title">DEINE MARKE.<br><em>UNÜBERSEHBAR.</em></h1><!-- /wp:heading -->
-<!-- wp:paragraph {"className":"hero-description"} --><p class="hero-description">Websites, Branding und Marketing, die zusammenpassen. Wir machen sichtbar, was dein Unternehmen besonders macht – online und im echten Leben.</p><!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"hero-description"} --><p class="hero-description">Websites, Branding und Marketing aus Gelsenkirchen. Für Unternehmen in Gladbeck und Umgebung verbinden wir einen starken Auftritt mit klaren Inhalten und einem direkten Weg zur Anfrage.</p><!-- /wp:paragraph -->
 <!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#kontakt">Projekt besprechen ↗</a></div><!-- /wp:button -->
 <!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#leistungen">Leistungen entdecken</a></div><!-- /wp:button -->
 </div><!-- /wp:buttons -->
@@ -51,31 +51,31 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">WEBSITES</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Ein klarer Auftritt, der dein Angebot verständlich macht und den Weg zur Anfrage einfach hält.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Konzeption · Webdesign · WordPress</p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p><a href="#kontakt">Darüber sprechen ↗</a></p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p><a href="/webdesign/">Webdesign und WordPress entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">02 / Identität</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">BRANDING</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Eine Marke mit Charakter. Vom Logo über die Farben bis zu einem durchgängigen Erscheinungsbild.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Logo · Corporate Design · Markenauftritt</p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p><a href="#kontakt">Darüber sprechen ↗</a></p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p><a href="/branding/">Branding und Logodesign entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">03 / Zum Anfassen</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">PRINT & DESIGN</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Visitenkarten, die man behält. Geschäftsausstattung und Werbemittel, die zu deiner Marke passen.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Visitenkarten · Flyer · Geschäftsausstattung</p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p><a href="#kontakt">Darüber sprechen ↗</a></p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p><a href="/print-design/">Visitenkarten und Printdesign entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">04 / Aufmerksamkeit</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">MARKETING & CONTENT</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Eine klare Botschaft und Inhalte, die dein Unternehmen zeigen. Für Social Media und deine Kampagnen.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Strategie · Social Media · Content</p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p><a href="#kontakt">Darüber sprechen ↗</a></p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p><a href="/marketing-content/">Marketing und Content entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">05 / Auffindbarkeit</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">GOOGLE-SEO</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Struktur, Inhalte und lokale Präsenz, damit passende Interessenten dein Angebot besser finden können.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Technisches SEO · Inhalte · lokale Suche</p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p><a href="#kontakt">Darüber sprechen ↗</a></p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p><a href="/seo-local-geo/">Lokales SEO und GEO entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">06 / Vor Ort</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">PHINIX.SCREENS</h3><!-- /wp:heading -->
@@ -85,6 +85,7 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->
+<!-- wp:group {"tagName":"section","anchor":"region","className":"section local-section","layout":{"type":"default"}} --><section id="region" class="wp-block-group section local-section"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">Gelsenkirchen · Gladbeck · Umgebung</p><!-- /wp:paragraph --><!-- wp:heading {"className":"section-title"} --><h2 class="wp-block-heading section-title">DEINE AGENTUR.<br>HIER IN DER REGION.</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Phinix Media sitzt in Gelsenkirchen-Scholven. Wir gestalten Websites, Markenauftritte, Visitenkarten und Marketing für Unternehmen in Gelsenkirchen, Gladbeck und Umgebung. Kevin arbeitet am visuellen und digitalen Auftritt. Janine ist Sales Managerin, Designerin und deine Ansprechpartnerin für den Kundenkontakt.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>Du kannst mit einer einzelnen Aufgabe starten: einer neuen Website, einem Logo oder Drucksachen für dein Unternehmen. Im ersten Austausch klären wir Ziel, vorhandenes Material und den passenden Umfang. So weißt du, was als Nächstes gebraucht wird.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p><a href="/webdesign/">Webdesign in Gelsenkirchen und Gladbeck</a> · <a href="/branding/">Markenauftritt und Logo</a> · <a href="/seo-local-geo/">Lokale Auffindbarkeit bei Google</a></p><!-- /wp:paragraph --></section><!-- /wp:group -->
 <!-- wp:group {"className":"section","layout":{"type":"default"},"anchor":"arbeiten"} --><div id="arbeiten" class="wp-block-group section"><!-- wp:group {"className":"work-layout","layout":{"type":"default"}} --><div class="wp-block-group work-layout"><!-- wp:group {"className":"","layout":{"type":"default"}} --><div class="wp-block-group"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">02 / Einblicke</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">GUTE ARBEIT<br>DARF AUFFALLEN.</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Hier zeigen wir künftig ausgewählte Projekte – mit der Idee dahinter, unserer Umsetzung und dem Ergebnis. Echte Einblicke in das, was Phinix Media für Unternehmen gestaltet.</p><!-- /wp:paragraph -->
@@ -148,7 +149,7 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">LASS UNS<br>ETWAS BEWEGEN.</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Eine neue Website? Ein klarer Markenauftritt? Mehr Sichtbarkeit? Erzähl Janine, was du vorhast. Gemeinsam finden wir den passenden Einstieg.</p><!-- /wp:paragraph -->
 <!-- wp:group {"className":"contact-slot","layout":{"type":"default"}} --><div class="wp-block-group contact-slot"><!-- wp:paragraph --><p><strong>Dein Projekt beginnt mit einem Gespräch.</strong></p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p>Nutze für deine Anfrage unser bestehendes Kontaktformular. Wir freuen uns darauf, von deinem Vorhaben zu hören.</p><!-- /wp:paragraph -->
-<!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://phinix.media/ueber/">Kontakt aufnehmen ↗</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
+<!-- wp:paragraph --><p>Schreib uns an kontakt@phinix.media oder ruf unter 0176 55376651 an. Janine ist deine Ansprechpartnerin für den Kundenkontakt. Erzähl uns, welche Leistung du brauchst und was du mit deinem Auftritt erreichen möchtest.</p><!-- /wp:paragraph -->
+<!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="mailto:kontakt@phinix.media">Projekt per E-Mail besprechen ↗</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->

@@ -11,3 +11,5 @@ wp-config.php
 *.sqlite3
 *.log
 wp-content/uploads/
+__pycache__/
+*.pyc

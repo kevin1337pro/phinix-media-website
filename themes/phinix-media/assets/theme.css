@@ -11,3 +11,4 @@
 .hero-layout>*,.service-grid>*,.service-intro>*,.work-layout>*,.team-grid>*,.process-grid>*{margin-block-start:0!important}
 
 .contact-slot .wp-block-button__link{background:var(--ink);color:var(--paper)}
+.local-section{background:#20221f}.local-section>p{max-width:900px}.local-section a{color:var(--paper)}.footer-business p{margin:0 0 12px}.footer-business{max-width:420px}.page-body .wp-block-post-content h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin-top:3rem}.page-body .service-lead{font-size:1.25rem;line-height:1.7}.page-body .wp-block-details{padding:20px 0;border-bottom:1px solid var(--line)}.page-body summary{cursor:pointer;font-weight:600}.page-body li{margin-bottom:.75rem}.phinix-breadcrumbs{font-size:14px;color:#ccc;line-height:1.6;margin-bottom:24px}.phinix-breadcrumbs a{color:inherit}.service-card a{display:inline-block;line-height:1.5}.hero-copy .eyebrow{letter-spacing:.07em}

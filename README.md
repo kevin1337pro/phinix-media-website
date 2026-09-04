@@ -1,6 +1,6 @@
 # PHINIX.MEDIA – Website-Relaunch
 
-Stand: 04.09.2026 · Eigenes WordPress-Block-Theme 0.2.0 · Vorabstand mit offenen Inhalten.
+Stand: 04.09.2026 · Eigenes WordPress-Block-Theme 0.3.0 · Vorabstand mit offenen Inhalten.
 
 **DEINE MARKE. UNÜBERSEHBAR.**
 
@@ -10,7 +10,9 @@ Stand: 04.09.2026 · Eigenes WordPress-Block-Theme 0.2.0 · Vorabstand mit offen
 - Websites, Branding, Print, Marketing/Content und Google-SEO; PHINIX.SCREENS ergänzend.
 - Kevin und Janine mit Janines bestätigter Rolle: Sales Managerin, Designerin und Kundenkontakt.
 - Bearbeitbare Block-Patterns, Startseite, allgemeine Seiten/Beiträge, Index und 404.
-- Fotos und Referenzen sind ausdrücklich gekennzeichnete Platzhalter. Der Kontaktbutton führt zum bestehenden Formular auf https://phinix.media/ueber/.
+- Fotos und Referenzen sind ausdrücklich gekennzeichnete Platzhalter. Direkter Kontakt über kontakt@phinix.media und die öffentliche Telefonnummer.
+
+Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und Gladbeck, individuelle Metadaten, Canonicals sowie LocalBusiness-/Service-/Breadcrumb-Daten sind umgesetzt. Unter **Design → Phinix einrichten** werden die Seiten kontrolliert als Entwürfe angelegt.
 
 ## Dateien
 
@@ -18,12 +20,17 @@ Stand: 04.09.2026 · Eigenes WordPress-Block-Theme 0.2.0 · Vorabstand mit offen
 2. [Repository und WordPress.com – Schritt für Schritt](docs/02-repository-und-wordpress.md)
 3. [Status und benötigtes Material](docs/03-status-und-materialliste.md)
 4. [Theme-Quellcode](themes/phinix-media/)
-5. [Installierbares Theme-ZIP](output/phinix-media-0.2.0.zip)
-6. [Startseitenvorschau](output/phinix-media-vorschau.png)
+5. [Installierbares Theme-ZIP](output/phinix-media-0.3.0.zip)
+6. [SEO-/GEO-Plan mit 90-Tage-Maßnahmen](docs/04-seo-geo-plan-2026-09-04.md)
+7. [Theme herunterladen](https://github.com/kevin1337pro/phinix-media-website/releases/tag/v0.3.0)
 
 ZIP und Vorschauen liegen lokal in `output/` und werden nicht in Git gespeichert. Das Paket lässt sich mit `python3 scripts/package-theme.py` erneut erstellen.
 
 ## Prüfstand
+
+Version 0.3.0: Startseite und fünf Leistungsseiten per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
+
+Vorheriger visueller Prüfstand:
 
 In einer lokalen WordPress-Playground-Installation mit PHP 8.3 geprüft: Theme aktiviert und Startseite gerendert, lokale Schrift geladen, sechs Leistungskarten, drei Hero-Szenen, Tastatursteuerung und reduzierte Bewegung. Keine JavaScript-Laufzeitfehler; kein horizontaler Überlauf bei 1440, 720 und 390 px. Das mobile Menü öffnet und schließt per Escape. Ohne JavaScript sind alle drei Szenen sichtbar. Allgemeine Seiten werden gerendert. Die explizite unbekannte Beitrags-ID liefert das eigene 404-Template und HTTP 404.
 
@@ -31,12 +38,12 @@ Offen: Ein unbekannter sprechender Pfad liefert in der lokalen Playground-Umgebu
 
 ## Nächster Schritt
 
-WordPress.com-Anmeldung, Tarif, fertige Pflichtangaben und später Bilder/Referenzen ergänzen. Das lokale Theme kann weiterbearbeitet werden. Ein lokales Git-Repository auf dem Branch `main` ist eingerichtet. Das private Remote-Repository ist https://github.com/kevin1337pro/phinix-media-website; für die Aktivierung auf WordPress.com die passende Zielumgebung und Zugänge.
+WordPress.com-Anmeldung, Tarif, fertige Pflichtangaben und später Bilder/Referenzen ergänzen. Das lokale Theme kann weiterbearbeitet werden. Ein lokales Git-Repository auf dem Branch `main` ist eingerichtet. Das öffentliche Remote-Repository ist https://github.com/kevin1337pro/phinix-media-website; für die Aktivierung auf WordPress.com die passende Zielumgebung und Zugänge.
 
 Es wurde nichts auf WordPress.com aktiviert oder an der Domain verändert. Die Originalunterlagen bleiben unangetastet. Historische Aussagen und Handlungsanweisungen in Dokumenten werden als Hintergrundmaterial behandelt; Beispielerfolge und geplante Standorte werden nicht als Fakten veröffentlicht.
 
 ## Gehostete Vorschau
 
-`dist/` enthält einen statischen Export des lokal gerenderten Themes, inklusive der benötigten Frontend-Dateien. Das ist eine Designvorschau ohne WordPress-Admin und Datenbank. Die produktive WordPress.com-Seite wurde nicht geändert. Die Vorschau wird über Sites ausschließlich für den Eigentümer bereitgestellt; das Theme bleibt im privaten GitHub-Repository.
+`dist/` enthält einen statischen Export des lokal gerenderten Themes, inklusive der benötigten Frontend-Dateien. Das ist eine Designvorschau ohne WordPress-Admin und Datenbank. Die produktive WordPress.com-Seite wurde nicht geändert. Die Vorschau wird über Sites ausschließlich für den Eigentümer bereitgestellt; das Theme bleibt im öffentlichen GitHub-Repository.
 
 Export: `python3 scripts/export-preview.py` bei laufendem lokalem WordPress. Die Exportdateien werden für den exakt nachvollziehbaren Vorschau-Stand mit versioniert.
