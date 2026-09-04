@@ -147,7 +147,8 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:group {"className":"section contact-section","layout":{"type":"default"},"anchor":"kontakt"} --><div id="kontakt" class="wp-block-group section contact-section"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">06 / Dein nächstes Projekt</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">LASS UNS<br>ETWAS BEWEGEN.</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Eine neue Website? Ein klarer Markenauftritt? Mehr Sichtbarkeit? Erzähl Janine, was du vorhast. Gemeinsam finden wir den passenden Einstieg.</p><!-- /wp:paragraph -->
-<!-- wp:group {"className":"contact-slot","layout":{"type":"default"}} --><div class="wp-block-group contact-slot"><!-- wp:paragraph --><p><strong>Kontaktbereich in Vorbereitung.</strong></p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p>Hier wird vor dem Launch das WordPress.com-Kontaktformular mit Janines bestätigter Empfängeradresse eingesetzt. Bis dahin werden über diese Vorschau keine Anfragen versendet.</p><!-- /wp:paragraph -->
+<!-- wp:group {"className":"contact-slot","layout":{"type":"default"}} --><div class="wp-block-group contact-slot"><!-- wp:paragraph --><p><strong>Dein Projekt beginnt mit einem Gespräch.</strong></p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p>Nutze für deine Anfrage unser bestehendes Kontaktformular. Wir freuen uns darauf, von deinem Vorhaben zu hören.</p><!-- /wp:paragraph -->
+<!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://phinix.media/ueber/">Kontakt aufnehmen ↗</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->

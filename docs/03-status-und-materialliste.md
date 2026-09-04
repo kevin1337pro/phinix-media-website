@@ -19,6 +19,8 @@ Stand: 04.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualis
 - Bebas lokal inklusive Lizenz; vorhandenes Logo-Symbol eingebunden.
 - Leistungsübersicht, Teamtexte, Prozess, FAQ, Kontakt- und Projektplätze.
 - Anleitung für Repo, Theme-ZIP, WordPress.com und späteren Launch.
+- Privates Repository erstellt: https://github.com/kevin1337pro/phinix-media-website.
+- Kontaktbutton führt zum bestehenden Kontaktformular; direkte neue Formularintegration bleibt offen.
 
 Den aktuellen Prüfstand und Paketstatus enthält die README. Die Website ist noch nicht auf WordPress.com aktiviert.
 
@@ -30,7 +32,7 @@ Den aktuellen Prüfstand und Paketstatus enthält die README. Die Website ist no
 | P0 | Janines geschäftliche Empfängeradresse; optional Telefon | Echte Kontaktaufnahme statt Platzhalter | Formularstruktur vorbereiten. |
 | P0 | Vollständige aktuelle Unternehmens-/Pflichtangaben und passende Datenschutztexte | Bestehende Rechtstexte übernehmen und passend ergänzen | Seitenstruktur ist vorhanden. |
 | P0 | Freigabe der finalen Texte, insbesondere Kevins genaue Rollenbeschreibung | Verbindliche, korrekte Außendarstellung | Textentwurf präzisieren. |
-| P1 | Ziel-Repository mit Account/Organisation | Code hochladen und später veröffentlichen | Lokaler Git-Stand kann vorbereitet werden. |
+| Erledigt | Repository kevin1337pro/phinix-media-website | Code ist hochgeladen | Weitere Änderungen dorthin pushen. |
 | P1 | Zwei Porträts oder gemeinsames Foto | Persönlichkeit und Vertrauen | Bildplätze und Layout sind vorbereitet. |
 | P1 | Zwei bis drei echte Projekte mit Freigabe | Referenzen und fachliche Belege | Case-Study-Texte aus gelieferten Fakten erstellen. |
 | P1 | Wunschregion und wichtigste Kundengruppen | Suchintention und regionale Landingpages | Ruhrgebiet bleibt Arbeitshypothese. |

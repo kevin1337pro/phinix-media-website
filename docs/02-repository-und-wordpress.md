@@ -6,11 +6,11 @@ Stand 04.09.2026. Vom Nutzer bestätigt: Hosting bei WordPress.com; eigenes Them
 
 `themes/phinix-media/` ist ein eigenständiges WordPress-Block-Theme. Es enthält `style.css`, `theme.json`, Templates, Template-Teile, bearbeitbare Block-Patterns, lokal gespeicherte Bebas Neue und ein kleines JavaScript für die Hero-Szenen. Inhalte und Abschnitte können im Site-Editor angepasst werden. Der Editor ist Teil des Block-Theme-Konzepts. [WordPress: Block-Themes](https://wordpress.org/documentation/article/block-themes/)
 
-Der aktuelle Theme-Stand ist ein **Vorabstand 0.1.0** mit vollständigem Startseitenentwurf. Darin: Hero, Websites, Branding, Print, Marketing/Content, Google-SEO, Screens, Projektplatzhalter, Kevin und Janine, Ablauf, FAQ und Kontaktplatzhalter. Hinzu kommen allgemeine Seiten-, Beitrags-, Archiv-/Index- und 404-Templates.
+Der aktuelle Theme-Stand ist ein **Vorabstand 0.2.0** mit vollständigem Startseitenentwurf. Darin: Hero, Websites, Branding, Print, Marketing/Content, Google-SEO, Screens, Projektplatzhalter, Kevin und Janine, Ablauf, FAQ und Kontaktplatzhalter. Hinzu kommen allgemeine Seiten-, Beitrags-, Archiv-/Index- und 404-Templates.
 
 Die drei Hero-Szenen heißen Auftritt, Präsenz und Google. Sie sind per Mausklick und Tastatur umschaltbar. Reduzierte Bewegung wird respektiert; ohne JavaScript bleiben die Szenen lesbar. Die Fotos werden später ergänzt. Ein Original-Symbol-SVG ist dekorativ eingebunden. Die Header-Wortmarke wird in der mitgelieferten Bebas gesetzt; die gelieferten Wortbild-SVGs mit ungeklärter Bold-Schrift werden noch nicht verwendet.
 
-Der Haupt-CTA führt zum vorbereiteten Kontaktabschnitt. **Dort ist noch kein Formular angeschlossen.** Er behauptet keinen Versand und sammelt keine Daten. Vor der Veröffentlichung muss der Platzhalter durch das WordPress.com-Formular und Janines bestätigte Empfängeradresse ersetzt werden.
+Der Haupt-CTA führt zum vorbereiteten Kontaktabschnitt. **Dort führt ein Kontaktbutton zum bestehenden Formular auf https://phinix.media/ueber/.** Die Vorschau selbst sammelt keine Daten. Vor der Veröffentlichung muss der Platzhalter durch das WordPress.com-Formular und Janines bestätigte Empfängeradresse ersetzt werden.
 
 ## Repository-Struktur
 
@@ -36,7 +36,7 @@ output/                       # lokale Release-Dateien; nicht in Git
 .local/                       # lokale Testdaten; nicht in Git
 ```
 
-Empfehlung: zunächst ein privates Repository `phinix-media-website` beim gewünschten Anbieter. Name und Account sind noch offen. Nur Theme, Werkzeuge und freigegebene Projektdokumentation hochladen. Geschäftsunterlagen, Kundendaten, Zugangsdaten, Datenbankkopien und rohe Fotoarchive gehören nicht in dieses Repository.
+Empfehlung: zunächst ein privates Repository `phinix-media-website` beim gewünschten Anbieter. Das private Repository wurde unter `kevin1337pro/phinix-media-website` angelegt. Nur Theme, Werkzeuge und freigegebene Projektdokumentation hochladen. Geschäftsunterlagen, Kundendaten, Zugangsdaten, Datenbankkopien und rohe Fotoarchive gehören nicht in dieses Repository.
 
 ## Schritt 1: Hosting-Tarif und Bestandsseite prüfen
 
@@ -79,7 +79,7 @@ Wichtig: Änderungen im Site-Editor landen in der Datenbank und können Template
 python3 scripts/package-theme.py
 ```
 
-Ergebnis: `output/phinix-media-0.1.0.zip`. Das Paket enthält direkt den Ordner `phinix-media` mit `style.css` und `templates/index.html`. Das komplette Repository-ZIP ist kein Theme-Paket. Schriftlizenz und benötigte Assets sind enthalten.
+Ergebnis: `output/phinix-media-0.2.0.zip`. Das Paket enthält direkt den Ordner `phinix-media` mit `style.css` und `templates/index.html`. Das komplette Repository-ZIP ist kein Theme-Paket. Schriftlizenz und benötigte Assets sind enthalten.
 
 ## Schritt 5A: Upload über WordPress.com
 
