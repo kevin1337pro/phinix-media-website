@@ -1,0 +1,116 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "820px",
+      "wideSize": "1440px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        {
+          "slug": "ink",
+          "name": "Phinix Schwarz",
+          "color": "#101113"
+        },
+        {
+          "slug": "paper",
+          "name": "Phinix Weiß",
+          "color": "#f4f4f0"
+        },
+        {
+          "slug": "orange",
+          "name": "Phinix Orange",
+          "color": "#ff642e"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "bebas",
+          "name": "Bebas Neue",
+          "fontFamily": "\"Bebas Neue\", sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Bebas Neue",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": [
+                "file:./assets/fonts/BebasNeue-Regular.ttf"
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "body",
+          "name": "System Sans",
+          "fontFamily": "Arial, Helvetica, sans-serif"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|ink",
+      "text": "var:preset|color|paper"
+    },
+    "spacing": {
+      "blockGap": "24px"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|body",
+      "fontSize": "18px",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|bebas",
+          "fontWeight": "400",
+          "lineHeight": "1"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "inherit"
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var:preset|color|orange",
+          "text": "var:preset|color|ink"
+        },
+        "border": {
+          "radius": "0px"
+        },
+        "typography": {
+          "fontSize": "16px",
+          "fontWeight": "600"
+        },
+        "spacing": {
+          "padding": {
+            "top": "16px",
+            "bottom": "16px",
+            "left": "24px",
+            "right": "24px"
+          }
+        }
+      }
+    }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ]
+}

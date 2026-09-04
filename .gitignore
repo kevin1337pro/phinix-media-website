@@ -1,0 +1,13 @@
+.DS_Store
+.local/
+node_modules/
+output/
+.env
+.env.*
+!.env.example
+wp-config.php
+*.sql
+*.sqlite
+*.sqlite3
+*.log
+wp-content/uploads/
