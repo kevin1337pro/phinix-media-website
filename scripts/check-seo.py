@@ -8,12 +8,15 @@ ROOT=Path(__file__).resolve().parent.parent
 ORIGIN=os.environ.get('PHINIX_PREVIEW_ORIGIN','http://127.0.0.1:9402').rstrip('/')
 STATIC='--static' in sys.argv
 PAGES=json.loads((ROOT/'themes/phinix-media/content/seo-pages.json').read_text())
+ARTICLE='digitale-aussenwerbung-gladbeck-phinix-screens'
 class Page(HTMLParser):
-    def __init__(self):super().__init__();self.headings=[];self.meta=[];self.links=[];self.json=[];self.capture=None;self.buffer='';self.text=[]
+    def __init__(self):super().__init__();self.headings=[];self.meta=[];self.links=[];self.anchors=[];self.images=[];self.json=[];self.capture=None;self.buffer='';self.text=[]
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
         if tag=='meta':self.meta.append(a)
         if tag=='link':self.links.append(a)
+        if tag=='a':self.anchors.append(a)
+        if tag=='img':self.images.append(a)
         if tag=='script' and a.get('type')=='application/ld+json':self.capture='json';self.buffer=''
         if tag=='h1':self.capture='h1';self.buffer=''
     def handle_endtag(self,tag):
@@ -29,7 +32,7 @@ def get(path):
         assert r.status==200
         return r.read().decode()
 seen=set(); results=[]
-for slug in ['']+list(PAGES):
+for slug in ['']+list(PAGES)+[ARTICLE]:
     path='/'+slug+('/' if slug else '')
     raw=get(path); page=Page();page.feed(raw)
     assert len(page.headings)==1,(path,page.headings)
@@ -50,7 +53,22 @@ for slug in ['']+list(PAGES):
     text=' '.join(page.text)
     assert 'Buerelterstraße 27' in text and 'kontakt@phinix.media' in text
     assert 'aggregateRating' not in raw and 'FAQPage' not in raw
-    if slug:assert 'Service' in types and 'BreadcrumbList' in types
+    if slug and slug != ARTICLE:assert 'Service' in types and 'BreadcrumbList' in types
+    if slug == ARTICLE:
+        assert 'Article' in types and 'BreadcrumbList' in types and 'Service' not in types
+        article=next(x for x in graph if x['@type']=='Article')
+        assert article['image'].startswith('https://' if STATIC else ORIGIN)
+        og_image=[x['content'] for x in page.meta if x.get('property')=='og:image']
+        twitter_card=[x['content'] for x in page.meta if x.get('name')=='twitter:card']
+        assert len(og_image)==1 and og_image[0].startswith('https://' if STATIC else ORIGIN)
+        assert twitter_card==['summary_large_image']
+        assert any(x.get('href')=='https://www.phinix-screens.com/' for x in page.anchors)
+        assert all(term in text for term in ('Ratgeber','Aktualisiert am','digitale Außenwerbung','Digital Signage','DOOH','Gladbeck','Phinix Media gestaltet'))
+    if not slug:
+        assert all(term in text for term in ('Werbeagentur','WordPress','Corporate Design','Online-Marketing','Google-Unternehmensprofil','KI-Suche','PHINIX.SCREENS'))
+        people=[x for x in page.images if '/people/' in x.get('src','')]
+        assert len(people)>=6
+        assert all(x.get('alt') and x.get('width') and x.get('height') for x in people)
     for entity in graph:
         if '@id' in entity:assert entity['@id'].startswith('https://' if STATIC else ORIGIN)
     assert 'Fatal error' not in raw and 'Parse error' not in raw

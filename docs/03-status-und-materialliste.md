@@ -1,6 +1,6 @@
 # Status und fehlende Materialien
 
-Stand: 04.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualisiert.
+Stand: 18.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualisiert.
 
 ## Bestätigt
 
@@ -9,7 +9,7 @@ Stand: 04.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualis
 - Angebot: Websites, Branding, Visitenkarten/Print, Marketing und Google-SEO.
 - Plattform: WordPress.com, Zieladresse www.phinix.media.
 - Eigenes Theme und eigene Animation; kein Slider-Revolution-Plugin.
-- Bebas für Headlines. Bilder und Fotos werden nachgereicht.
+- Bebas für Headlines. Acht Team- und Markenmotive wurden nachgereicht und eingebaut.
 
 ## Erledigt
 
@@ -17,6 +17,8 @@ Stand: 04.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualis
 - Eigener Theme-Entwurf mit bearbeitbaren WordPress-Blöcken.
 - Animierter Hero mit drei wählbaren Szenen und Unterstützung reduzierter Bewegung.
 - Bebas lokal inklusive Lizenz; vorhandenes Logo-Symbol eingebunden.
+- Acht gelieferte Team-/Markenmotive dauerhaft übernommen, weboptimiert und in passende Seitenbereiche eingebaut.
+- PHINIX.SCREENS-Artikel mit direktem Link und überprüfbarer Angebotsbeschreibung.
 - Leistungsübersicht, Teamtexte, Prozess, FAQ, Kontakt- und Projektplätze.
 - Anleitung für Repo, Theme-ZIP, WordPress.com und späteren Launch.
 - Öffentliches Repository: https://github.com/kevin1337pro/phinix-media-website.
@@ -35,11 +37,11 @@ Den aktuellen Prüfstand und Paketstatus enthält die README. Die Website ist no
 | P0 | Vollständige aktuelle Unternehmens-/Pflichtangaben und passende Datenschutztexte | Bestehende Rechtstexte übernehmen und passend ergänzen | Seitenstruktur ist vorhanden. |
 | P0 | Freigabe der finalen Texte, insbesondere Kevins genaue Rollenbeschreibung | Verbindliche, korrekte Außendarstellung | Textentwurf präzisieren. |
 | Erledigt | Repository kevin1337pro/phinix-media-website | Code ist hochgeladen | Weitere Änderungen dorthin pushen. |
-| P1 | Zwei Porträts oder gemeinsames Foto | Persönlichkeit und Vertrauen | Bildplätze und Layout sind vorbereitet. |
-| P1 | Zwei bis drei echte Projekte mit Freigabe | Referenzen und fachliche Belege | Case-Study-Texte aus gelieferten Fakten erstellen. |
+| Erledigt | Acht Team- und Markenmotive | Persönlichkeit und visuelle Führung | Weboptimiert eingebaut; Rechte sowie Foto-/Composite-Status noch bestätigen. |
+| P1 | Zwei bis drei echte Kundenprojekte mit Freigabe | Referenzen und fachliche Belege | Case-Study-Texte aus gelieferten Fakten erstellen; Team-/Markenmotive ersetzen keine Projektbelege. |
 | P1 | Wichtigste Kundengruppen, Google-Unternehmensprofil-Link und Search-Console-Zugriff | Region Gelsenkirchen/Gladbeck bestätigt; reale Sichtbarkeit messen | Profile prüfen, Sitemap einreichen und Ausgangswerte erfassen. |
 | P1 | Genauer Angebotsumfang, ggf. Preisrahmen und Betreuung | Passende Anfragen und klare Erwartungen | Pakete kalkulieren und Texte schärfen. |
-| P2 | Aktueller Stand und Umfang von PHINIX.SCREENS | Beratung, Pilot und tatsächlich buchbares Angebot unterscheiden | Beratungstext ohne Verfügbarkeitsbehauptung vorhanden. |
+| P0 | PHINIX.SCREENS Rechtstexte, Kontakte, Social-Links und Canonicals | Widersprüchliche Platzhalter vor aktivem Traffic beseitigen | Artikel übernimmt nur belegbare Funktionen; Plattform separat korrigieren. |
 | P2 | Genaue Bebas-Bold-Datei oder Pfadexport der Wortbildmarke | Original-Wortbildmarke ohne Schriftabweichung einsetzen | Bebas Neue Regular und Logo-Symbol funktionieren bereits. |
 
 P0 blockiert den produktiven Launch; P1 verbessert beziehungsweise vervollständigt den vorgesehenen Auftritt; P2 kann schrittweise folgen. Ein Release darf auch mit weniger Referenzen starten, wenn die sichtbaren Inhalte vollständig und ehrlich sind. Keine leeren Projektkarten veröffentlichen.
@@ -55,7 +57,7 @@ P0 blockiert den produktiven Launch; P1 verbessert beziehungsweise vervollständ
 | Optionaler Film | Quer plus eigene Mobilfassung | Kurze ruhige Sequenz; Webexport später erstellen, Originalmaterial separat behalten. |
 | Screens | Foto des realen Einsatzes oder klar markiertes Konzept | Standort/Verfügbarkeit nur mit aktuellen bestätigten Fakten. |
 
-Bitte Originale liefern. Zuschnitt und Webkompression erfolgen bei der Integration. Zu jedem Foto: Urheber, Nutzungserlaubnis und gegebenenfalls Einwilligungen abgebildeter Personen klären. Diese Informationen gehören in die interne Asset-Liste, nicht als unnötige Texte auf die Website.
+Die acht gelieferten Motive sind integriert. Für echte Fallstudien und reale Screen-Standorte weiterhin Originale liefern. Zuschnitt und Webkompression erfolgen bei der Integration. Zu jedem Foto: Urheber, Nutzungserlaubnis und gegebenenfalls Einwilligungen abgebildeter Personen klären. Diese Informationen gehören in die interne Asset-Liste, nicht als unnötige Texte auf die Website.
 
 ## Vorlage für eine Referenz
 
@@ -82,5 +84,7 @@ Dürfen Kundenname, Logo und Zitat veröffentlicht werden?
 **Als Nächstes:** genau die nächste sinnvolle Arbeitsstufe.
 
 **Später möglich:** Erweiterungen außerhalb des aktuellen Umfangs.
+
+Ausführliche nächste Schritte stehen im [Google-, Apple- und KI-Sichtbarkeitsplan](05-online-auffallen-google-apple-ki-2026-09-18.md).
 
 Dieses Format beschreibt Berichte während unserer weiteren Arbeit. Es ist keine eingerichtete automatische Überwachung oder wiederkehrende Aufgabe.

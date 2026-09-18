@@ -20,6 +20,7 @@ add_action( 'init', function () {
 
 require_once get_theme_file_path( 'inc/seo.php' );
 require_once get_theme_file_path( 'inc/service-pages.php' );
+require_once get_theme_file_path( 'inc/articles.php' );
 
 add_shortcode( 'phinix_breadcrumbs', function () {
     if ( ! is_singular() || is_front_page() ) { return ''; }

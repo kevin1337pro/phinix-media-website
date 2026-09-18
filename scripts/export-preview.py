@@ -36,9 +36,20 @@ def export_page(path, destination):
     html = html.replace(ORIGIN, '')
     html = re.sub(r'<meta\b[^>]*name=[\"\']robots[\"\'][^>]*>', '', html, flags=re.I)
     html = re.sub(r'<link\b[^>]*rel=\"canonical\"[^>]*>', '', html, flags=re.I)
-    html = re.sub(r'(<meta property=\"og:url\" content=\")([^\"]*)', lambda m: m[1] + PREVIEW_URL + m[2], html)
-    html = re.sub(r'(<script[^>]*id=\"phinix-structured-data\"[^>]*>)(.*?)(</script>)', lambda m: m[1] + m[2].replace('\"url\":\"/', '\"url\":\"' + PREVIEW_URL + '/').replace('\"@id\":\"/', '\"@id\":\"' + PREVIEW_URL + '/').replace('\"item\":\"/', '\"item\":\"' + PREVIEW_URL + '/') + m[3], html, flags=re.S)
+    html = re.sub(r'(<meta property=\"og:(?:url|image)\" content=\")(/[^\"]*)', lambda m: m[1] + PREVIEW_URL + m[2], html)
+    html = re.sub(r'(<meta name=\"twitter:image\" content=\")(/[^\"]*)', lambda m: m[1] + PREVIEW_URL + m[2], html)
+    html = re.sub(
+        r'(<script[^>]*id=\"phinix-structured-data\"[^>]*>)(.*?)(</script>)',
+        lambda m: m[1] + re.sub(
+            r'(\"(?:url|@id|item|image|logo)\":\")/',
+            r'\1' + PREVIEW_URL + '/',
+            m[2],
+        ) + m[3],
+        html,
+        flags=re.S,
+    )
     html = html.replace('</head>', '<meta name="robots" content="noindex,follow"></head>')
+    html = re.sub(r'[ \t]+(?=\r?$)', '', html, flags=re.M)
     output = DIST / destination
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(html)
@@ -49,6 +60,7 @@ export_page('/datenschutz/', 'datenschutz/index.html')
 export_page('/?p=999999', '404.html')
 for slug in json.loads((ROOT / 'themes/phinix-media/content/seo-pages.json').read_text()):
     export_page('/' + slug + '/', slug + '/index.html')
+export_page('/digitale-aussenwerbung-gladbeck-phinix-screens/', 'digitale-aussenwerbung-gladbeck-phinix-screens/index.html')
 (DIST / 'robots.txt').write_text('User-agent: *\nDisallow: /\n')
 # Preview stays private and non-indexable; WordPress owns the production sitemap.
 # Theme assets are original source files; retain all local fonts/license.
@@ -67,4 +79,5 @@ for url in sorted(assets):
 for f in DIST.rglob('*.html'):
     assert ORIGIN not in f.read_text(), f'Local URL remains: {f}'
 assert not list(DIST.rglob('*.php'))
+assert not [f for f in DIST.rglob('*') if f.is_file() and f.stat().st_size == 0], 'Zero-byte file in preview export'
 print(f'Exported {len(list(DIST.rglob("*")))} files/directories to {DIST}')

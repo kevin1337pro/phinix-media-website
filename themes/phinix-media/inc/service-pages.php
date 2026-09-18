@@ -44,13 +44,13 @@ function phinix_install_service_pages( $status = 'draft' ) {
 add_action( 'admin_menu', function () {
     add_theme_page( 'Phinix einrichten', 'Phinix einrichten', 'edit_theme_options', 'phinix-setup', function () {
         if ( ! current_user_can( 'edit_theme_options' ) ) { return; }
-        echo '<div class="wrap"><h1>Phinix: Leistungsseiten einrichten</h1><p>Erstellt fünf echte Seiten als Entwürfe. Vorhandene Seiten werden nicht verändert. Prüfe die Inhalte und veröffentliche die Seiten vor dem Livegang, damit die Links funktionieren.</p><p>Bei einem aktiven SEO-Plugin trägst du Titel, Beschreibungen und Unternehmensdaten dort ein; das Theme vermeidet doppelte SEO-Ausgaben.</p>';
+        echo '<div class="wrap"><h1>Phinix: Inhalte einrichten</h1><p>Erstellt fünf echte Leistungsseiten und einen PHINIX.SCREENS-Ratgeber als Entwürfe. Vorhandene Inhalte werden nicht verändert. Prüfe die Inhalte und veröffentliche sie vor dem Livegang, damit die Links funktionieren. Bei einem Upgrade müssen bereits vorhandene Seiten deshalb manuell mit dem aktuellen Theme-Inhalt abgeglichen werden.</p><p>Bei einem aktiven SEO-Plugin trägst du Titel, Beschreibungen und Unternehmensdaten dort ein; das Theme vermeidet doppelte SEO-Ausgaben.</p>';
         echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="phinix_setup_pages">';
-        wp_nonce_field( 'phinix_setup_pages' ); submit_button( 'Fehlende Leistungsseiten als Entwürfe anlegen' ); echo '</form></div>';
+        wp_nonce_field( 'phinix_setup_pages' ); submit_button( 'Fehlende Seiten und Artikel als Entwürfe anlegen' ); echo '</form></div>';
     } );
 } );
 add_action( 'admin_post_phinix_setup_pages', function () {
     if ( ! current_user_can( 'edit_theme_options' ) || ! current_user_can( 'edit_pages' ) ) { wp_die( 'Keine Berechtigung.' ); }
-    check_admin_referer( 'phinix_setup_pages' ); phinix_install_service_pages();
+    check_admin_referer( 'phinix_setup_pages' ); phinix_install_service_pages(); phinix_install_editorial_articles();
     wp_safe_redirect( admin_url( 'edit.php?post_type=page' ) ); exit;
 } );

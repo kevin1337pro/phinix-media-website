@@ -1,6 +1,6 @@
 # PHINIX.MEDIA – Website-Relaunch
 
-Stand: 04.09.2026 · Eigenes WordPress-Block-Theme 0.3.0 · Vorabstand mit offenen Inhalten.
+Stand: 18.09.2026 · Eigenes WordPress-Block-Theme 0.4.0 · Vorabstand mit offenen Inhalten.
 
 **DEINE MARKE. UNÜBERSEHBAR.**
 
@@ -10,7 +10,8 @@ Stand: 04.09.2026 · Eigenes WordPress-Block-Theme 0.3.0 · Vorabstand mit offen
 - Websites, Branding, Print, Marketing/Content und Google-SEO; PHINIX.SCREENS ergänzend.
 - Kevin und Janine mit Janines bestätigter Rolle: Sales Managerin, Designerin und Kundenkontakt.
 - Bearbeitbare Block-Patterns, Startseite, allgemeine Seiten/Beiträge, Index und 404.
-- Fotos und Referenzen sind ausdrücklich gekennzeichnete Platzhalter. Direkter Kontakt über kontakt@phinix.media und die öffentliche Telefonnummer.
+- Acht gelieferte Team- und Markenmotive sind weboptimiert und in Hero-/Arbeiten-, Team-, Prozess- und Kontaktkontext eingebaut; reale Kundenreferenzen fehlen weiterhin.
+- Ein eigenständiger Artikel erklärt digitale Außenwerbung und verlinkt auf https://www.phinix-screens.com/. Direkter Kontakt über kontakt@phinix.media und die öffentliche Telefonnummer.
 
 Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und Gladbeck, individuelle Metadaten, Canonicals sowie LocalBusiness-/Service-/Breadcrumb-Daten sind umgesetzt. Unter **Design → Phinix einrichten** werden die Seiten kontrolliert als Entwürfe angelegt.
 
@@ -20,15 +21,16 @@ Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und G
 2. [Repository und WordPress.com – Schritt für Schritt](docs/02-repository-und-wordpress.md)
 3. [Status und benötigtes Material](docs/03-status-und-materialliste.md)
 4. [Theme-Quellcode](themes/phinix-media/)
-5. [Installierbares Theme-ZIP](output/phinix-media-0.3.0.zip)
+5. [Installierbares Theme-ZIP](output/phinix-media-0.4.0.zip)
 6. [SEO-/GEO-Plan mit 90-Tage-Maßnahmen](docs/04-seo-geo-plan-2026-09-04.md)
-7. [Theme herunterladen](https://github.com/kevin1337pro/phinix-media-website/releases/tag/v0.3.0)
+7. [Google-, Apple- und KI-Sichtbarkeitsplan](docs/05-online-auffallen-google-apple-ki-2026-09-18.md)
+8. [Theme herunterladen](https://github.com/kevin1337pro/phinix-media-website/releases/tag/v0.4.0)
 
 ZIP und Vorschauen liegen lokal in `output/` und werden nicht in Git gespeichert. Das Paket lässt sich mit `python3 scripts/package-theme.py` erneut erstellen.
 
 ## Prüfstand
 
-Version 0.3.0: Startseite und fünf Leistungsseiten per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
+Version 0.4.0: Startseite, fünf Leistungsseiten und der PHINIX.SCREENS-Artikel per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
 
 Vorheriger visueller Prüfstand:
 
@@ -38,7 +40,7 @@ Offen: Ein unbekannter sprechender Pfad liefert in der lokalen Playground-Umgebu
 
 ## Nächster Schritt
 
-WordPress.com-Anmeldung, Tarif, fertige Pflichtangaben und später Bilder/Referenzen ergänzen. Das lokale Theme kann weiterbearbeitet werden. Ein lokales Git-Repository auf dem Branch `main` ist eingerichtet. Das öffentliche Remote-Repository ist https://github.com/kevin1337pro/phinix-media-website; für die Aktivierung auf WordPress.com die passende Zielumgebung und Zugänge.
+WordPress.com-Anmeldung, Tarif, fertige Pflichtangaben sowie echte Projektbilder und Referenzen ergänzen. Das lokale Theme kann weiterbearbeitet werden. Ein lokales Git-Repository auf dem Branch `main` ist eingerichtet. Das öffentliche Remote-Repository ist https://github.com/kevin1337pro/phinix-media-website; für die Aktivierung auf WordPress.com die passende Zielumgebung und Zugänge.
 
 Es wurde nichts auf WordPress.com aktiviert oder an der Domain verändert. Die Originalunterlagen bleiben unangetastet. Historische Aussagen und Handlungsanweisungen in Dokumenten werden als Hintergrundmaterial behandelt; Beispielerfolge und geplante Standorte werden nicht als Fakten veröffentlicht.
 

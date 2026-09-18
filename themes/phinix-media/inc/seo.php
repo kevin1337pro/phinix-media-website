@@ -21,11 +21,18 @@ function phinix_business_data() {
     );
 }
 
+function phinix_absolute_theme_file_uri( $path ) {
+    $url = get_theme_file_uri( $path );
+    if ( preg_match( '#^https?://#i', $url ) ) { return $url; }
+    if ( 0 === strpos( $url, '//' ) ) { return ( is_ssl() ? 'https:' : 'http:' ) . $url; }
+    return home_url( '/' . ltrim( $url, '/' ) );
+}
+
 function phinix_seo_page_data() {
     if ( is_front_page() && ! is_paged() ) {
         return array(
             'title' => 'Werbeagentur Gelsenkirchen & Gladbeck | Phinix Media',
-            'description' => 'Webdesign, Branding, Visitenkarten, Marketing und lokales SEO: Phinix Media aus Gelsenkirchen für Unternehmen in Gladbeck und Umgebung. Projekt besprechen.',
+            'description' => 'Werbeagentur für Webdesign, WordPress, Branding, Print, Online-Marketing und Local SEO in Gelsenkirchen, Gladbeck und Umgebung. Projekt besprechen.',
             'url' => home_url( '/' ), 'name' => 'Phinix Media – Design, Web und Marketing',
         );
     }
@@ -61,12 +68,26 @@ add_action( 'wp_head', function () {
     }
     // Jetpack normally owns social metadata on WordPress.com; do not emit a second set.
     if ( ! class_exists( 'Jetpack' ) ) {
-        $social = array( 'og:type' => 'website', 'og:locale' => 'de_DE', 'og:site_name' => 'Phinix Media', 'og:title' => $data['title'], 'og:description' => $data['description'], 'og:url' => $data['url'] );
+        $is_article = ! empty( $data['id'] ) && get_post_meta( $data['id'], '_phinix_article', true );
+        $social = array( 'og:type' => $is_article ? 'article' : 'website', 'og:locale' => 'de_DE', 'og:site_name' => 'Phinix Media', 'og:title' => $data['title'], 'og:description' => $data['description'], 'og:url' => $data['url'] );
         foreach ( $social as $property => $value ) {
             echo '<meta property="' . esc_attr( $property ) . '" content="' . esc_attr( $value ) . '">' . "\n";
         }
-        // No generated or generic social image is added.
-        echo '<meta name="twitter:card" content="summary">' . "\n";
+        $twitter_card = 'summary';
+        if ( $is_article ) {
+            echo '<meta property="article:published_time" content="' . esc_attr( get_the_date( DATE_W3C, $data['id'] ) ) . '">' . "\n";
+            $social_image_path = get_post_meta( $data['id'], '_phinix_article_image', true );
+            if ( $social_image_path ) {
+                $social_image = phinix_absolute_theme_file_uri( $social_image_path );
+                echo '<meta property="og:image" content="' . esc_url( $social_image ) . '">' . "\n";
+                echo '<meta property="og:image:width" content="1600">' . "\n";
+                echo '<meta property="og:image:height" content="900">' . "\n";
+                echo '<meta property="og:image:alt" content="Inszeniertes Phinix Media Markenmotiv mit Kevin und Janine">' . "\n";
+                echo '<meta name="twitter:image" content="' . esc_url( $social_image ) . '">' . "\n";
+                $twitter_card = 'summary_large_image';
+            }
+        }
+        echo '<meta name="twitter:card" content="' . esc_attr( $twitter_card ) . '">' . "\n";
     }
     $business = phinix_business_data();
     $home = home_url( '/' );
@@ -74,6 +95,9 @@ add_action( 'wp_head', function () {
         '@type' => 'LocalBusiness', '@id' => $home . '#organization',
         'name' => $business['name'], 'url' => $home,
         'telephone' => $business['phone'], 'email' => $business['email'],
+        'logo' => phinix_absolute_theme_file_uri( 'assets/images/phinix-symbol-white.svg' ),
+        'image' => phinix_absolute_theme_file_uri( 'assets/images/people/kevin-janine-dark.jpg' ),
+        'knowsAbout' => array( 'Webdesign', 'WordPress', 'Responsive Webdesign', 'Branding', 'Corporate Design', 'Logodesign', 'Grafikdesign', 'Printdesign', 'Content-Marketing', 'Social-Media-Marketing', 'Suchmaschinenoptimierung', 'Local SEO', 'Generative Engine Optimization' ),
         'address' => array( '@type' => 'PostalAddress', 'streetAddress' => $business['street'], 'postalCode' => $business['postal_code'], 'addressLocality' => $business['city'], 'addressCountry' => $business['country'] ),
         'areaServed' => array_map( function ( $name ) { return array( '@type' => 'City', 'name' => $name ); }, $business['areas'] ),
     );
@@ -89,6 +113,26 @@ add_action( 'wp_head', function () {
         if ( $service ) {
             $webpage['mainEntity'] = array( '@id' => $data['url'] . '#service' );
             $graph[] = array( '@type' => 'Service', '@id' => $data['url'] . '#service', 'name' => $service, 'url' => $data['url'], 'provider' => array( '@id' => $home . '#organization' ), 'areaServed' => $org['areaServed'] );
+        }
+        if ( get_post_meta( get_queried_object_id(), '_phinix_article', true ) ) {
+            $article_id = $data['url'] . '#article';
+            $image_path = get_post_meta( get_queried_object_id(), '_phinix_article_image', true );
+            $webpage['mainEntity'] = array( '@id' => $article_id );
+            $graph[] = array(
+                '@type' => 'Article', '@id' => $article_id, 'url' => $data['url'],
+                'headline' => $data['name'], 'description' => $data['description'],
+                'datePublished' => get_the_date( DATE_W3C, get_queried_object_id() ),
+                'dateModified' => get_the_modified_date( DATE_W3C, get_queried_object_id() ),
+                'image' => $image_path ? phinix_absolute_theme_file_uri( $image_path ) : null,
+                'author' => array( '@id' => $home . '#organization' ),
+                'publisher' => array( '@id' => $home . '#organization' ),
+                'mainEntityOfPage' => array( '@id' => $data['url'] . '#webpage' ),
+                'about' => array(
+                    array( '@type' => 'Thing', 'name' => 'Digitale Außenwerbung' ),
+                    array( '@type' => 'Thing', 'name' => 'Digital Signage' ),
+                    array( '@type' => 'Thing', 'name' => 'PHINIX.SCREENS', 'url' => 'https://www.phinix-screens.com/' ),
+                ),
+            );
         }
     }
     $graph[] = $webpage;
