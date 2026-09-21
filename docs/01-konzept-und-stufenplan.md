@@ -1,4 +1,4 @@
-# PHINIX.MEDIA: DEINE MARKE. UNÜBERSEHBAR.
+# PHINIX.MEDIA: DEIN UNTERNEHMEN. UNÜBERSEHBAR.
 
 Konzeptstand 04.09.2026 · Entwurf und erster Theme-Stand für Kevin und Janine · Ziel: qualifizierte Neukunden gewinnen.
 
@@ -62,7 +62,7 @@ Bebas Neue ist im offiziellen Google-Fonts-Repository mit Schriftdatei und Lizen
 
 | Szene | Headline | Inszenierung nach Bildlieferung | Zweck |
 |---|---|---|---|
-| 01 / Marke | **DEINE MARKE. UNÜBERSEHBAR.** | Logo und Schrift erscheinen mit einer kurzen Maske, dahinter ein starkes echtes Projektmotiv. | Sofort erklären, wofür Phinix steht. |
+| 01 / Marke | **DEIN UNTERNEHMEN. UNÜBERSEHBAR.** | Logo und Schrift erscheinen mit einer kurzen Maske, dahinter ein starkes echtes Projektmotiv. | Sofort erklären, wofür Phinix steht. |
 | 02 / Content | **AUS DEINEM ALLTAG WIRD AUFMERKSAMKEIT.** | Das Motiv wechselt in kurze Produktions- und Reel-Ausschnitte. | Content-Kompetenz sichtbar machen. |
 | 03 / Screens | **VOM FEED AUF DIE STRASSE.** | Übergang in eine reale Screen-Aufnahme oder klar bezeichnete Konzeptvisualisierung. | Digitale und lokale Sichtbarkeit verbinden. |
 

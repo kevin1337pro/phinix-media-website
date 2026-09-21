@@ -65,7 +65,11 @@ for slug in ['']+list(PAGES)+[ARTICLE]:
         assert any(x.get('href')=='https://www.phinix-screens.com/' for x in page.anchors)
         assert all(term in text for term in ('Ratgeber','Aktualisiert am','digitale Außenwerbung','Digital Signage','DOOH','Gladbeck','Phinix Media gestaltet'))
     if not slug:
-        assert all(term in text for term in ('Werbeagentur','WordPress','Corporate Design','Online-Marketing','Google-Unternehmensprofil','KI-Suche','PHINIX.SCREENS'))
+        assert page.headings[0] == 'DEINUNTERNEHMEN.UNÜBERSEHBAR.'
+        assert all(term in text for term in ('Werbeagentur','WordPress','Corporate Design','Online-Marketing','Google-Unternehmensprofil','KI-Suche','PHINIX.SCREENS','Ruhrpott','Ruhrgebiet','Wir bringen Ideen in die Realität','Umsatzsteigernde Maßnahmen'))
+        wordmark_symbols=[x for x in page.images if 'wordmark-symbol' in x.get('class','').split()]
+        assert len(wordmark_symbols)==1
+        assert wordmark_symbols[0].get('alt')=='' and wordmark_symbols[0].get('width') and wordmark_symbols[0].get('height')
         people=[x for x in page.images if '/people/' in x.get('src','')]
         assert len(people)>=6
         assert all(x.get('alt') and x.get('width') and x.get('height') for x in people)

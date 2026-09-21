@@ -32,7 +32,7 @@ function phinix_seo_page_data() {
     if ( is_front_page() && ! is_paged() ) {
         return array(
             'title' => 'Werbeagentur Gelsenkirchen & Gladbeck | Phinix Media',
-            'description' => 'Werbeagentur für Webdesign, WordPress, Branding, Print, Online-Marketing und Local SEO in Gelsenkirchen, Gladbeck und Umgebung. Projekt besprechen.',
+            'description' => 'Werbeagentur aus dem Ruhrpott für Webdesign, WordPress, Branding, Print, Marketing und Local SEO in Gelsenkirchen, Gladbeck und im Ruhrgebiet.',
             'url' => home_url( '/' ), 'name' => 'Phinix Media – Design, Web und Marketing',
         );
     }

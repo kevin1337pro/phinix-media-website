@@ -1,8 +1,8 @@
 # PHINIX.MEDIA – Website-Relaunch
 
-Stand: 18.09.2026 · Eigenes WordPress-Block-Theme 0.4.0 · Vorabstand mit offenen Inhalten.
+Stand: 22.09.2026 · Eigenes WordPress-Block-Theme 0.4.1 · Vorabstand mit offenen Inhalten.
 
-**DEINE MARKE. UNÜBERSEHBAR.**
+**DEIN UNTERNEHMEN. UNÜBERSEHBAR.**
 
 ## Ergebnis
 
@@ -21,16 +21,16 @@ Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und G
 2. [Repository und WordPress.com – Schritt für Schritt](docs/02-repository-und-wordpress.md)
 3. [Status und benötigtes Material](docs/03-status-und-materialliste.md)
 4. [Theme-Quellcode](themes/phinix-media/)
-5. [Installierbares Theme-ZIP](output/phinix-media-0.4.0.zip)
+5. [Installierbares Theme-ZIP](output/phinix-media-0.4.1.zip)
 6. [SEO-/GEO-Plan mit 90-Tage-Maßnahmen](docs/04-seo-geo-plan-2026-09-04.md)
 7. [Google-, Apple- und KI-Sichtbarkeitsplan](docs/05-online-auffallen-google-apple-ki-2026-09-18.md)
-8. [Theme herunterladen](https://github.com/kevin1337pro/phinix-media-website/releases/tag/v0.4.0)
+8. [Theme herunterladen](https://github.com/kevin1337pro/phinix-media-website/releases/tag/v0.4.1)
 
 ZIP und Vorschauen liegen lokal in `output/` und werden nicht in Git gespeichert. Das Paket lässt sich mit `python3 scripts/package-theme.py` erneut erstellen.
 
 ## Prüfstand
 
-Version 0.4.0: Startseite, fünf Leistungsseiten und der PHINIX.SCREENS-Artikel per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
+Version 0.4.1: Startseite, fünf Leistungsseiten und der PHINIX.SCREENS-Artikel per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
 
 Vorheriger visueller Prüfstand:
 

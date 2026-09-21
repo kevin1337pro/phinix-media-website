@@ -8,15 +8,15 @@
 if ( ! defined( "ABSPATH" ) ) { exit; }
 ?>
 <!-- wp:group {"className":"phinix-hero","layout":{"type":"default"}} --><div class="wp-block-group phinix-hero"><!-- wp:group {"className":"hero-layout","layout":{"type":"default"}} --><div class="wp-block-group hero-layout"><!-- wp:group {"className":"hero-copy","layout":{"type":"default"}} --><div class="wp-block-group hero-copy"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">Webdesign · Branding · Marketing in Gelsenkirchen</p><!-- /wp:paragraph -->
-<!-- wp:heading {"level":1,"className":"hero-title"} --><h1 class="wp-block-heading hero-title">DEINE MARKE.<br><em>UNÜBERSEHBAR.</em></h1><!-- /wp:heading -->
-<!-- wp:paragraph {"className":"hero-description"} --><p class="hero-description">Websites, Branding und Marketing aus Gelsenkirchen. Für Unternehmen in Gladbeck und Umgebung verbinden wir einen starken Auftritt mit klaren Inhalten und einem direkten Weg zur Anfrage.</p><!-- /wp:paragraph -->
+<!-- wp:heading {"level":1,"className":"hero-title hero-title-long"} --><h1 class="wp-block-heading hero-title hero-title-long">DEIN<br>UNTERNEHMEN.<br><em>UNÜBERSEHBAR.</em></h1><!-- /wp:heading -->
+<!-- wp:paragraph {"className":"hero-description"} --><p class="hero-description">Websites, Branding und Marketing aus dem Ruhrpott!<br>Allen Unternehmen im Ruhrgebiet bieten wir einen starken Auftritt, sodass man im Pott noch gesehen wird.<br>Umsatzsteigernde Maßnahmen, die dein Unternehmen neu wachsen lassen.</p><!-- /wp:paragraph -->
 <!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#kontakt">Projekt besprechen ↗</a></div><!-- /wp:button -->
 <!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#leistungen">Leistungen entdecken</a></div><!-- /wp:button -->
 </div><!-- /wp:buttons -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"stage","layout":{"type":"default"}} --><div class="wp-block-group stage"><!-- wp:group {"className":"phinix-scene","layout":{"type":"default"}} --><div class="wp-block-group phinix-scene"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">01 / Identität</p><!-- /wp:paragraph -->
 <!-- wp:image {"className":"brand-symbol"} --><figure class="wp-block-image brand-symbol"><img src="<?php echo esc_url( get_theme_file_uri( "assets/images/phinix-symbol-white.svg" ) ); ?>" alt="" width="735" height="595"/></figure><!-- /wp:image -->
-<!-- wp:paragraph {"className":"scene-word"} --><p class="scene-word">MAKE<br>YOUR<br>MARK.</p><!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"scene-word scene-word-brand"} --><p class="scene-word scene-word-brand">WIR SIND<br><span>PHINIX.MEDIA</span></p><!-- /wp:paragraph -->
 <!-- wp:group {"className":"scene-foot","layout":{"type":"default"}} --><div class="wp-block-group scene-foot"><!-- wp:paragraph --><p>Branding · Websites · Print</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>PHINIX / 01</p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
@@ -38,7 +38,7 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:html --><div class="scene-controls" hidden><button type="button">01 / Auftritt</button><button type="button">02 / Präsenz</button><button type="button">03 / Google</button></div><!-- /wp:html -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->
-<!-- wp:group {"className":"hero-footer","layout":{"type":"default"}} --><div class="wp-block-group hero-footer"><!-- wp:paragraph --><p>Von der ersten Idee bis zum nächsten Auftritt.</p><!-- /wp:paragraph -->
+<!-- wp:group {"className":"hero-footer","layout":{"type":"default"}} --><div class="wp-block-group hero-footer"><!-- wp:paragraph --><p>Wir bringen Ideen in die Realität.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p><a href="#leistungen">Weiter entdecken ↓</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->
@@ -95,7 +95,7 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:paragraph {"className":"capability-note"} --><p class="capability-note">Nicht jede Leistung muss gleichzeitig starten. Im ersten Gespräch ordnen wir Ziel, Material und Prioritäten – ohne künstliche Keyword-Seiten oder erfundene Erfolgsversprechen.</p><!-- /wp:paragraph --></section><!-- /wp:group -->
 <!-- wp:group {"tagName":"section","anchor":"region","className":"section local-section","layout":{"type":"default"}} --><section id="region" class="wp-block-group section local-section"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">Gelsenkirchen · Gladbeck · Umgebung</p><!-- /wp:paragraph --><!-- wp:heading {"className":"section-title"} --><h2 class="wp-block-heading section-title">DEINE AGENTUR.<br>HIER IN DER REGION.</h2><!-- /wp:heading --><!-- wp:paragraph --><p>Phinix Media sitzt in Gelsenkirchen-Scholven. Wir gestalten Websites, Markenauftritte, Visitenkarten und Marketing für Unternehmen in Gelsenkirchen, Gladbeck und Umgebung. Kevin arbeitet am visuellen und digitalen Auftritt. Janine ist Sales Managerin, Designerin und deine Ansprechpartnerin für den Kundenkontakt.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>Du kannst mit einer einzelnen Aufgabe starten: einer neuen Website, einem Logo oder Drucksachen für dein Unternehmen. Im ersten Austausch klären wir Ziel, vorhandenes Material und den passenden Umfang. So weißt du, was als Nächstes gebraucht wird.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p><a href="/webdesign/">Webdesign in Gelsenkirchen und Gladbeck</a> · <a href="/branding/">Markenauftritt und Logo</a> · <a href="/seo-local-geo/">Lokale Auffindbarkeit bei Google</a></p><!-- /wp:paragraph --></section><!-- /wp:group -->
 <!-- wp:group {"className":"section","layout":{"type":"default"},"anchor":"arbeiten"} --><div id="arbeiten" class="wp-block-group section"><!-- wp:group {"className":"work-layout","layout":{"type":"default"}} --><div class="wp-block-group work-layout"><!-- wp:group {"className":"","layout":{"type":"default"}} --><div class="wp-block-group"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">02 / Einblicke</p><!-- /wp:paragraph -->
-<!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">GUTE ARBEIT<br>DARF AUFFALLEN.</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">WIR SIND<br>PHINIX.MEDIA.</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Hier zeigen wir künftig ausgewählte Projekte – mit der Idee dahinter, unserer Umsetzung und dem Ergebnis. Echte Einblicke in das, was Phinix Media für Unternehmen gestaltet.</p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:html --><figure class="project-visual"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/people/phinix-brand-stage.jpg' ) ); ?>" alt="Inszeniertes Phinix Media Markenmotiv mit Kevin und Janine" width="1600" height="900" loading="lazy"><figcaption>Markenvisualisierung für Phinix Media. Echte Kundenprojekte und Screen-Installationen ergänzen wir nach Freigabe.</figcaption></figure><!-- /wp:html -->
