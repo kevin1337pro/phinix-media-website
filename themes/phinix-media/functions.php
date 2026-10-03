@@ -11,7 +11,9 @@ add_action( 'after_setup_theme', function () {
 add_action( 'wp_enqueue_scripts', function () {
     $version = wp_get_theme()->get( 'Version' );
     wp_enqueue_style( 'phinix-media', get_theme_file_uri( 'assets/theme.css' ), array(), $version );
-    wp_enqueue_script( 'phinix-motion', get_theme_file_uri( 'assets/motion.js' ), array(), $version, array( 'strategy' => 'defer', 'in_footer' => true ) );
+    wp_enqueue_script( 'phinix-gsap', get_theme_file_uri( 'assets/gsap.min.js' ), array(), '3.13.0', array( 'strategy' => 'defer', 'in_footer' => true ) );
+    wp_enqueue_script( 'phinix-scroll-trigger', get_theme_file_uri( 'assets/ScrollTrigger.min.js' ), array( 'phinix-gsap' ), '3.13.0', array( 'strategy' => 'defer', 'in_footer' => true ) );
+    wp_enqueue_script( 'phinix-motion', get_theme_file_uri( 'assets/motion.js' ), array( 'phinix-scroll-trigger' ), $version, array( 'strategy' => 'defer', 'in_footer' => true ) );
 } );
 
 add_action( 'init', function () {

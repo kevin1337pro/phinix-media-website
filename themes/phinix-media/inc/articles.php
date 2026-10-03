@@ -20,9 +20,62 @@ function phinix_article_meta_shortcode() {
 }
 add_shortcode( 'phinix_article_meta', 'phinix_article_meta_shortcode' );
 
+function phinix_screens_story_shortcode() {
+    $person = get_theme_file_uri( 'assets/images/screens/customer-phone-v1.png' );
+    return '<section class="screens-story" aria-labelledby="screens-story-title">
+        <div class="screens-story__head">
+            <p class="eyebrow">PHINIX.SCREENS / SO EINFACH GEHT SICHTBARKEIT</p>
+            <h2 id="screens-story-title">BUCHEN.<br>SCANNEN.<br><em>AUFFALLEN.</em></h2>
+            <p>Vom Smartphone auf den City-Screen: Die Kampagne wird dort sichtbar, wo deine Kundschaft unterwegs ist.</p>
+        </div>
+        <div class="screens-story__stage" data-screens-story>
+            <div class="screens-story__counter" aria-hidden="true"><span data-story-step>01</span><b>/ 04</b></div>
+            <div class="screens-story__type" aria-hidden="true">
+                <span class="is-active">STANDORT<br>WÄHLEN</span>
+                <span>QR-CODE<br>SCANNEN</span>
+                <span>SPOT<br>LIVE</span>
+                <span>JETZT<br>SICHTBAR</span>
+            </div>
+            <div class="screens-story__world" aria-hidden="true">
+                <div class="screens-story__ground"></div>
+                <div class="screens-story__person"><img src="' . esc_url( $person ) . '" alt="" width="1024" height="1536"></div>
+                <div class="screens-story__signal"><i></i><i></i><i></i></div>
+                <div class="screens-story__display">
+                    <div class="screens-story__screen">
+                        <div class="screens-story__idle"><span>PHINIX.</span><strong>SCREENS</strong><small>DEINE STADT. DEINE BÜHNE.</small></div>
+                        <div class="screens-story__qr"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="screens-story__ad"><small>NEU IN GLADBECK</small><strong>DEIN<br>ANGEBOT.</strong><b>JETZT ENTDECKEN</b></div>
+                        <div class="screens-story__flash"></div>
+                    </div>
+                    <div class="screens-story__stand"></div>
+                </div>
+                <div class="screens-story__burst">YES!</div>
+            </div>
+            <div class="screens-story__progress" aria-hidden="true"><span></span></div>
+            <p class="screens-story__caption" data-story-caption>Passenden Standort und Zeitraum auswählen.</p>
+        </div>
+        <ol class="screens-story__steps">
+            <li><span>01</span><strong>Standort wählen</strong><p>Display, Laufzeit und Zeitraum passend zur Kampagne auswählen.</p></li>
+            <li><span>02</span><strong>QR-Code scannen</strong><p>Buchung auf dem Smartphone öffnen und das Motiv bereitstellen.</p></li>
+            <li><span>03</span><strong>Spot ausspielen</strong><p>Nach Prüfung und Freigabe erscheint die Werbung auf dem Screen.</p></li>
+            <li><span>04</span><strong>Sichtbar werden</strong><p>Lokale Aufmerksamkeit genau dort, wo Menschen unterwegs sind.</p></li>
+        </ol>
+    </section>';
+}
+add_shortcode( 'phinix_screens_story', 'phinix_screens_story_shortcode' );
+
+/* Keep the story available on sites where the editorial page predates this theme update. */
+add_filter( 'the_content', function ( $content ) {
+    if ( ! is_page( 'digitale-aussenwerbung-gladbeck-phinix-screens' ) || has_shortcode( $content, 'phinix_screens_story' ) ) { return $content; }
+    $story = "\n[phinix_screens_story]\n";
+    $updated = preg_replace( '/(<p[^>]*class="[^"]*service-lead[^"]*"[^>]*>.*?<\/p>)/s', '$1' . $story, $content, 1 );
+    return $updated !== $content ? $updated : $story . $content;
+}, 8 );
+
 function phinix_screens_article_content() {
     return '<!-- wp:shortcode -->[phinix_article_meta]<!-- /wp:shortcode -->
 <!-- wp:paragraph {"className":"service-lead"} --><p class="service-lead">Digitale Außenwerbung bringt eine Botschaft auf Displays im öffentlichen Raum. PHINIX.SCREENS beschreibt dafür eine Plattform, über die Unternehmen in Gladbeck einen Standort und eine Ausspielung wählen, ihr Motiv hochladen und die Kampagne nach Freigabe ausspielen lassen können.</p><!-- /wp:paragraph -->
+<!-- wp:shortcode -->[phinix_screens_story]<!-- /wp:shortcode -->
 <!-- wp:shortcode -->[phinix_theme_picture name="phinix-brand-stage.jpg" alt="Inszeniertes Phinix Media Markenmotiv mit Kevin und Janine" class="article-lead-visual"]<!-- /wp:shortcode -->
 <!-- wp:heading --><h2 class="wp-block-heading">Was ist digitale Außenwerbung?</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Digital Out of Home, kurz DOOH, bezeichnet digitale Werbeflächen außerhalb der eigenen Website und Social-Media-Kanäle. Dazu zählen Stadt-Displays und andere Digital-Signage-Flächen. Motive lassen sich zeitlich planen und ohne einen neuen Plakatdruck wechseln. Das macht lokale Werbung beispielsweise für Angebote, Veranstaltungen, Neueröffnungen oder freie Termine interessant.</p><!-- /wp:paragraph -->
