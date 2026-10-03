@@ -61,7 +61,7 @@
   const person = story.querySelector('.screens-story__person');
   const shadow = story.querySelector('.screens-story__shadow');
   const world = story.querySelector('.screens-story__world');
-  const walk = story.querySelector('.screens-story__pose--walk');
+  const walkFrames = [...story.querySelectorAll('.screens-story__walk-frame')];
   const scan = story.querySelector('.screens-story__pose--scan');
   const jump = story.querySelector('.screens-story__pose--jump');
   const signal = story.querySelector('.screens-story__signal');
@@ -122,7 +122,8 @@
   const resetScene = () => {
     gsap.set(person, {x: 0, y: 0, rotation: 0, scaleX: 1, scaleY: 1});
     gsap.set(shadow, {x: 0, scaleX: 1, opacity: 1});
-    gsap.set(walk, {autoAlpha: 1, y: 0, rotation: 0});
+    gsap.set(walkFrames, {autoAlpha: 0});
+    if (walkFrames[0]) gsap.set(walkFrames[0], {autoAlpha: 1});
     gsap.set([scan, jump, signal, flash], {autoAlpha: 0});
     gsap.set(qr, {autoAlpha: 0, scale: .78, boxShadow: '0 0 0 0 rgba(255,100,46,0)'});
     gsap.set(ad, {autoAlpha: 0, scale: 1.06});
@@ -154,10 +155,29 @@
     .fromTo(statement, {autoAlpha: 0, y: 18}, {autoAlpha: 1, y: 0, stagger: .09, duration: .65}, .1)
     .to(progress, {width: '28%', duration: 3.55, ease: 'none'}, 0)
     .to(person, {x: walkDistance, duration: 3.2, ease: 'power1.inOut'}, .45)
-    .to(shadow, {x: walkDistance, duration: 3.2, ease: 'power1.inOut'}, .45)
-    .to(walk, {keyframes:[{y:-5,rotation:.6},{y:0,rotation:-.35},{y:-4,rotation:.45},{y:0,rotation:0}],duration:.82,repeat:3,ease:'sine.inOut'}, .48)
-    .call(() => setPhase(1), null, 3.55)
-    .to(walk, {autoAlpha: 0, duration: .18}, 3.55)
+    .to(shadow, {x: walkDistance, duration: 3.2, ease: 'power1.inOut'}, .45);
+
+  const gaitY = [0, 4, 1, 0, 4, 1];
+  const gaitRotation = [0, -.16, .1, 0, .16, -.1];
+  const gaitCycles = 4;
+  const gaitFrameDuration = 3.2 / Math.max(1, walkFrames.length * gaitCycles);
+  for (let cycle = 0; cycle < gaitCycles; cycle += 1) {
+    walkFrames.forEach((frame, index) => {
+      const at = .45 + (cycle * walkFrames.length + index) * gaitFrameDuration;
+      tl.set(walkFrames, {autoAlpha: 0}, at)
+        .set(frame, {autoAlpha: 1}, at)
+        .to(person, {
+          y: gaitY[index] ?? 0,
+          rotation: gaitRotation[index] ?? 0,
+          duration: gaitFrameDuration,
+          ease: 'sine.inOut'
+        }, at);
+    });
+  }
+
+  tl.call(() => setPhase(1), null, 3.55)
+    .to(walkFrames, {autoAlpha: 0, duration: .12}, 3.55)
+    .to(person, {y: 0, rotation: 0, duration: .22, ease: 'sine.out'}, 3.55)
     .fromTo(scan, {autoAlpha: 0, y: 8}, {autoAlpha: 1, y: 0, duration: .34}, 3.58)
     .to(progress, {width: '52%', duration: 1.9, ease: 'none'}, 3.55)
     .to(idle, {opacity: .28, duration: .4}, 3.8)
