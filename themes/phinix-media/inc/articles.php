@@ -21,12 +21,20 @@ function phinix_article_meta_shortcode() {
 add_shortcode( 'phinix_article_meta', 'phinix_article_meta_shortcode' );
 
 function phinix_screens_story_shortcode() {
-    $person_walk_contact_a = get_theme_file_uri( 'assets/images/screens/customer-walk-contact-a-v3.webp' );
-    $person_walk_down_a = get_theme_file_uri( 'assets/images/screens/customer-walk-down-a-v3.webp' );
-    $person_walk_pass_a = get_theme_file_uri( 'assets/images/screens/customer-walk-pass-a-v3.webp' );
-    $person_walk_contact_b = get_theme_file_uri( 'assets/images/screens/customer-walk-contact-b-v3.webp' );
-    $person_walk_down_b = get_theme_file_uri( 'assets/images/screens/customer-walk-down-b-v3.webp' );
-    $person_walk_pass_b = get_theme_file_uri( 'assets/images/screens/customer-walk-pass-b-v3.webp' );
+    $person_walk_frames = array(
+        'customer-walk-01-contact-a-v5.webp',
+        'customer-walk-02-down-a-v5.webp',
+        'customer-walk-03-passing-a-v5.webp',
+        'customer-walk-04-up-a-v5.webp',
+        'customer-walk-05-contact-b-v5.webp',
+        'customer-walk-06-down-b-v5.webp',
+        'customer-walk-07-passing-b-v5.webp',
+        'customer-walk-08-up-b-v5.webp',
+    );
+    $person_walk_markup = '';
+    foreach ( $person_walk_frames as $frame ) {
+        $person_walk_markup .= '<img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( get_theme_file_uri( 'assets/images/screens/' . $frame ) ) . '" alt="" width="1024" height="1536" decoding="async">';
+    }
     $person_scan = get_theme_file_uri( 'assets/images/screens/customer-scan-v2.webp' );
     $person_jump = get_theme_file_uri( 'assets/images/screens/customer-jump-v2.webp' );
     $qr_code = get_theme_file_uri( 'assets/images/screens/screen-qr-v1.svg' );
@@ -45,12 +53,7 @@ function phinix_screens_story_shortcode() {
                 <div class="screens-story__ground"></div>
                 <div class="screens-story__shadow"></div>
                 <div class="screens-story__person">
-                    <img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( $person_walk_contact_a ) . '" alt="" width="1024" height="1536" decoding="async">
-                    <img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( $person_walk_down_a ) . '" alt="" width="1024" height="1536" decoding="async">
-                    <img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( $person_walk_pass_a ) . '" alt="" width="1024" height="1536" decoding="async">
-                    <img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( $person_walk_contact_b ) . '" alt="" width="1024" height="1536" decoding="async">
-                    <img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( $person_walk_down_b ) . '" alt="" width="1024" height="1536" decoding="async">
-                    <img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( $person_walk_pass_b ) . '" alt="" width="1024" height="1536" decoding="async">
+                    ' . $person_walk_markup . '
                     <img class="screens-story__pose screens-story__pose--scan" src="' . esc_url( $person_scan ) . '" alt="" width="1024" height="1536" decoding="async">
                     <img class="screens-story__pose screens-story__pose--jump" src="' . esc_url( $person_jump ) . '" alt="" width="1024" height="1536" decoding="async">
                 </div>

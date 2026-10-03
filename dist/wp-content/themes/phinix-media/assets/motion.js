@@ -81,6 +81,7 @@
     'Der Werbespot wird auf dem Screen freigeschaltet.',
     'Kampagne live – sichtbar mitten in Gladbeck.'
   ];
+  if (!person || !shadow || walkFrames.length !== 8) return;
 
   section.classList.add('is-enhanced');
   const setPhase = index => {
@@ -154,32 +155,23 @@
     .to(world, {autoAlpha: 1, duration: .55, ease: 'power1.out'}, 0)
     .fromTo(statement, {autoAlpha: 0, y: 18}, {autoAlpha: 1, y: 0, stagger: .09, duration: .65}, .1)
     .to(progress, {width: '28%', duration: 3.55, ease: 'none'}, 0)
-    .to(person, {x: walkDistance, duration: 3.2, ease: 'power1.inOut'}, .45)
-    .to(shadow, {x: walkDistance, duration: 3.2, ease: 'power1.inOut'}, .45);
+    .to(person, {x: walkDistance, duration: 3.2, ease: 'none'}, .45)
+    .to(shadow, {x: walkDistance, duration: 3.2, ease: 'none'}, .45);
 
-  const gaitY = [0, 4, 1, 0, 4, 1];
-  const gaitRotation = [0, -.16, .1, 0, .16, -.1];
-  const gaitCycles = 4;
+  const gaitCycles = 3;
   const gaitFrameDuration = 3.2 / Math.max(1, walkFrames.length * gaitCycles);
   for (let cycle = 0; cycle < gaitCycles; cycle += 1) {
     walkFrames.forEach((frame, index) => {
       const at = .45 + (cycle * walkFrames.length + index) * gaitFrameDuration;
       tl.set(walkFrames, {autoAlpha: 0}, at)
-        .set(frame, {autoAlpha: 1}, at)
-        .to(person, {
-          y: gaitY[index] ?? 0,
-          rotation: gaitRotation[index] ?? 0,
-          duration: gaitFrameDuration,
-          ease: 'sine.inOut'
-        }, at);
+        .set(frame, {autoAlpha: 1}, at);
     });
   }
 
-  tl.call(() => setPhase(1), null, 3.55)
-    .to(walkFrames, {autoAlpha: 0, duration: .12}, 3.55)
-    .to(person, {y: 0, rotation: 0, duration: .22, ease: 'sine.out'}, 3.55)
-    .fromTo(scan, {autoAlpha: 0, y: 8}, {autoAlpha: 1, y: 0, duration: .34}, 3.58)
-    .to(progress, {width: '52%', duration: 1.9, ease: 'none'}, 3.55)
+  tl.call(() => setPhase(1), null, 3.65)
+    .set(walkFrames, {autoAlpha: 0}, 3.65)
+    .set(scan, {autoAlpha: 1, y: 0}, 3.65)
+    .to(progress, {width: '52%', duration: 1.8, ease: 'none'}, 3.65)
     .to(idle, {opacity: .28, duration: .4}, 3.8)
     .fromTo(qr, {autoAlpha: 0, scale: .78}, {autoAlpha: 1, scale: 1, boxShadow:'0 0 0 18px rgba(255,100,46,.14)',duration:.55,ease:'back.out(1.5)'}, 3.85)
     .call(positionScanFx, null, 3.72)
