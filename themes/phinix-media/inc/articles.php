@@ -21,44 +21,50 @@ function phinix_article_meta_shortcode() {
 add_shortcode( 'phinix_article_meta', 'phinix_article_meta_shortcode' );
 
 function phinix_screens_story_shortcode() {
-    $person = get_theme_file_uri( 'assets/images/screens/customer-phone-v1.png' );
+    $person_walk = get_theme_file_uri( 'assets/images/screens/customer-phone-v1.webp' );
+    $person_scan = get_theme_file_uri( 'assets/images/screens/customer-scan-v2.webp' );
+    $person_jump = get_theme_file_uri( 'assets/images/screens/customer-jump-v2.webp' );
+    $qr_code = get_theme_file_uri( 'assets/images/screens/screen-qr-v1.svg' );
     return '<section class="screens-story" aria-labelledby="screens-story-title">
         <div class="screens-story__head">
-            <p class="eyebrow">PHINIX.SCREENS / SO EINFACH GEHT SICHTBARKEIT</p>
+            <p class="eyebrow">PHINIX.SCREENS / AUTOMATISCHE DEMO</p>
             <h2 id="screens-story-title">BUCHEN.<br>SCANNEN.<br><em>AUFFALLEN.</em></h2>
-            <p>Vom Smartphone auf den City-Screen: Die Kampagne wird dort sichtbar, wo deine Kundschaft unterwegs ist.</p>
+            <p>Eine kurze Szene zeigt den ganzen Weg: ankommen, QR-Code scannen und den eigenen Spot direkt auf dem Display erleben.</p>
         </div>
         <div class="screens-story__stage" data-screens-story>
-            <div class="screens-story__counter" aria-hidden="true"><span data-story-step>01</span><b>/ 04</b></div>
-            <div class="screens-story__type" aria-hidden="true">
-                <span class="is-active">STANDORT<br>WÄHLEN</span>
-                <span>QR-CODE<br>SCANNEN</span>
-                <span>SPOT<br>LIVE</span>
-                <span>JETZT<br>SICHTBAR</span>
-            </div>
+            <p class="screen-reader-text">Eine Person geht mit einem Smartphone zu einem Digital-Signage-Display, scannt den QR-Code, sieht den Werbespot auf dem Screen und springt vor Freude.</p>
+            <div class="screens-story__meta" aria-hidden="true"><span>PHINIX.SCREENS</span><span>AUTOMATISCHE SZENE · 12 SEK.</span></div>
+            <button class="screens-story__toggle" type="button" aria-label="Animation pausieren" data-paused="false" hidden>Animation pausieren</button>
+            <div class="screens-story__statement" aria-hidden="true"><span>DEINE WERBUNG.</span><strong>MITTEN IM LEBEN.</strong></div>
             <div class="screens-story__world" aria-hidden="true">
                 <div class="screens-story__ground"></div>
-                <div class="screens-story__person"><img src="' . esc_url( $person ) . '" alt="" width="1024" height="1536"></div>
+                <div class="screens-story__shadow"></div>
+                <div class="screens-story__person">
+                    <img class="screens-story__pose screens-story__pose--walk" src="' . esc_url( $person_walk ) . '" alt="" width="1024" height="1536" decoding="async">
+                    <img class="screens-story__pose screens-story__pose--scan" src="' . esc_url( $person_scan ) . '" alt="" width="1024" height="1536" decoding="async">
+                    <img class="screens-story__pose screens-story__pose--jump" src="' . esc_url( $person_jump ) . '" alt="" width="1024" height="1536" decoding="async">
+                </div>
+                <div class="screens-story__scan-beam"></div>
                 <div class="screens-story__signal"><i></i><i></i><i></i></div>
                 <div class="screens-story__display">
                     <div class="screens-story__screen">
                         <div class="screens-story__idle"><span>PHINIX.</span><strong>SCREENS</strong><small>DEINE STADT. DEINE BÜHNE.</small></div>
-                        <div class="screens-story__qr"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="screens-story__qr"><img src="' . esc_url( $qr_code ) . '" alt="" width="512" height="512" decoding="async"></div>
                         <div class="screens-story__ad"><small>NEU IN GLADBECK</small><strong>DEIN<br>ANGEBOT.</strong><b>JETZT ENTDECKEN</b></div>
                         <div class="screens-story__flash"></div>
                     </div>
                     <div class="screens-story__stand"></div>
                 </div>
-                <div class="screens-story__burst">YES!</div>
+                <div class="screens-story__success"><span>✓</span><strong>KAMPAGNE LIVE</strong></div>
             </div>
+            <div class="screens-story__status"><i></i><p data-story-caption>Vier Schritte erklären den Ablauf unterhalb der Szene.</p></div>
             <div class="screens-story__progress" aria-hidden="true"><span></span></div>
-            <p class="screens-story__caption" data-story-caption>Passenden Standort und Zeitraum auswählen.</p>
         </div>
-        <ol class="screens-story__steps">
-            <li><span>01</span><strong>Standort wählen</strong><p>Display, Laufzeit und Zeitraum passend zur Kampagne auswählen.</p></li>
-            <li><span>02</span><strong>QR-Code scannen</strong><p>Buchung auf dem Smartphone öffnen und das Motiv bereitstellen.</p></li>
-            <li><span>03</span><strong>Spot ausspielen</strong><p>Nach Prüfung und Freigabe erscheint die Werbung auf dem Screen.</p></li>
-            <li><span>04</span><strong>Sichtbar werden</strong><p>Lokale Aufmerksamkeit genau dort, wo Menschen unterwegs sind.</p></li>
+        <ol class="screens-story__steps" data-story-steps role="list">
+            <li><span aria-hidden="true">01</span><strong>Standort wählen</strong><p>Display, Laufzeit und Zeitraum passend zur Kampagne auswählen.</p></li>
+            <li><span aria-hidden="true">02</span><strong>QR-Code scannen</strong><p>Buchung auf dem Smartphone öffnen und das Motiv bereitstellen.</p></li>
+            <li><span aria-hidden="true">03</span><strong>Spot ausspielen</strong><p>Nach Prüfung und Freigabe erscheint die Werbung auf dem Screen.</p></li>
+            <li><span aria-hidden="true">04</span><strong>Sichtbar werden</strong><p>Lokale Aufmerksamkeit genau dort, wo Menschen unterwegs sind.</p></li>
         </ol>
     </section>';
 }
