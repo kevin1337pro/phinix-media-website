@@ -74,7 +74,7 @@ Vor einer stärkeren Verlinkung beziehungsweise Kampagne auf phinix-screens.com:
 
 | Zeitraum | Maßnahme | Messpunkt |
 |---|---|---|
-| Tag 1–7 | Theme 0.4.1 auf WordPress.com, Leistungsseiten und Artikel veröffentlichen; Sitemap, Indexierung, Canonicals, Weiterleitungen und 404 prüfen | Alle Zielseiten erreichbar, keine unbeabsichtigte `noindex`-Sperre |
+| Tag 1–7 | Theme 0.7.0 auf WordPress.com, Leistungsseiten und beide Ratgeber veröffentlichen; Sitemap, Indexierung, Canonicals, Weiterleitungen und 404 prüfen | Alle Zielseiten erreichbar, keine unbeabsichtigte `noindex`-Sperre |
 | Tag 1–14 | Google-Profiltyp klären, vorhandenes Profil übernehmen oder regelkonform anlegen; Search Console einrichten | Bestätigtes Profil beziehungsweise dokumentierte Nichtberechtigung; Sitemap verarbeitet |
 | Tag 8–21 | Apple-Organisation bestätigen und nur bei echtem Kundenstandort Standortkarte übernehmen/anlegen | Korrektes Unternehmensprofil, keine private Adresse als Scheinstandort |
 | Tag 8–30 | Zwei echte Projekte als Fallstudien aufbereiten; reale Fotos und Ergebnisse freigeben | Zwei eigenständige Belege statt Platzhalter |

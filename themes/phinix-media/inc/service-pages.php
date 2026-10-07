@@ -44,7 +44,7 @@ function phinix_install_service_pages( $status = 'draft' ) {
 add_action( 'admin_menu', function () {
     add_theme_page( 'Phinix einrichten', 'Phinix einrichten', 'edit_theme_options', 'phinix-setup', function () {
         if ( ! current_user_can( 'edit_theme_options' ) ) { return; }
-        echo '<div class="wrap"><h1>Phinix: Inhalte einrichten</h1><p>Erstellt fünf echte Leistungsseiten und einen PHINIX.SCREENS-Ratgeber als Entwürfe. Vorhandene Inhalte werden nicht verändert. Prüfe die Inhalte und veröffentliche sie vor dem Livegang, damit die Links funktionieren. Bei einem Upgrade müssen bereits vorhandene Seiten deshalb manuell mit dem aktuellen Theme-Inhalt abgeglichen werden.</p><p>Bei einem aktiven SEO-Plugin trägst du Titel, Beschreibungen und Unternehmensdaten dort ein; das Theme vermeidet doppelte SEO-Ausgaben.</p>';
+        echo '<div class="wrap"><h1>Phinix: Inhalte einrichten</h1><p>Erstellt fünf echte Leistungsseiten, den PHINIX.SCREENS-Ratgeber und den Beitrag zum Website-Check als Entwürfe. Vorhandene Inhalte werden nicht verändert. Prüfe die Inhalte und veröffentliche sie vor dem Livegang, damit die Links funktionieren. Bei einem Upgrade müssen bereits vorhandene Seiten deshalb manuell mit dem aktuellen Theme-Inhalt abgeglichen werden.</p><p>Bei einem aktiven SEO-Plugin trägst du Titel, Beschreibungen und Unternehmensdaten dort ein; das Theme vermeidet doppelte SEO-Ausgaben.</p>';
         echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="phinix_setup_pages">';
         wp_nonce_field( 'phinix_setup_pages' ); submit_button( 'Fehlende Seiten und Artikel als Entwürfe anlegen' ); echo '</form></div>';
     } );

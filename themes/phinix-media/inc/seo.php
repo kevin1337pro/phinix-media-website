@@ -76,14 +76,19 @@ add_action( 'wp_head', function () {
         $twitter_card = 'summary';
         if ( $is_article ) {
             echo '<meta property="article:published_time" content="' . esc_attr( get_the_date( DATE_W3C, $data['id'] ) ) . '">' . "\n";
+            echo '<meta property="article:modified_time" content="' . esc_attr( get_the_modified_date( DATE_W3C, $data['id'] ) ) . '">' . "\n";
             $social_image_path = get_post_meta( $data['id'], '_phinix_article_image', true );
             if ( $social_image_path ) {
                 $social_image = phinix_absolute_theme_file_uri( $social_image_path );
+                $social_image_width = absint( get_post_meta( $data['id'], '_phinix_article_image_width', true ) );
+                $social_image_height = absint( get_post_meta( $data['id'], '_phinix_article_image_height', true ) );
+                $social_image_alt = get_post_meta( $data['id'], '_phinix_article_image_alt', true );
                 echo '<meta property="og:image" content="' . esc_url( $social_image ) . '">' . "\n";
-                echo '<meta property="og:image:width" content="1600">' . "\n";
-                echo '<meta property="og:image:height" content="900">' . "\n";
-                echo '<meta property="og:image:alt" content="Inszeniertes Phinix Media Markenmotiv mit Kevin und Janine">' . "\n";
+                if ( $social_image_width ) { echo '<meta property="og:image:width" content="' . (int) $social_image_width . '">' . "\n"; }
+                if ( $social_image_height ) { echo '<meta property="og:image:height" content="' . (int) $social_image_height . '">' . "\n"; }
+                if ( $social_image_alt ) { echo '<meta property="og:image:alt" content="' . esc_attr( $social_image_alt ) . '">' . "\n"; }
                 echo '<meta name="twitter:image" content="' . esc_url( $social_image ) . '">' . "\n";
+                if ( $social_image_alt ) { echo '<meta name="twitter:image:alt" content="' . esc_attr( $social_image_alt ) . '">' . "\n"; }
                 $twitter_card = 'summary_large_image';
             }
         }
@@ -117,9 +122,15 @@ add_action( 'wp_head', function () {
         if ( get_post_meta( get_queried_object_id(), '_phinix_article', true ) ) {
             $article_id = $data['url'] . '#article';
             $image_path = get_post_meta( get_queried_object_id(), '_phinix_article_image', true );
+            $schema_type = get_post_meta( get_queried_object_id(), '_phinix_article_schema_type', true );
+            $schema_type = in_array( $schema_type, array( 'Article', 'BlogPosting' ), true ) ? $schema_type : 'Article';
+            $about = json_decode( (string) get_post_meta( get_queried_object_id(), '_phinix_article_about', true ), true );
+            $mentions = json_decode( (string) get_post_meta( get_queried_object_id(), '_phinix_article_mentions', true ), true );
+            if ( ! is_array( $about ) ) { $about = array(); }
+            if ( ! is_array( $mentions ) ) { $mentions = array(); }
             $webpage['mainEntity'] = array( '@id' => $article_id );
-            $graph[] = array(
-                '@type' => 'Article', '@id' => $article_id, 'url' => $data['url'],
+            $article = array(
+                '@type' => $schema_type, '@id' => $article_id, 'url' => $data['url'],
                 'headline' => $data['name'], 'description' => $data['description'],
                 'datePublished' => get_the_date( DATE_W3C, get_queried_object_id() ),
                 'dateModified' => get_the_modified_date( DATE_W3C, get_queried_object_id() ),
@@ -127,12 +138,10 @@ add_action( 'wp_head', function () {
                 'author' => array( '@id' => $home . '#organization' ),
                 'publisher' => array( '@id' => $home . '#organization' ),
                 'mainEntityOfPage' => array( '@id' => $data['url'] . '#webpage' ),
-                'about' => array(
-                    array( '@type' => 'Thing', 'name' => 'Digitale Außenwerbung' ),
-                    array( '@type' => 'Thing', 'name' => 'Digital Signage' ),
-                    array( '@type' => 'Thing', 'name' => 'PHINIX.SCREENS', 'url' => 'https://www.phinix-screens.com/' ),
-                ),
             );
+            if ( $about ) { $article['about'] = $about; }
+            if ( $mentions ) { $article['mentions'] = $mentions; }
+            $graph[] = $article;
         }
     }
     $graph[] = $webpage;

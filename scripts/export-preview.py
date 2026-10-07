@@ -61,6 +61,7 @@ export_page('/?p=999999', '404.html')
 for slug in json.loads((ROOT / 'themes/phinix-media/content/seo-pages.json').read_text()):
     export_page('/' + slug + '/', slug + '/index.html')
 export_page('/digitale-aussenwerbung-gladbeck-phinix-screens/', 'digitale-aussenwerbung-gladbeck-phinix-screens/index.html')
+export_page('/impressum-pruefen-website-check/', 'impressum-pruefen-website-check/index.html')
 (DIST / 'robots.txt').write_text('User-agent: *\nDisallow: /\n')
 # Preview stays private and non-indexable; WordPress owns the production sitemap.
 # Theme assets are original source files; retain all local fonts/license.

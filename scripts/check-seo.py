@@ -8,7 +8,10 @@ ROOT=Path(__file__).resolve().parent.parent
 ORIGIN=os.environ.get('PHINIX_PREVIEW_ORIGIN','http://127.0.0.1:9402').rstrip('/')
 STATIC='--static' in sys.argv
 PAGES=json.loads((ROOT/'themes/phinix-media/content/seo-pages.json').read_text())
-ARTICLE='digitale-aussenwerbung-gladbeck-phinix-screens'
+ARTICLES={
+    'digitale-aussenwerbung-gladbeck-phinix-screens': 'Article',
+    'impressum-pruefen-website-check': 'BlogPosting',
+}
 class Page(HTMLParser):
     def __init__(self):super().__init__();self.headings=[];self.meta=[];self.links=[];self.anchors=[];self.images=[];self.json=[];self.capture=None;self.buffer='';self.text=[]
     def handle_starttag(self,tag,attrs):
@@ -32,7 +35,7 @@ def get(path):
         assert r.status==200
         return r.read().decode()
 seen=set(); results=[]
-for slug in ['']+list(PAGES)+[ARTICLE]:
+for slug in ['']+list(PAGES)+list(ARTICLES):
     path='/'+slug+('/' if slug else '')
     raw=get(path); page=Page();page.feed(raw)
     assert len(page.headings)==1,(path,page.headings)
@@ -53,26 +56,37 @@ for slug in ['']+list(PAGES)+[ARTICLE]:
     text=' '.join(page.text)
     assert 'Buerelterstraße 27' in text and 'kontakt@phinix.media' in text
     assert 'aggregateRating' not in raw and 'FAQPage' not in raw
-    if slug and slug != ARTICLE:assert 'Service' in types and 'BreadcrumbList' in types
-    if slug == ARTICLE:
-        assert 'Article' in types and 'BreadcrumbList' in types and 'Service' not in types
-        article=next(x for x in graph if x['@type']=='Article')
+    if slug and slug not in ARTICLES:assert 'Service' in types and 'BreadcrumbList' in types
+    if slug in ARTICLES:
+        schema_type=ARTICLES[slug]
+        assert schema_type in types and 'BreadcrumbList' in types and 'Service' not in types
+        article=next(x for x in graph if x['@type']==schema_type)
         assert article['image'].startswith('https://' if STATIC else ORIGIN)
+        assert article.get('about')
         og_image=[x['content'] for x in page.meta if x.get('property')=='og:image']
+        og_alt=[x['content'] for x in page.meta if x.get('property')=='og:image:alt']
         twitter_card=[x['content'] for x in page.meta if x.get('name')=='twitter:card']
         assert len(og_image)==1 and og_image[0].startswith('https://' if STATIC else ORIGIN)
+        assert len(og_alt)==1 and len(og_alt[0])>20
         assert twitter_card==['summary_large_image']
-        assert any(x.get('href')=='https://www.phinix-screens.com/' for x in page.anchors)
-        assert all(term in text for term in ('Ratgeber','Aktualisiert am','digitale Außenwerbung','Digital Signage','DOOH','Gladbeck','Phinix Media gestaltet'))
+        if slug == 'digitale-aussenwerbung-gladbeck-phinix-screens':
+            assert any(x.get('href')=='https://www.phinix-screens.com/' for x in page.anchors)
+            assert all(term in text for term in ('Ratgeber','Aktualisiert am','digitale Außenwerbung','Digital Signage','DOOH','Gladbeck','Phinix Media gestaltet'))
+        if slug == 'impressum-pruefen-website-check':
+            assert any(x.get('href')=='https://complioneer.eu/' for x in page.anchors)
+            assert any(x.get('href','').startswith('https://wa.me/4917655376651') for x in page.anchors)
+            assert all(term in text for term in ('2.500 bis 200.000 Euro','nicht belastbar','50.000 Euro','fiktives, typisches Beispiel','§ 5 DDG','keine Rechtsberatung','Complioneer','+49 176 5537 6651'))
     if not slug:
         assert page.headings[0] == 'DEINUNTERNEHMEN.UNÜBERSEHBAR.'
-        assert all(term in text for term in ('Werbeagentur','WordPress','Corporate Design','Online-Marketing','Google-Unternehmensprofil','KI-Suche','PHINIX.SCREENS','Ruhrpott','Ruhrgebiet','Wir bringen Ideen in die Realität','Umsatzsteigernde Maßnahmen'))
+        assert all(term in text for term in ('Werbeagentur','WordPress','Corporate Design','Online-Marketing','Google-Unternehmensprofil','KI-Suche','PHINIX.SCREENS','Website prüfen','Ruhrpott','Ruhrgebiet','Wir bringen Ideen in die Realität','Umsatzsteigernde Maßnahmen'))
         wordmark_symbols=[x for x in page.images if 'wordmark-symbol' in x.get('class','').split()]
         assert len(wordmark_symbols)==1
         assert wordmark_symbols[0].get('alt')=='' and wordmark_symbols[0].get('width') and wordmark_symbols[0].get('height')
         people=[x for x in page.images if '/people/' in x.get('src','')]
         assert len(people)>=6
         assert all(x.get('alt') and x.get('width') and x.get('height') for x in people)
+        brand_world=[x for x in page.images if '/brand-world/' in x.get('src','')]
+        assert len(brand_world)>=3 and all(x.get('alt') and x.get('width') and x.get('height') for x in brand_world)
     for entity in graph:
         if '@id' in entity:assert entity['@id'].startswith('https://' if STATIC else ORIGIN)
     assert 'Fatal error' not in raw and 'Parse error' not in raw

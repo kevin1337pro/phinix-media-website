@@ -1,6 +1,6 @@
 # PHINIX.MEDIA – Website-Relaunch
 
-Stand: 22.09.2026 · Eigenes WordPress-Block-Theme 0.4.1 · Vorabstand mit offenen Inhalten.
+Stand: 07.10.2026 · Eigenes WordPress-Block-Theme 0.7.0 · Vorabstand mit offenen Inhalten.
 
 **DEIN UNTERNEHMEN. UNÜBERSEHBAR.**
 
@@ -12,6 +12,8 @@ Stand: 22.09.2026 · Eigenes WordPress-Block-Theme 0.4.1 · Vorabstand mit offen
 - Bearbeitbare Block-Patterns, Startseite, allgemeine Seiten/Beiträge, Index und 404.
 - Acht gelieferte Team- und Markenmotive sind weboptimiert und in Hero-/Arbeiten-, Team-, Prozess- und Kontaktkontext eingebaut; reale Kundenreferenzen fehlen weiterhin.
 - Ein eigenständiger Artikel erklärt digitale Außenwerbung und verlinkt auf https://www.phinix-screens.com/. Direkter Kontakt über kontakt@phinix.media und die öffentliche Telefonnummer.
+- Der Leistungskompass enthält den neuen Bereich „Website prüfen“ mit einem rechtlich eingeordneten Impressums-Faktencheck, einem externen Complioneer-Check und einer direkten WhatsApp-Anfrage.
+- Fünf gelieferte Phinix-Wallpaper bilden eine neue, responsive Markenwelt; zwei ergänzende Motive visualisieren den Website-Check im Artikel und auf der Startseite.
 
 Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und Gladbeck, individuelle Metadaten, Canonicals sowie LocalBusiness-/Service-/Breadcrumb-Daten sind umgesetzt. Unter **Design → Phinix einrichten** werden die Seiten kontrolliert als Entwürfe angelegt.
 
@@ -21,16 +23,16 @@ Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und G
 2. [Repository und WordPress.com – Schritt für Schritt](docs/02-repository-und-wordpress.md)
 3. [Status und benötigtes Material](docs/03-status-und-materialliste.md)
 4. [Theme-Quellcode](themes/phinix-media/)
-5. [Installierbares Theme-ZIP](output/phinix-media-0.4.1.zip)
+5. [Installierbares Theme-ZIP](output/phinix-media-0.7.0.zip)
 6. [SEO-/GEO-Plan mit 90-Tage-Maßnahmen](docs/04-seo-geo-plan-2026-09-04.md)
 7. [Google-, Apple- und KI-Sichtbarkeitsplan](docs/05-online-auffallen-google-apple-ki-2026-09-18.md)
-8. [Theme herunterladen](https://github.com/kevin1337pro/phinix-media-website/releases/tag/v0.4.1)
+8. Theme-Download: GitHub-Release `v0.7.0` nach Veröffentlichung.
 
 ZIP und Vorschauen liegen lokal in `output/` und werden nicht in Git gespeichert. Das Paket lässt sich mit `python3 scripts/package-theme.py` erneut erstellen.
 
 ## Prüfstand
 
-Version 0.4.1: Startseite, fünf Leistungsseiten und der PHINIX.SCREENS-Artikel per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
+Version 0.7.0: Startseite, fünf Leistungsseiten, der PHINIX.SCREENS-Artikel und der Website-Check-Ratgeber werden per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
 
 Vorheriger visueller Prüfstand:
 
