@@ -12,7 +12,8 @@ function phinix_theme_picture_shortcode( $attributes ) {
     $name = sanitize_file_name( $attributes['name'] );
     if ( ! isset( $images[ $name ] ) ) { return ''; }
     $priority = 'high' === $attributes['priority'];
-    return '<figure class="phinix-article-image ' . esc_attr( sanitize_html_class( $attributes['class'] ) ) . '"><img src="' . esc_url( get_theme_file_uri( 'assets/images/' . $images[ $name ][0] . '/' . $name ) ) . '" alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '></figure>';
+    $classes = array_filter( array_map( 'sanitize_html_class', preg_split( '/\s+/', (string) $attributes['class'] ) ) );
+    return '<figure class="phinix-article-image ' . esc_attr( implode( ' ', $classes ) ) . '"><img src="' . esc_url( get_theme_file_uri( 'assets/images/' . $images[ $name ][0] . '/' . $name ) ) . '" alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '></figure>';
 }
 add_shortcode( 'phinix_theme_picture', 'phinix_theme_picture_shortcode' );
 
