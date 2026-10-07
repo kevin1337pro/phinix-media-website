@@ -13,7 +13,8 @@ Stand: 07.10.2026 · Eigenes WordPress-Block-Theme 0.7.0 · Vorabstand mit offen
 - Acht gelieferte Team- und Markenmotive sind weboptimiert und in Hero-/Arbeiten-, Team-, Prozess- und Kontaktkontext eingebaut; reale Kundenreferenzen fehlen weiterhin.
 - Ein eigenständiger Artikel erklärt digitale Außenwerbung und verlinkt auf https://www.phinix-screens.com/. Direkter Kontakt über kontakt@phinix.media und die öffentliche Telefonnummer.
 - Der Leistungskompass enthält den neuen Bereich „Website prüfen“ mit einem rechtlich eingeordneten Impressums-Faktencheck, einem externen Complioneer-Check und einer direkten WhatsApp-Anfrage.
-- Fünf gelieferte Phinix-Wallpaper bilden eine neue, responsive Markenwelt; zwei ergänzende Motive visualisieren den Website-Check im Artikel und auf der Startseite.
+- Fünf gelieferte Phinix-Wallpaper prägen als responsive Motive die drei Hero-Slider-Szenen; zwei ergänzende Motive visualisieren den Website-Check im Artikel und auf der Startseite.
+- Jede der sechs zentralen Leistungsrubriken hat ein eigenes, lokal eingebettetes Linien-Icon für Website, Branding, Print, Marketing, SEO und PHINIX.SCREENS.
 
 Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und Gladbeck, individuelle Metadaten, Canonicals sowie LocalBusiness-/Service-/Breadcrumb-Daten sind umgesetzt. Unter **Design → Phinix einrichten** werden die Seiten kontrolliert als Entwürfe angelegt.
 
@@ -32,7 +33,7 @@ ZIP und Vorschauen liegen lokal in `output/` und werden nicht in Git gespeichert
 
 ## Prüfstand
 
-Version 0.7.0: Startseite, fünf Leistungsseiten, der PHINIX.SCREENS-Artikel und der Website-Check-Ratgeber werden per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
+Version 0.7.0: Startseite, fünf Leistungsseiten, der PHINIX.SCREENS-Artikel und der Website-Check-Ratgeber werden per HTTP im lokalen WordPress und im statischen Export geprüft: je eine Hauptüberschrift, eindeutige Beschreibungen, Canonicals im WordPress, gültiges JSON-LD und sichtbare Kontaktdaten. Die Startseitenprüfung verlangt außerdem drei responsive Slider-Wallpaper, sechs unterschiedliche Leistungs-Icons und das vollständige Entfernen der früheren Wallpaper-Galerie. Die Vorschau bleibt `noindex`; das Theme erzwingt keine Indexierungsfreigabe. Wiederholbar mit `python3 scripts/check-seo.py` (Standard-Port 9402) und `python3 scripts/check-seo.py --static`.
 
 Vorheriger visueller Prüfstand:
 

@@ -3,23 +3,28 @@ import json, os, sys
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.request import urlopen
+from urllib.parse import urlparse
 from urllib.error import HTTPError
 ROOT=Path(__file__).resolve().parent.parent
 ORIGIN=os.environ.get('PHINIX_PREVIEW_ORIGIN','http://127.0.0.1:9402').rstrip('/')
 STATIC='--static' in sys.argv
+EXPECT_NOINDEX=STATIC or os.environ.get('PHINIX_EXPECT_NOINDEX','1')!='0'
 PAGES=json.loads((ROOT/'themes/phinix-media/content/seo-pages.json').read_text())
 ARTICLES={
     'digitale-aussenwerbung-gladbeck-phinix-screens': 'Article',
     'impressum-pruefen-website-check': 'BlogPosting',
 }
 class Page(HTMLParser):
-    def __init__(self):super().__init__();self.headings=[];self.meta=[];self.links=[];self.anchors=[];self.images=[];self.json=[];self.capture=None;self.buffer='';self.text=[]
+    def __init__(self):super().__init__();self.headings=[];self.meta=[];self.links=[];self.anchors=[];self.images=[];self.sources=[];self.pictures=[];self.spans=[];self.json=[];self.capture=None;self.buffer='';self.text=[]
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
         if tag=='meta':self.meta.append(a)
         if tag=='link':self.links.append(a)
         if tag=='a':self.anchors.append(a)
         if tag=='img':self.images.append(a)
+        if tag=='source':self.sources.append(a)
+        if tag=='picture':self.pictures.append(a)
+        if tag=='span':self.spans.append(a)
         if tag=='script' and a.get('type')=='application/ld+json':self.capture='json';self.buffer=''
         if tag=='h1':self.capture='h1';self.buffer=''
     def handle_endtag(self,tag):
@@ -46,7 +51,8 @@ for slug in ['']+list(PAGES)+list(ARTICLES):
     assert len(canon)==(0 if STATIC else 1),(path,canon)
     if not STATIC:assert canon[0]==ORIGIN+path,(path,canon)
     robots=[x['content'] for x in page.meta if x.get('name')=='robots']
-    assert any('noindex' in x for x in robots),(path,robots)
+    if EXPECT_NOINDEX:assert any('noindex' in x for x in robots),(path,robots)
+    else:assert all('noindex' not in x for x in robots),(path,robots)
     assert len(page.json)==1,(path,len(page.json))
     graph=page.json[0]['@graph']; types=[x['@type'] for x in graph]
     assert 'LocalBusiness' in types and 'WebPage' in types
@@ -85,8 +91,26 @@ for slug in ['']+list(PAGES)+list(ARTICLES):
         people=[x for x in page.images if '/people/' in x.get('src','')]
         assert len(people)>=6
         assert all(x.get('alt') and x.get('width') and x.get('height') for x in people)
+        wallpaper_pictures=[x for x in page.pictures if 'scene-wallpaper' in x.get('class','').split()]
+        assert len(wallpaper_pictures)==3 and all(x.get('aria-hidden')=='true' for x in wallpaper_pictures)
         brand_world=[x for x in page.images if '/brand-world/' in x.get('src','')]
-        assert len(brand_world)>=3 and all(x.get('alt') and x.get('width') and x.get('height') for x in brand_world)
+        assert len(brand_world)==3 and all(x.get('alt')=='' and x.get('width') and x.get('height') for x in brand_world)
+        assert len({x.get('src') for x in brand_world})==3
+        mobile_wallpapers=[x.get('srcset','').split()[0] for x in page.sources if '/brand-world/' in x.get('srcset','')]
+        assert len(mobile_wallpapers)==3
+        assert 'brand-world__hero' not in raw and 'brand-world__gallery' not in raw and '<section class="brand-world"' not in raw
+        expected_icons={
+            'service-icon--websites','service-icon--branding','service-icon--print',
+            'service-icon--marketing','service-icon--seo','service-icon--screens',
+        }
+        rendered_icons={name for span in page.spans for name in span.get('class','').split() if name.startswith('service-icon--')}
+        assert rendered_icons==expected_icons,(rendered_icons,expected_icons)
+        for asset in [x.get('src') for x in brand_world]+mobile_wallpapers:
+            asset_path=urlparse(asset).path
+            if STATIC:
+                assert (ROOT/'dist'/asset_path.lstrip('/')).is_file(),asset_path
+            else:
+                with urlopen((asset if asset.startswith('http') else ORIGIN+asset_path),timeout=20) as response:assert response.status==200
     for entity in graph:
         if '@id' in entity:assert entity['@id'].startswith('https://' if STATIC else ORIGIN)
     assert 'Fatal error' not in raw and 'Parse error' not in raw

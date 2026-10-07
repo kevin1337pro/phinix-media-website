@@ -159,11 +159,11 @@ function phinix_editorial_articles() {
             ),
         ),
         'impressum-pruefen-website-check' => array(
-            'post_type' => 'page',
+            'post_type' => 'post',
             'title' => '2.500 bis 200.000 Euro wegen eines Impressumsfehlers?',
             'excerpt' => 'Welche Folgen fehlende oder veraltete Impressumsangaben wirklich haben können, was § 5 DDG verlangt und welche Punkte Unternehmen prüfen sollten.',
             'content' => 'phinix_website_check_article_content',
-            'seo_title' => 'Impressum prüfen: Welche Folgen Fehler wirklich haben | Phinix Media',
+            'seo_title' => 'Impressum prüfen: Folgen von Fehlern | Phinix Media',
             'seo_description' => 'Fehlende Impressumsangaben können Unterlassungsansprüche und Bußgelder auslösen. Erfahre, was Unternehmen prüfen sollten – mit Website-Check.',
             'image' => 'assets/images/articles/website-pruefen-impressum-hero.webp',
             'image_width' => 1672,
@@ -181,6 +181,18 @@ function phinix_editorial_articles() {
         ),
     );
 }
+
+/* Keep bundled article permalinks deterministic in WordPress.com and Playground. */
+add_action( 'parse_request', function ( $wp ) {
+    $requested = trim( (string) $wp->request, '/' );
+    if ( ! $requested ) { return; }
+    $articles = phinix_editorial_articles();
+    if ( isset( $articles[ $requested ] ) && 'post' === $articles[ $requested ]['post_type'] ) {
+        $wp->query_vars['name'] = $requested;
+        $wp->query_vars['post_type'] = 'post';
+        unset( $wp->query_vars['pagename'], $wp->query_vars['page_id'] );
+    }
+}, 1 );
 
 function phinix_install_editorial_articles( $status = 'draft' ) {
     $result = array( 'created' => array(), 'skipped' => array(), 'errors' => array() );

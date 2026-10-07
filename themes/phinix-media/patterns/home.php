@@ -14,22 +14,22 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#leistungen">Leistungen entdecken</a></div><!-- /wp:button -->
 </div><!-- /wp:buttons -->
 </div><!-- /wp:group -->
-<!-- wp:group {"className":"stage","layout":{"type":"default"}} --><div class="wp-block-group stage"><!-- wp:group {"className":"phinix-scene","layout":{"type":"default"}} --><div class="wp-block-group phinix-scene"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">01 / Identität</p><!-- /wp:paragraph -->
-<!-- wp:image {"className":"brand-symbol"} --><figure class="wp-block-image brand-symbol"><img src="<?php echo esc_url( get_theme_file_uri( "assets/images/phinix-symbol-white.svg" ) ); ?>" alt="" width="735" height="595"/></figure><!-- /wp:image -->
+<!-- wp:group {"className":"stage","layout":{"type":"default"}} --><div class="wp-block-group stage"><!-- wp:group {"className":"phinix-scene","layout":{"type":"default"}} --><div class="wp-block-group phinix-scene"><!-- wp:html --><picture class="scene-wallpaper" aria-hidden="true"><source media="(max-width: 700px)" srcset="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-mobile-full.webp' ) ); ?>"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-wide.webp' ) ); ?>" alt="" width="1672" height="940" decoding="async" fetchpriority="high"></picture><!-- /wp:html -->
+<!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">01 / Identität</p><!-- /wp:paragraph -->
 <!-- wp:paragraph {"className":"scene-word scene-word-brand"} --><p class="scene-word scene-word-brand">WIR SIND<br><span>PHINIX.MEDIA</span></p><!-- /wp:paragraph -->
 <!-- wp:group {"className":"scene-foot","layout":{"type":"default"}} --><div class="wp-block-group scene-foot"><!-- wp:paragraph --><p>Branding · Websites · Print</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>PHINIX / 01</p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->
-<!-- wp:group {"className":"phinix-scene","layout":{"type":"default"}} --><div class="wp-block-group phinix-scene"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">02 / Präsenz</p><!-- /wp:paragraph -->
-<!-- wp:image {"className":"brand-symbol"} --><figure class="wp-block-image brand-symbol"><img src="<?php echo esc_url( get_theme_file_uri( "assets/images/phinix-symbol-white.svg" ) ); ?>" alt="" width="735" height="595"/></figure><!-- /wp:image -->
+<!-- wp:group {"className":"phinix-scene","layout":{"type":"default"}} --><div class="wp-block-group phinix-scene"><!-- wp:html --><picture class="scene-wallpaper" aria-hidden="true"><source media="(max-width: 700px)" srcset="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-mobile-detail.webp' ) ); ?>"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-detail-wide.webp' ) ); ?>" alt="" width="1672" height="941" loading="lazy" decoding="async"></picture><!-- /wp:html -->
+<!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">02 / Präsenz</p><!-- /wp:paragraph -->
 <!-- wp:paragraph {"className":"scene-word"} --><p class="scene-word">GET<br>SEEN.</p><!-- /wp:paragraph -->
 <!-- wp:group {"className":"scene-foot","layout":{"type":"default"}} --><div class="wp-block-group scene-foot"><!-- wp:paragraph --><p>Content · Social Media · Marketing</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>PHINIX / 02</p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->
-<!-- wp:group {"className":"phinix-scene","layout":{"type":"default"}} --><div class="wp-block-group phinix-scene"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">03 / Auffindbarkeit</p><!-- /wp:paragraph -->
-<!-- wp:image {"className":"brand-symbol"} --><figure class="wp-block-image brand-symbol"><img src="<?php echo esc_url( get_theme_file_uri( "assets/images/phinix-symbol-white.svg" ) ); ?>" alt="" width="735" height="595"/></figure><!-- /wp:image -->
+<!-- wp:group {"className":"phinix-scene","layout":{"type":"default"}} --><div class="wp-block-group phinix-scene"><!-- wp:html --><picture class="scene-wallpaper" aria-hidden="true"><source media="(max-width: 700px)" srcset="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-mobile-full.webp' ) ); ?>"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-centered.webp' ) ); ?>" alt="" width="1448" height="1086" loading="lazy" decoding="async"></picture><!-- /wp:html -->
+<!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">03 / Auffindbarkeit</p><!-- /wp:paragraph -->
 <!-- wp:paragraph {"className":"scene-word"} --><p class="scene-word">BE<br>FOUND.</p><!-- /wp:paragraph -->
 <!-- wp:group {"className":"scene-foot","layout":{"type":"default"}} --><div class="wp-block-group scene-foot"><!-- wp:paragraph --><p>Google-SEO · lokale Sichtbarkeit</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>PHINIX / 03</p><!-- /wp:paragraph -->
@@ -42,53 +42,48 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:paragraph --><p><a href="#leistungen">Weiter entdecken ↓</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 </div><!-- /wp:group -->
-<!-- wp:html --><section class="brand-world" aria-labelledby="brand-world-title">
-<picture class="brand-world__hero">
-<source media="(max-width: 700px)" srcset="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-mobile-full.webp' ) ); ?>">
-<img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-wide.webp' ) ); ?>" alt="Metallischer Phinix auf tiefschwarzer Oberfläche mit warmem orangefarbenem Licht" width="1672" height="940" loading="lazy" decoding="async">
-</picture>
-<div class="brand-world__copy"><p class="eyebrow">Dare to create</p><h2 id="brand-world-title">AUS IDEEN.<br><em>WIRD WIRKUNG.</em></h2><p>Unser Phinix steht für den Moment, in dem aus einer guten Idee ein Auftritt mit eigener Energie wird.</p></div>
-<div class="brand-world__gallery">
-<picture><source media="(max-width: 700px)" srcset="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-mobile-detail.webp' ) ); ?>"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-detail-wide.webp' ) ); ?>" alt="Detailansicht des metallischen Phinix-Symbols" width="1672" height="941" loading="lazy" decoding="async"></picture>
-<figure><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/brand-world/phinix-phoenix-centered.webp' ) ); ?>" alt="Zentriertes Phinix-Symbol auf schwarzer Struktur" width="1448" height="1086" loading="lazy" decoding="async"></figure>
-</div>
-</section><!-- /wp:html -->
 <!-- wp:group {"className":"section services","layout":{"type":"default"},"anchor":"leistungen"} --><div id="leistungen" class="wp-block-group section services"><!-- wp:group {"className":"service-intro","layout":{"type":"default"}} --><div class="wp-block-group service-intro"><!-- wp:group {"className":"","layout":{"type":"default"}} --><div class="wp-block-group"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">01 / Was wir für dich tun</p><!-- /wp:paragraph -->
 <!-- wp:heading {"level":2,"className":"section-title"} --><h2 class="wp-block-heading section-title">EIN STARKER AUFTRITT.<br>IN JEDEM FORMAT.</h2><!-- /wp:heading -->
 </div><!-- /wp:group -->
 <!-- wp:paragraph --><p>Vom ersten Logo bis zur Website. Von der Visitenkarte bis zum Google-Auftritt. Wir verbinden Design und Marketing zu einem stimmigen Ganzen.</p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-grid","layout":{"type":"default"}} --><div class="wp-block-group service-grid"><!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">01 / Digital</p><!-- /wp:paragraph -->
+<!-- wp:html --><span class="service-icon service-icon--websites" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="7" y="11" width="50" height="42" rx="4"/><path d="M7 21h50M16 16h.01M22 16h.01M28 16h.01M27 31l-5 5 5 5M37 31l5 5-5 5M34 28l-4 16"/></svg></span><!-- /wp:html -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">WEBSITES</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Ein klarer Auftritt, der dein Angebot verständlich macht und den Weg zur Anfrage einfach hält.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Konzeption · Webdesign · WordPress</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p><a href="/webdesign/">Webdesign und WordPress entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">02 / Identität</p><!-- /wp:paragraph -->
+<!-- wp:html --><span class="service-icon service-icon--branding" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M32 7 52 27 32 57 12 27 32 7Z"/><path d="m12 27 14 4 6 26 6-26 14-4M32 16v15"/><circle cx="32" cy="31" r="2.5"/></svg></span><!-- /wp:html -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">BRANDING</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Eine Marke mit Charakter. Vom Logo über die Farben bis zu einem durchgängigen Erscheinungsbild.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Logo · Corporate Design · Markenauftritt</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p><a href="/branding/">Branding und Logodesign entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">03 / Zum Anfassen</p><!-- /wp:paragraph -->
+<!-- wp:html --><span class="service-icon service-icon--print" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="8" y="17" width="42" height="34" rx="3"/><path d="M15 17v-6h41v34h-6M16 27h14M16 34h26M16 41h20"/><circle cx="41" cy="27" r="4"/></svg></span><!-- /wp:html -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">PRINT & DESIGN</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Visitenkarten, die man behält. Geschäftsausstattung und Werbemittel, die zu deiner Marke passen.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Visitenkarten · Flyer · Geschäftsausstattung</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p><a href="/print-design/">Visitenkarten und Printdesign entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">04 / Aufmerksamkeit</p><!-- /wp:paragraph -->
+<!-- wp:html --><span class="service-icon service-icon--marketing" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M8 27v10h9l27 12V15L17 27H8Z"/><path d="m17 37 4 14h8l-4-10M51 24c3 2 5 5 5 8s-2 6-5 8"/></svg></span><!-- /wp:html -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">MARKETING & CONTENT</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Eine klare Botschaft und Inhalte, die dein Unternehmen zeigen. Für Social Media und deine Kampagnen.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Strategie · Social Media · Content</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p><a href="/marketing-content/">Marketing und Content entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">05 / Auffindbarkeit</p><!-- /wp:paragraph -->
+<!-- wp:html --><span class="service-icon service-icon--seo" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="27" cy="27" r="17"/><path d="m40 40 14 14M17 34l7-7 6 5 8-10M33 22h5v5"/></svg></span><!-- /wp:html -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">GOOGLE-SEO</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Struktur, Inhalte und lokale Präsenz, damit passende Interessenten dein Angebot besser finden können.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>Technisches SEO · Inhalte · lokale Suche</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p><a href="/seo-local-geo/">Lokales SEO und GEO entdecken ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:group {"className":"service-card","layout":{"type":"default"}} --><div class="wp-block-group service-card"><!-- wp:paragraph {"className":"eyebrow"} --><p class="eyebrow">06 / Vor Ort</p><!-- /wp:paragraph -->
+<!-- wp:html --><span class="service-icon service-icon--screens" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="7" y="10" width="50" height="36" rx="3"/><path d="m27 21 13 7-13 7V21ZM24 54h16M32 46v8M48 17h2M48 23h2"/></svg></span><!-- /wp:html -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">PHINIX.SCREENS</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Digitale Außenwerbung in Gladbeck: Motiv gestalten, Werbefläche wählen und über PHINIX.SCREENS ausspielen.</p><!-- /wp:paragraph -->
 <!-- wp:paragraph --><p>DOOH · Digital Signage · lokale Werbung</p><!-- /wp:paragraph -->

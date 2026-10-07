@@ -3,6 +3,7 @@ The export retains WordPress frontend assets, not its PHP/admin runtime.
 Run the documented local WordPress Playground first.
 """
 import re, os, json
+from shutil import rmtree
 from pathlib import Path
 from urllib.request import urlopen
 from urllib.parse import urlparse, unquote
@@ -11,6 +12,8 @@ ORIGIN = os.environ.get('PHINIX_PREVIEW_ORIGIN', 'http://127.0.0.1:9400').rstrip
 PREVIEW_URL = 'https://phinix-media-vorschau.kevin1337pro.chatgpt.site'
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / 'dist'
+if DIST.exists():
+    rmtree(DIST)
 DIST.mkdir(exist_ok=True)
 assets = set()
 
