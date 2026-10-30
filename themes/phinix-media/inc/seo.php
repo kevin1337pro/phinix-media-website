@@ -2,6 +2,19 @@
 /** Search metadata. A detected SEO plugin owns the complete SEO output instead. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+// Do not expose the WordPress version in public markup or feeds.
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '__return_empty_string' );
+
+// The public brand site is German even when a minimal Playground lacks language packs.
+add_filter( 'language_attributes', function ( $output ) {
+    if ( is_admin() ) { return $output; }
+    if ( preg_match( '/\blang=("|\')[^"\']*\1/i', $output ) ) {
+        return preg_replace( '/\blang=("|\')[^"\']*\1/i', 'lang="de-DE"', $output, 1 );
+    }
+    return 'lang="de-DE" ' . $output;
+}, 20 );
+
 function phinix_seo_external_owner() {
     $external = defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' ) || defined( 'THE_SEO_FRAMEWORK_VERSION' );
     if ( class_exists( 'Jetpack' ) && is_callable( array( 'Jetpack', 'is_module_active' ) ) ) {
@@ -50,6 +63,7 @@ function phinix_seo_page_data() {
 
 add_filter( 'pre_get_document_title', function ( $title ) {
     if ( phinix_seo_external_owner() ) { return $title; }
+    if ( is_404() ) { return 'Seite nicht gefunden | Phinix Media'; }
     $data = phinix_seo_page_data();
     return $data ? $data['title'] : $title;
 }, 20 );
@@ -74,6 +88,10 @@ add_action( 'wp_head', function () {
             echo '<meta property="' . esc_attr( $property ) . '" content="' . esc_attr( $value ) . '">' . "\n";
         }
         $twitter_card = 'summary';
+        $social_image = phinix_absolute_theme_file_uri( 'assets/images/people/phinix-brand-stage.webp' );
+        $social_image_width = 1600;
+        $social_image_height = 900;
+        $social_image_alt = 'Phinix Media – Webdesign, Branding und Marketing aus dem Ruhrgebiet';
         if ( $is_article ) {
             echo '<meta property="article:published_time" content="' . esc_attr( get_the_date( DATE_W3C, $data['id'] ) ) . '">' . "\n";
             echo '<meta property="article:modified_time" content="' . esc_attr( get_the_modified_date( DATE_W3C, $data['id'] ) ) . '">' . "\n";
@@ -83,14 +101,16 @@ add_action( 'wp_head', function () {
                 $social_image_width = absint( get_post_meta( $data['id'], '_phinix_article_image_width', true ) );
                 $social_image_height = absint( get_post_meta( $data['id'], '_phinix_article_image_height', true ) );
                 $social_image_alt = get_post_meta( $data['id'], '_phinix_article_image_alt', true );
-                echo '<meta property="og:image" content="' . esc_url( $social_image ) . '">' . "\n";
-                if ( $social_image_width ) { echo '<meta property="og:image:width" content="' . (int) $social_image_width . '">' . "\n"; }
-                if ( $social_image_height ) { echo '<meta property="og:image:height" content="' . (int) $social_image_height . '">' . "\n"; }
-                if ( $social_image_alt ) { echo '<meta property="og:image:alt" content="' . esc_attr( $social_image_alt ) . '">' . "\n"; }
-                echo '<meta name="twitter:image" content="' . esc_url( $social_image ) . '">' . "\n";
-                if ( $social_image_alt ) { echo '<meta name="twitter:image:alt" content="' . esc_attr( $social_image_alt ) . '">' . "\n"; }
-                $twitter_card = 'summary_large_image';
             }
+        }
+        if ( $social_image ) {
+            echo '<meta property="og:image" content="' . esc_url( $social_image ) . '">' . "\n";
+            if ( $social_image_width ) { echo '<meta property="og:image:width" content="' . (int) $social_image_width . '">' . "\n"; }
+            if ( $social_image_height ) { echo '<meta property="og:image:height" content="' . (int) $social_image_height . '">' . "\n"; }
+            if ( $social_image_alt ) { echo '<meta property="og:image:alt" content="' . esc_attr( $social_image_alt ) . '">' . "\n"; }
+            echo '<meta name="twitter:image" content="' . esc_url( $social_image ) . '">' . "\n";
+            if ( $social_image_alt ) { echo '<meta name="twitter:image:alt" content="' . esc_attr( $social_image_alt ) . '">' . "\n"; }
+            $twitter_card = 'summary_large_image';
         }
         echo '<meta name="twitter:card" content="' . esc_attr( $twitter_card ) . '">' . "\n";
     }
@@ -101,7 +121,7 @@ add_action( 'wp_head', function () {
         'name' => $business['name'], 'url' => $home,
         'telephone' => $business['phone'], 'email' => $business['email'],
         'logo' => phinix_absolute_theme_file_uri( 'assets/images/phinix-symbol-white.svg' ),
-        'image' => phinix_absolute_theme_file_uri( 'assets/images/people/kevin-janine-dark.jpg' ),
+        'image' => phinix_absolute_theme_file_uri( 'assets/images/people/kevin-janine-dark.webp' ),
         'knowsAbout' => array( 'Webdesign', 'WordPress', 'Responsive Webdesign', 'Branding', 'Corporate Design', 'Logodesign', 'Grafikdesign', 'Printdesign', 'Content-Marketing', 'Social-Media-Marketing', 'Suchmaschinenoptimierung', 'Local SEO', 'Generative Engine Optimization' ),
         'address' => array( '@type' => 'PostalAddress', 'streetAddress' => $business['street'], 'postalCode' => $business['postal_code'], 'addressLocality' => $business['city'], 'addressCountry' => $business['country'] ),
         'areaServed' => array_map( function ( $name ) { return array( '@type' => 'City', 'name' => $name ); }, $business['areas'] ),

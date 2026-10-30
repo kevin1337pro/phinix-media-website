@@ -1,12 +1,12 @@
 # Eigenes Theme → Repository → WordPress.com
 
-Stand 18.09.2026. Vom Nutzer bestätigt: Hosting bei WordPress.com; eigenes Theme und eigene Animation. Keine Slider-Revolution-Lizenz erforderlich.
+Stand 30.10.2026. Vom Nutzer bestätigt: Hosting bei WordPress.com; eigenes Theme und eigene Animation. Zusätzlich steht ein statischer Docker-Export für den Server bereit. Keine Slider-Revolution-Lizenz erforderlich.
 
 ## Architektur und aktueller Umfang
 
 `themes/phinix-media/` ist ein eigenständiges WordPress-Block-Theme. Es enthält `style.css`, `theme.json`, Templates, Template-Teile, bearbeitbare Block-Patterns, lokal gespeicherte Bebas Neue und ein kleines JavaScript für die Hero-Szenen. Inhalte und Abschnitte können im Site-Editor angepasst werden. Der Editor ist Teil des Block-Theme-Konzepts. [WordPress: Block-Themes](https://wordpress.org/documentation/article/block-themes/)
 
-Der aktuelle Theme-Stand ist ein **Vorabstand 0.7.0** mit vollständigem Startseitenentwurf. Darin: Hero, responsive Phinix-Markenwelt, Websites, Branding, Print, Marketing/Content, Google-SEO, PHINIX.SCREENS-Artikel, Website-Check-Ratgeber, echte Team-/Markenmotive, Kevin und Janine, Ablauf, FAQ und direkter E-Mail-/Telefon-/WhatsApp-Kontakt. Hinzu kommen allgemeine Seiten-, Beitrags-, Archiv-/Index- und 404-Templates.
+Der aktuelle Theme-Stand ist **0.8.0**. Darin: Hero, responsive Phinix-Markenwelt, Websites, Branding, Print, Marketing/Content, Google-SEO, PHINIX.SCREENS-Artikel, Website-Check-Ratgeber, verwaltete Rechtstexte, echte Team-/Markenmotive, Kevin und Janine, Ablauf, FAQ und direkter E-Mail-/Telefon-/WhatsApp-Kontakt. Hinzu kommen allgemeine Seiten-, Beitrags-, Archiv-/Index- und 404-Templates.
 
 Die drei Hero-Szenen heißen Auftritt, Präsenz und Google. Sie sind per Mausklick und Tastatur umschaltbar. Reduzierte Bewegung wird respektiert; ohne JavaScript bleiben die Szenen lesbar. Acht gelieferte Team- und Markenbilder sind responsiv eingebunden; echte Kundenarbeiten kommen nach Freigabe hinzu. Ein Original-Symbol-SVG ist dekorativ eingebunden. Die Header-Wortmarke wird in der mitgelieferten Bebas gesetzt; die gelieferten Wortbild-SVGs mit ungeklärter Bold-Schrift werden noch nicht verwendet.
 
@@ -48,7 +48,7 @@ Stand der offiziellen Dokumentation: Eigene Themes können auf Personal, Premium
 
 ## Schritt 2: Lokal bearbeiten und versionieren
 
-Die Entwicklungsfassung verwendet WordPress Playground als isolierte lokale WordPress-Installation. Der Test-Blueprint aktiviert das Theme und erzeugt nur lokal gekennzeichnete Platzhalterseiten für Impressum und Datenschutz. Er ist nicht für die Produktion bestimmt.
+Die Entwicklungsfassung verwendet WordPress Playground als isolierte lokale WordPress-Installation. Der Test-Blueprint aktiviert das Theme, legt die bestätigten Rechtstextseiten an und sperrt diese lokale Instanz für Suchmaschinen. Er ist nicht selbst die Produktion, dient aber als Quelle für den getrennten Produktions-Export.
 
 ```sh
 npx --yes @wp-playground/cli@latest server \
@@ -66,10 +66,10 @@ Ein lokales Git-Repository ist vorbereitet. Nach Einrichtung des Ziel-Repositori
 1. Theme zunächst in einer Testumgebung aktivieren.
 2. Unter Design → Editor das Startseiten-Template und Header/Footer öffnen.
 3. Texte, Leistungen, Farben und Abstände überprüfen. Die Block-Klassen für Layout und Hero-Steuerung beibehalten.
-4. Platzhalter durch Projektfotos und Porträts ersetzen. Aussagekräftige Alternativtexte für informative Bilder hinterlegen.
+4. Neue echte Kundenprojekte ergänzen. Aussagekräftige Alternativtexte für informative Bilder hinterlegen.
 5. Direkte Kontaktlinks prüfen; optional WordPress.com-Formular einsetzen, Empfängeradresse und Bestätigungsanzeige konfigurieren.
-6. Bestehende Impressums- und Datenschutzinhalte erhalten beziehungsweise passend zum endgültigen Dienstumfang aktualisieren. Das Theme erzeugt keine fertigen Rechtstexte.
-7. Unter **Design → Phinix einrichten** die fünf vorbereiteten Leistungsseiten, den PHINIX.SCREENS-Ratgeber und den Website-Check-Beitrag als Entwürfe anlegen, prüfen und veröffentlichen. Vorhandene Slugs werden übersprungen und Inhalte nicht überschrieben. Bei einem Upgrade vorhandene Seiten im Editor mit den 0.7.0-Entwürfen beziehungsweise der Vorschau abgleichen; eigene Änderungen vorher sichern. SEO-Titel und Beschreibung sind pro Seite bearbeitbar. Bei aktivem SEO-Plugin dessen Felder verwenden und die Ausgabe auf doppelte Metadaten prüfen. Details im [SEO-/GEO-Plan](04-seo-geo-plan-2026-09-04.md).
+6. Die vorbereiteten Rechtstexte mit der tatsächlichen Hosting-Infrastruktur, etwaigen Auftragsverarbeitern und später ergänzten Diensten abgleichen. Eigenständig bearbeitete Rechtstexte werden vom Setup nicht überschrieben.
+7. Unter **Design → Phinix einrichten** die fünf vorbereiteten Leistungsseiten, beide Ratgeber und fehlende Rechtstextseiten als Entwürfe anlegen, prüfen und veröffentlichen. Vorhandene redaktionelle Inhalte werden nicht überschrieben. Bei einem Upgrade vorhandene Seiten im Editor mit dem 0.8.0-Stand beziehungsweise der Vorschau abgleichen; eigene Änderungen vorher sichern. SEO-Titel und Beschreibung sind pro Seite bearbeitbar. Bei aktivem SEO-Plugin dessen Felder verwenden und die Ausgabe auf doppelte Metadaten prüfen. Details im [SEO-/GEO-Plan](04-seo-geo-plan-2026-09-04.md).
 
 Wichtig: Änderungen im Site-Editor landen in der Datenbank und können Templates aus dem Theme überschreiben. Vor einem Release exportieren und bewusst in Theme-Dateien zurückführen. Sonst unterscheiden sich Repo und Website. Normale Seiten/Beiträge, Formularkonfiguration, Menüs und Medien müssen zusätzlich gesichert oder übertragen werden. [WordPress: Templates](https://developer.wordpress.org/themes/templates/templates/)
 
@@ -79,7 +79,7 @@ Wichtig: Änderungen im Site-Editor landen in der Datenbank und können Template
 python3 scripts/package-theme.py
 ```
 
-Ergebnis: `output/phinix-media-0.7.0.zip`. Das Paket enthält direkt den Ordner `phinix-media` mit `style.css` und `templates/index.html`. Das komplette Repository-ZIP ist kein Theme-Paket. Schriftlizenz und benötigte Assets sind enthalten.
+Ergebnis: `output/phinix-media-0.8.0.zip`. Das Paket enthält direkt den Ordner `phinix-media` mit `style.css` und `templates/index.html`. Das komplette Repository-ZIP ist kein Theme-Paket. Schriftlizenz und benötigte WebP-/SVG-Assets sind enthalten; der Packaging-Test lehnt andere Bildformate sowie Einzelbilder über 500 KB ab.
 
 ## Schritt 5A: Upload über WordPress.com
 

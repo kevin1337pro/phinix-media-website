@@ -4,16 +4,19 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 function phinix_theme_picture_shortcode( $attributes ) {
     $images = array(
-        'phinix-brand-stage.jpg' => array( 'people', 1600, 900 ),
+        'phinix-brand-stage.webp' => array( 'people', 1600, 900 ),
+        /* Backward-compatible alias for article content installed by 0.7.0. */
+        'phinix-brand-stage.jpg' => array( 'people', 1600, 900, 'phinix-brand-stage.webp' ),
         'website-pruefen-impressum-hero.webp' => array( 'articles', 1672, 941 ),
         'website-pruefen-checkliste.webp' => array( 'articles', 1536, 1024 ),
     );
     $attributes = shortcode_atts( array( 'name' => '', 'alt' => '', 'class' => '', 'priority' => 'auto' ), $attributes, 'phinix_theme_picture' );
     $name = sanitize_file_name( $attributes['name'] );
     if ( ! isset( $images[ $name ] ) ) { return ''; }
+    $file = isset( $images[ $name ][3] ) ? $images[ $name ][3] : $name;
     $priority = 'high' === $attributes['priority'];
     $classes = array_filter( array_map( 'sanitize_html_class', preg_split( '/\s+/', (string) $attributes['class'] ) ) );
-    return '<figure class="phinix-article-image ' . esc_attr( implode( ' ', $classes ) ) . '"><img src="' . esc_url( get_theme_file_uri( 'assets/images/' . $images[ $name ][0] . '/' . $name ) ) . '" alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '></figure>';
+    return '<figure class="phinix-article-image ' . esc_attr( implode( ' ', $classes ) ) . '"><img src="' . esc_url( get_theme_file_uri( 'assets/images/' . $images[ $name ][0] . '/' . $file ) ) . '" alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '></figure>';
 }
 add_shortcode( 'phinix_theme_picture', 'phinix_theme_picture_shortcode' );
 
@@ -37,20 +40,20 @@ function phinix_screens_story_shortcode() {
     );
     $person_walk_markup = '';
     foreach ( $person_walk_frames as $frame ) {
-        $person_walk_markup .= '<img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( get_theme_file_uri( 'assets/images/screens/' . $frame ) ) . '" alt="" width="1024" height="1536" decoding="async">';
+        $person_walk_markup .= '<img class="screens-story__pose screens-story__pose--walk screens-story__walk-frame" src="' . esc_url( get_theme_file_uri( 'assets/images/screens/' . $frame ) ) . '" alt="" width="1024" height="1536" loading="lazy" decoding="async">';
     }
     $person_scan = get_theme_file_uri( 'assets/images/screens/customer-scan-v2.webp' );
     $person_jump = get_theme_file_uri( 'assets/images/screens/customer-jump-v2.webp' );
     $qr_code = get_theme_file_uri( 'assets/images/screens/screen-qr-v1.svg' );
     return '<section class="screens-story" aria-labelledby="screens-story-title">
         <div class="screens-story__head">
-            <p class="eyebrow">PHINIX.SCREENS / AUTOMATISCHE DEMO</p>
+            <p class="eyebrow">PHINIX.SCREENS / SO FUNKTIONIERT ES</p>
             <h2 id="screens-story-title">BUCHEN.<br>SCANNEN.<br><em>AUFFALLEN.</em></h2>
             <p>Eine kurze Szene zeigt den ganzen Weg: ankommen, QR-Code scannen und den eigenen Spot direkt auf dem Display erleben.</p>
         </div>
         <div class="screens-story__stage" data-screens-story>
             <p class="screen-reader-text">Eine Person geht mit einem Smartphone zu einem Digital-Signage-Display, scannt den QR-Code, sieht den Werbespot auf dem Screen und springt vor Freude.</p>
-            <div class="screens-story__meta" aria-hidden="true"><span>PHINIX.SCREENS</span><span>AUTOMATISCHE SZENE · 12 SEK.</span></div>
+            <div class="screens-story__meta" aria-hidden="true"><span>PHINIX.SCREENS</span><span>DER WEG ZUM DIGITALEN AUFTRITT</span></div>
             <button class="screens-story__toggle" type="button" aria-label="Animation pausieren" data-paused="false" hidden>Animation pausieren</button>
             <div class="screens-story__statement" aria-hidden="true"><span>DEINE WERBUNG.</span><strong>MITTEN IM LEBEN.</strong></div>
             <div class="screens-story__world" aria-hidden="true">
@@ -58,15 +61,15 @@ function phinix_screens_story_shortcode() {
                 <div class="screens-story__shadow"></div>
                 <div class="screens-story__person">
                     ' . $person_walk_markup . '
-                    <img class="screens-story__pose screens-story__pose--scan" src="' . esc_url( $person_scan ) . '" alt="" width="1024" height="1536" decoding="async">
-                    <img class="screens-story__pose screens-story__pose--jump" src="' . esc_url( $person_jump ) . '" alt="" width="1024" height="1536" decoding="async">
+                    <img class="screens-story__pose screens-story__pose--scan" src="' . esc_url( $person_scan ) . '" alt="" width="1024" height="1536" loading="lazy" decoding="async">
+                    <img class="screens-story__pose screens-story__pose--jump" src="' . esc_url( $person_jump ) . '" alt="" width="1024" height="1536" loading="lazy" decoding="async">
                 </div>
                 <div class="screens-story__scan-beam"></div>
                 <div class="screens-story__signal"><i></i><i></i><i></i></div>
                 <div class="screens-story__display">
                     <div class="screens-story__screen">
                         <div class="screens-story__idle"><span>PHINIX.</span><strong>SCREENS</strong><small>DEINE STADT. DEINE BÜHNE.</small></div>
-                        <div class="screens-story__qr"><img src="' . esc_url( $qr_code ) . '" alt="" width="512" height="512" decoding="async"></div>
+                        <div class="screens-story__qr"><img src="' . esc_url( $qr_code ) . '" alt="" width="512" height="512" loading="lazy" decoding="async"></div>
                         <div class="screens-story__ad"><small>NEU IN GLADBECK</small><strong>DEIN<br>ANGEBOT.</strong><b>JETZT ENTDECKEN</b></div>
                         <div class="screens-story__flash"></div>
                     </div>
@@ -99,7 +102,7 @@ function phinix_screens_article_content() {
     return '<!-- wp:shortcode -->[phinix_article_meta]<!-- /wp:shortcode -->
 <!-- wp:paragraph {"className":"service-lead"} --><p class="service-lead">Digitale Außenwerbung bringt eine Botschaft auf Displays im öffentlichen Raum. PHINIX.SCREENS beschreibt dafür eine Plattform, über die Unternehmen in Gladbeck einen Standort und eine Ausspielung wählen, ihr Motiv hochladen und die Kampagne nach Freigabe ausspielen lassen können.</p><!-- /wp:paragraph -->
 <!-- wp:shortcode -->[phinix_screens_story]<!-- /wp:shortcode -->
-<!-- wp:shortcode -->[phinix_theme_picture name="phinix-brand-stage.jpg" alt="Inszeniertes Phinix Media Markenmotiv mit Kevin und Janine" class="article-lead-visual"]<!-- /wp:shortcode -->
+<!-- wp:shortcode -->[phinix_theme_picture name="phinix-brand-stage.webp" alt="Inszeniertes Phinix Media Markenmotiv mit Kevin und Janine" class="article-lead-visual"]<!-- /wp:shortcode -->
 <!-- wp:heading --><h2 class="wp-block-heading">Was ist digitale Außenwerbung?</h2><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Digital Out of Home, kurz DOOH, bezeichnet digitale Werbeflächen außerhalb der eigenen Website und Social-Media-Kanäle. Dazu zählen Stadt-Displays und andere Digital-Signage-Flächen. Motive lassen sich zeitlich planen und ohne einen neuen Plakatdruck wechseln. Das macht lokale Werbung beispielsweise für Angebote, Veranstaltungen, Neueröffnungen oder freie Termine interessant.</p><!-- /wp:paragraph -->
 <!-- wp:heading --><h2 class="wp-block-heading">So beschreibt PHINIX.SCREENS den Ablauf</h2><!-- /wp:heading -->
@@ -147,7 +150,7 @@ function phinix_editorial_articles() {
             'content' => 'phinix_screens_article_content',
             'seo_title' => 'Digitale Außenwerbung Gladbeck | PHINIX.SCREENS',
             'seo_description' => 'Digitale Außenwerbung in Gladbeck: So funktioniert PHINIX.SCREENS – von Standort und Upload bis zur Ausspielung. Plus Gestaltung durch Phinix Media.',
-            'image' => 'assets/images/people/phinix-brand-stage.jpg',
+            'image' => 'assets/images/people/phinix-brand-stage.webp',
             'image_width' => 1600,
             'image_height' => 900,
             'image_alt' => 'Inszeniertes Phinix Media Markenmotiv mit Kevin und Janine',

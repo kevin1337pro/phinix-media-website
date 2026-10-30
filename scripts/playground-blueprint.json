@@ -15,12 +15,13 @@
       "options": {
         "blogname": "PHINIX.MEDIA",
         "blogdescription": "Design. Strategie. Sichtbarkeit.",
-        "blog_public": "0"
+        "blog_public": "0",
+        "WPLANG": "de_DE"
       }
     },
     {
       "step": "runPHP",
-      "code": "<?php require '/wordpress/wp-load.php'; foreach (['impressum'=>'Impressum','datenschutz'=>'Datenschutz'] as $slug=>$title) { if (!get_page_by_path($slug)) wp_insert_post(['post_title'=>$title,'post_name'=>$slug,'post_status'=>'publish','post_type'=>'page','post_content'=>'<!-- wp:paragraph --><p>Entwurfsseite. Die geprüften Angaben werden vor Veröffentlichung ergänzt.</p><!-- /wp:paragraph -->']); } $front=get_page_by_path('startseite'); if (!$front) { $front_id=wp_insert_post(['post_title'=>'Startseite','post_name'=>'startseite','post_status'=>'publish','post_type'=>'page']); } else { $front_id=$front->ID; } update_option('show_on_front','page'); update_option('page_on_front',$front_id); phinix_install_service_pages('publish'); phinix_install_editorial_articles('publish'); update_option('permalink_structure','/%postname%/'); flush_rewrite_rules();"
+      "code": "<?php require '/wordpress/wp-load.php'; $front=get_page_by_path('startseite'); if (!$front) { $front_id=wp_insert_post(['post_title'=>'Startseite','post_name'=>'startseite','post_status'=>'publish','post_type'=>'page']); } else { $front_id=$front->ID; } update_option('WPLANG','de_DE'); update_option('show_on_front','page'); update_option('page_on_front',$front_id); phinix_install_service_pages('publish'); phinix_install_editorial_articles('publish'); phinix_install_legal_pages('publish'); update_option('permalink_structure','/%postname%/'); flush_rewrite_rules();"
     }
   ]
 }

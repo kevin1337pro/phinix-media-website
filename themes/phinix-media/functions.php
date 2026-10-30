@@ -21,7 +21,21 @@ add_action( 'init', function () {
     register_block_pattern_category( 'phinix', array( 'label' => 'Phinix Media' ) );
 } );
 
+// Frontend accessibility labels stay German even in a minimal Playground
+// installation where the WordPress language pack is not available.
+add_filter( 'gettext', function ( $translation, $text ) {
+    if ( is_admin() ) { return $translation; }
+    $labels = array(
+        'Skip to content' => 'Zum Inhalt springen',
+        'Menu'            => 'Menü',
+        'Open menu'       => 'Menü öffnen',
+        'Close menu'      => 'Menü schließen',
+    );
+    return isset( $labels[ $text ] ) ? $labels[ $text ] : $translation;
+}, 20, 2 );
+
 require_once get_theme_file_path( 'inc/seo.php' );
+require_once get_theme_file_path( 'inc/legal-pages.php' );
 require_once get_theme_file_path( 'inc/service-pages.php' );
 require_once get_theme_file_path( 'inc/articles.php' );
 

@@ -1,6 +1,6 @@
 # Status und fehlende Materialien
 
-Stand: 18.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualisiert.
+Stand: 30.10.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualisiert.
 
 ## Bestätigt
 
@@ -25,6 +25,9 @@ Stand: 18.09.2026. Dieses Dokument wird bei jeder weiteren Arbeitsstufe aktualis
 - Direkte E-Mail-/Telefonkontakte aus dem öffentlichen Impressum; zusätzliche Formularintegration bleibt offen.
 - Fünf Leistungsseiten, LocalBusiness-/Service-Daten, Metadaten und regionaler Inhalt für Gelsenkirchen, Gladbeck und Umgebung.
 - Aktueller [SEO-/GEO-Plan mit 90-Tage-Roadmap](04-seo-geo-plan-2026-09-04.md).
+- Alle Theme-Bilder auf WebP/SVG reduziert; Bildbestand um 58,8 % verkleinert und eingebettete Metadaten entfernt.
+- Bestätigtes Impressum und eine auf den statischen, trackingfreien Stand zugeschnittene Datenschutzerklärung eingebaut.
+- Getrennter indexierbarer Produktions-Export, Sitemap, Robots-Regeln und gehärtete Docker-Auslieferung erstellt.
 
 Den aktuellen Prüfstand und Paketstatus enthält die README. Die Website ist noch nicht auf WordPress.com aktiviert.
 
@@ -34,7 +37,7 @@ Den aktuellen Prüfstand und Paketstatus enthält die README. Die Website ist no
 |---|---|---|---|
 | P0 | WordPress.com-Tarif und Zugriff auf die Test-/Livesite | Theme-Installation und passenden Uploadweg verifizieren | Lokal kann weitergebaut werden. |
 | P1 | Janines Zustelladresse für ein zusätzliches Formular | Zustellung prüfen; öffentliche E-Mail/Telefon bereits eingebaut | Formularintegration und Testanfrage. |
-| P0 | Vollständige aktuelle Unternehmens-/Pflichtangaben und passende Datenschutztexte | Bestehende Rechtstexte übernehmen und passend ergänzen | Seitenstruktur ist vorhanden. |
+| P0 | Tatsächlichen Serveranbieter, Protokollierung und Auftragsverarbeitung bestätigen | Datenschutztext exakt mit der späteren Hosting-Infrastruktur abgleichen | Grundtext und bestätigte Unternehmensangaben sind eingebaut. |
 | P0 | Freigabe der finalen Texte, insbesondere Kevins genaue Rollenbeschreibung | Verbindliche, korrekte Außendarstellung | Textentwurf präzisieren. |
 | Erledigt | Repository kevin1337pro/phinix-media-website | Code ist hochgeladen | Weitere Änderungen dorthin pushen. |
 | Erledigt | Acht Team- und Markenmotive | Persönlichkeit und visuelle Führung | Weboptimiert eingebaut; Rechte sowie Foto-/Composite-Status noch bestätigen. |
