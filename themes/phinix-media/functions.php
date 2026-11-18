@@ -13,6 +13,10 @@ add_action( 'wp_enqueue_scripts', function () {
     $style_file = get_theme_file_path( 'assets/theme.css' );
     $style_version = is_readable( $style_file ) ? $version . '.' . filemtime( $style_file ) : $version;
     wp_enqueue_style( 'phinix-media', get_theme_file_uri( 'assets/theme.css' ), array(), $style_version );
+    if ( is_page( '3d-rundgaenge' ) ) {
+        wp_enqueue_style( 'phinix-stadion-demo', get_theme_file_uri( 'assets/stadion-demo.css' ), array( 'phinix-media' ), $version );
+        wp_enqueue_script( 'phinix-stadion-demo', get_theme_file_uri( 'assets/stadion-demo.js' ), array(), $version, array( 'strategy' => 'defer', 'in_footer' => true ) );
+    }
     wp_enqueue_script( 'phinix-gsap', get_theme_file_uri( 'assets/gsap.min.js' ), array(), '3.13.0', array( 'strategy' => 'defer', 'in_footer' => true ) );
     wp_enqueue_script( 'phinix-motion', get_theme_file_uri( 'assets/motion.js' ), array( 'phinix-gsap' ), $version, array( 'strategy' => 'defer', 'in_footer' => true ) );
 } );

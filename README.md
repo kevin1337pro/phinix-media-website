@@ -1,6 +1,6 @@
 # PHINIX.MEDIA – Website-Relaunch
 
-Stand: 18.11.2026 · Eigenes WordPress-Block-Theme 0.9.0 · geprüfter Produktions-Export und Docker-Auslieferung.
+Stand: 19.11.2026 · Eigenes WordPress-Block-Theme 0.10.0 · geprüfter Produktions-Export und Docker-Auslieferung.
 
 **DEIN UNTERNEHMEN. UNÜBERSEHBAR.**
 
@@ -21,6 +21,8 @@ Stand: 18.11.2026 · Eigenes WordPress-Block-Theme 0.9.0 · geprüfter Produktio
 
 Sechs eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und Gladbeck, individuelle Metadaten, Canonicals sowie LocalBusiness-/Service-/Breadcrumb-Daten sind umgesetzt. Unter **Design → Phinix einrichten** werden die Seiten kontrolliert als Entwürfe angelegt.
 
+Die interaktive [Stadion-Demo](https://phinix-media-vorschau.kevin1337pro.chatgpt.site/3d-rundgaenge/#stadion-demo) führt vom Eingang über die Tribüne zur VIP-Loge. Der Abschluss öffnet eine vorbereitete WhatsApp-Anfrage an Janine.
+
 ## News veröffentlichen
 
 Unter **Design → Phinix einrichten** die Inhalte anlegen und die gewünschten Entwürfe veröffentlichen. Beiträge unter **Beiträge → Erstellen** anlegen. Nach der Veröffentlichung erscheinen sie auf `/news/`. Die drei neuesten Artikel stehen auch auf der Startseite. Kategorie, Auszug und Beitragsbild steuern die jeweilige Karte. Unter **Einstellungen → Allgemein → Social-Media-Profile** lassen sich die Profilziele pflegen. Artikel lassen sich über LinkedIn, X und Facebook teilen.
@@ -33,17 +35,17 @@ Für einen späteren Metricool-Workflow eignet sich WordPress als redaktionelle 
 2. [Repository und WordPress.com – Schritt für Schritt](docs/02-repository-und-wordpress.md)
 3. [Status und benötigtes Material](docs/03-status-und-materialliste.md)
 4. [Theme-Quellcode](themes/phinix-media/)
-5. [Installierbares Theme-ZIP](https://github.com/kevin1337pro/phinix-media-website/releases/download/v0.9.0/phinix-media-0.9.0.zip)
+5. [Installierbares Theme-ZIP](https://github.com/kevin1337pro/phinix-media-website/releases/download/v0.10.0/phinix-media-0.10.0.zip)
 6. [SEO-/GEO-Plan mit 90-Tage-Maßnahmen](docs/04-seo-geo-plan-2026-09-04.md)
 7. [Google-, Apple- und KI-Sichtbarkeitsplan](docs/05-online-auffallen-google-apple-ki-2026-09-18.md)
 8. [Docker-Deployment für den Server](docs/06-docker-deployment.md)
-9. Theme-Download: GitHub-Release `v0.9.0` nach Veröffentlichung.
+9. Theme-Download: GitHub-Release `v0.10.0` nach Veröffentlichung.
 
 ZIP und Vorschauen liegen lokal in `output/` und werden nicht in Git gespeichert. Das Paket lässt sich mit `python3 scripts/package-theme.py` erneut erstellen.
 
 ## Prüfstand
 
-Version 0.9.0: Startseite, Rechtstexte, sechs Leistungsseiten, die News-Übersicht und drei redaktionelle Beiträge werden per HTTP im lokalen WordPress sowie in zwei getrennten statischen Exporten geprüft. Die Tests kontrollieren Hauptüberschrift, eindeutige Beschreibung, Canonical, gültiges JSON-LD, Social-Bild, sichtbare Kontaktdaten, deutsche Sprache, WebP-Nutzung, Sitemap und Robots-Regeln. Außerdem schlagen sie bei Preview-Domain, WordPress-Generator, Entwurfsplatzhaltern oder sichtbaren ChatGPT-/OpenAI-/Codex-Hinweisen im Produktions-Build fehl. Wiederholbar mit `python3 scripts/check-seo.py`, `python3 scripts/check-seo.py --static` und `python3 scripts/check-seo.py --static-production`.
+Version 0.10.0: Startseite, Rechtstexte, sechs Leistungsseiten, die News-Übersicht und drei redaktionelle Beiträge werden per HTTP im lokalen WordPress sowie in zwei getrennten statischen Exporten geprüft. Die Tests kontrollieren Hauptüberschrift, eindeutige Beschreibung, Canonical, gültiges JSON-LD, Social-Bild, sichtbare Kontaktdaten, deutsche Sprache, WebP-Nutzung, Sitemap und Robots-Regeln. Außerdem schlagen sie bei Preview-Domain, WordPress-Generator, Entwurfsplatzhaltern oder sichtbaren ChatGPT-/OpenAI-/Codex-Hinweisen im Produktions-Build fehl. Wiederholbar mit `python3 scripts/check-seo.py`, `python3 scripts/check-seo.py --static` und `python3 scripts/check-seo.py --static-production`.
 
 Vorheriger visueller Prüfstand:
 

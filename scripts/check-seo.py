@@ -181,6 +181,17 @@ for slug in SLUGS:
         else:
             assert len(listed_paths) == 3, (path, listed_paths)
             assert any(a.get("href", "").rstrip("/") == "https://www.instagram.com/janinemachmueller" for a in page.anchors), path
+    if slug == "3d-rundgaenge":
+        stops = ("eingang", "tribuene", "vip-loge")
+        assert all(f'id="stadion-{stop}"' in raw for stop in stops), path
+        tour_images = [img for img in page.images if "/images/stadion-demo/" in img.get("src", "")]
+        assert [Path(urlparse(img["src"]).path).stem for img in tour_images] == list(stops), path
+        assert all(img.get("alt") for img in tour_images), path
+        if STATIC:
+            assert all((STATIC_ROOT / urlparse(img["src"]).path.lstrip("/")).is_file() for img in tour_images)
+        contacts = [urlparse(a["href"]) for a in page.anchors if "stadium-action--contact" in a.get("class", "").split()]
+        assert len(contacts) == 1 and contacts[0].netloc == "wa.me" and contacts[0].path == "/4917655376651", path
+        assert "Janine" in parse_qs(contacts[0].query)["text"][0] and "Rundgang anfragen" in text, path
     if slug in PAGES:
         assert "Service" in types and "BreadcrumbList" in types
     elif slug in LEGAL:

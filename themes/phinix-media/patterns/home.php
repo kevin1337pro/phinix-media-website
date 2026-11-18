@@ -95,7 +95,7 @@ if ( ! defined( "ABSPATH" ) ) { exit; }
 <!-- wp:html --><span class="service-icon service-icon--tour" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m32 8 16 9v18l-16 9-16-9V17l16-9Zm-16 9 16 9 16-9M32 26v18"/><path d="M10 32c-6 3-7 7-3 10 7 6 28 7 42 2 5-2 8-4 9-7m-7 1 7-2 1 7"/></svg></span><!-- /wp:html -->
 <!-- wp:heading {"level":3} --><h3 class="wp-block-heading">3D-RUNDGÄNGE</h3><!-- /wp:heading -->
 <!-- wp:paragraph --><p>Flieg über das Stadiondach, nimm auf der Tribüne Platz oder sieh dich in einer VIP-Loge um. Mit Drohnenfilm, 360°-Rundgang und interaktiver 3D-Präsentation bringen wir deine Räume auf die Website.</p><!-- /wp:paragraph -->
-<!-- wp:paragraph --><p><a href="/3d-rundgaenge/">3D-Rundgänge und Drohnenfilm entdecken ↗</a></p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p><a href="/3d-rundgaenge/">3D-Rundgänge und Drohnenfilm entdecken ↗</a><br><a href="/3d-rundgaenge/#stadion-demo">Stadion-Demo starten ↗</a></p><!-- /wp:paragraph -->
 </div><!-- /wp:group -->
 <!-- wp:html --><figure class="tour-card__visual"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/articles/3d-stadionmodell.webp' ) ); ?>" alt="Illustration eines Stadionmodells mit aufgeschnittener Tribüne und beleuchteter Loge" width="1440" height="810" loading="lazy" decoding="async"></figure><!-- /wp:html -->
 </div><!-- /wp:group -->
