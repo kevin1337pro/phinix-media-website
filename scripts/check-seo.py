@@ -313,10 +313,11 @@ if STATIC:
     rss_url = EXPECTED_BASE + "/news/feed.xml"
     channel = ElementTree.parse(STATIC_ROOT / "news/feed.xml").getroot().find("channel")
     assert channel is not None and channel.findtext("link") == EXPECTED_BASE + "/news/"
-    expected_articles = {EXPECTED_BASE + "/" + slug + "/" for slug in ARTICLES}
-    assert expected_articles <= {item.findtext("link") for item in channel.findall("item")}
     index = Page()
     index.feed(get("/news/"))
+    listed = [EXPECTED_BASE + urlparse(a["href"]).path for a in index.anchors if "news-card__link" in a.get("class", "").split()]
+    feed_links = [item.findtext("link") for item in channel.findall("item")]
+    assert feed_links and feed_links == listed[:len(feed_links)], (feed_links, listed)
     assert any(link.get("type") == "application/rss+xml" and link.get("href") in {rss_url, "/news/feed.xml"} for link in index.links)
     robots_source = (STATIC_ROOT / "robots.txt").read_text()
     if PRODUCTION:

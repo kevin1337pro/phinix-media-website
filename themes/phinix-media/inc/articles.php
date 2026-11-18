@@ -243,16 +243,22 @@ function phinix_editorial_articles() {
     );
 }
 
-/* Keep bundled article permalinks deterministic in WordPress.com and Playground. */
+/* A root post slug can arrive as a page request with pretty permalinks in Playground. */
 add_action( 'parse_request', function ( $wp ) {
     $requested = trim( (string) $wp->request, '/' );
-    if ( ! $requested ) { return; }
-    $articles = phinix_editorial_articles();
-    if ( isset( $articles[ $requested ] ) && 'post' === $articles[ $requested ]['post_type'] ) {
-        $wp->query_vars['name'] = $requested;
-        $wp->query_vars['post_type'] = 'post';
-        unset( $wp->query_vars['pagename'], $wp->query_vars['page_id'] );
+    if ( '' === $requested || false !== strpos( $requested, '/' ) || isset( $wp->query_vars['preview'] ) ) { return; }
+    $bundled = phinix_editorial_articles();
+    $known_post = isset( $bundled[ $requested ] ) && 'post' === $bundled[ $requested ]['post_type'];
+    if ( ! $known_post ) {
+        if ( '/%postname%/' !== get_option( 'permalink_structure' ) || get_page_by_path( $requested ) ) { return; }
+        // Leave working WordPress routes (authors, dates, archives, feeds, etc.) to core.
+        if ( array_diff( array_keys( $wp->query_vars ), array( 'pagename', 'name', 'error' ) ) ) { return; }
+        $post = get_page_by_path( $requested, OBJECT, array( 'post' ) );
+        if ( ! $post || 'publish' !== $post->post_status || get_permalink( $post ) !== home_url( '/' . $requested . '/' ) ) { return; }
     }
+    $wp->query_vars['name'] = $requested;
+    $wp->query_vars['post_type'] = 'post';
+    unset( $wp->query_vars['pagename'], $wp->query_vars['page_id'], $wp->query_vars['error'] );
 }, 1 );
 
 function phinix_install_editorial_articles( $status = 'draft' ) {

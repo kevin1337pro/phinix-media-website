@@ -59,6 +59,8 @@ DIST.mkdir(exist_ok=True)
 def fetch(path, expect_404=False):
     try:
         with urlopen(ORIGIN + path, timeout=40) as response:
+            if urlparse(response.geturl()).path.rstrip("/") != urlparse(path).path.rstrip("/"):
+                raise ValueError(f"Unexpected redirect from {path} to {response.geturl()}")
             if expect_404:
                 raise ValueError(f"Expected HTTP 404 for {path}")
             return response.read()
