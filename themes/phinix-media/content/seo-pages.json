@@ -272,5 +272,49 @@
       "marketing-content",
       "branding"
     ]
+  },
+  "3d-rundgaenge": {
+    "title": "3D-Rundgänge und Drohnenfilm für Stadien und Veranstaltungsorte",
+    "seo_title": "3D-Rundgänge & 360°-Touren im Ruhrgebiet | Phinix Media",
+    "description": "Phinix Media aus Gelsenkirchen verbindet Drohnenfilm, virtuelle 360°-Rundgänge und interaktive 3D-Präsentationen für Stadien, Hotels und Eventlocations.",
+    "service": "3D-Rundgänge, virtuelle 360°-Touren und Drohnenfilm",
+    "intro": "Du öffnest dein Stadion für Führungen, vermietest Logen oder planst Events? Wir zeigen deinen Gästen schon auf der Website, was sie vor Ort erwartet. Für Veranstaltungsorte in Gelsenkirchen, Gladbeck und im Ruhrgebiet planen wir mit dir die passenden Filmaufnahmen, Panoramen und Wege zur Buchungsanfrage.",
+    "sections": [
+      {
+        "title": "Cinematic Drone Experience",
+        "text": "Der Blick von oben zeigt, wie die Tribünen um den Rasen liegen und wie sich dein Stadion in die Stadt einfügt. Professionelle Außenaufnahmen, Luftperspektiven und Details der Architektur schneiden wir zu einem emotionalen Imagefilm. Vor dem Dreh stimmen wir Flugmöglichkeiten, Freigaben und einen passenden Aufnahmezeitpunkt mit dem Betreiber ab."
+      },
+      {
+        "title": "Virtueller 360°-Rundgang",
+        "text": "Besucher bewegen sich im Browser von der Tribüne in eine VIP-Loge und weiter in die Hospitality-Bereiche oder Eventräume. An jedem Aufnahmepunkt können sie sich umsehen und ihren eigenen Weg wählen. Du entscheidest, welche Bereiche gezeigt werden und welche während eines Spieltags privat bleiben."
+      },
+      {
+        "title": "Interaktive 3D-Stadionpräsentation",
+        "text": "Eine räumliche Übersicht erweitert deine Website. Gäste klicken auf einen Stadionbereich und erhalten dort passende Informationen, etwa zur Ausstattung einer Loge oder zu den Stationen einer Stadiontour. Direkt am gewählten Ort führt ein Link zur Buchungsanfrage für die Tour oder Veranstaltung."
+      },
+      {
+        "title": "Was wir für den ersten Entwurf brauchen",
+        "text": "Nenne uns den Ort, zwei oder drei wichtige Stationen und eine Frage, die Gäste vor der Besichtigung oft stellen. Ein vorhandener Grundriss und der Link zu deinem Buchungsweg helfen uns, eine erste Route zu skizzieren. Zusammen legen wir fest, welche Räume aufgenommen werden, wer die Inhalte freigibt und wie du spätere Änderungen pflegen kannst."
+      }
+    ],
+    "questions": [
+      [
+        "Was ist der Unterschied zwischen einer 360°-Tour und einer 3D-Präsentation?",
+        "In einer 360°-Tour springst du zwischen aufgenommenen Panoramen und blickst dich von diesen Standpunkten aus um. Eine 3D-Präsentation zeigt zusätzlich die räumliche Anordnung, zum Beispiel als anklickbares Stadionmodell. Beide Ansichten lassen sich verbinden."
+      ],
+      [
+        "Lässt sich ein Rundgang in meine bestehende Website einbauen?",
+        "Ja. Wir prüfen mit dir Seitensystem, mobile Bedienung und Ladezeit. Preise, Raumdaten und der Weg zur Anfrage können auch als lesbarer Text und gewöhnliche Links auf der Website stehen."
+      ],
+      [
+        "Funktioniert das auch für kleinere Räume?",
+        "Ja. Für einen Showroom, einen Trausaal oder eine Ferienwohnung kann eine kurze Route aus wenigen Stationen genügen. Der Umfang richtet sich nach der Frage, die sich Gäste beim Besuch beantworten möchten."
+      ]
+    ],
+    "related": [
+      "webdesign",
+      "marketing-content"
+    ],
+    "related_article": "virtuelle-rundgaenge-branchen"
   }
 }

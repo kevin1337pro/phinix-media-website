@@ -1,6 +1,6 @@
 # PHINIX.MEDIA – Website-Relaunch
 
-Stand: 30.10.2026 · Eigenes WordPress-Block-Theme 0.8.0 · geprüfter Produktions-Export und Docker-Auslieferung.
+Stand: 18.11.2026 · Eigenes WordPress-Block-Theme 0.9.0 · geprüfter Produktions-Export und Docker-Auslieferung.
 
 **DEIN UNTERNEHMEN. UNÜBERSEHBAR.**
 
@@ -12,14 +12,20 @@ Stand: 30.10.2026 · Eigenes WordPress-Block-Theme 0.8.0 · geprüfter Produktio
 - Bearbeitbare Block-Patterns, Startseite, allgemeine Seiten/Beiträge, Index und 404.
 - Acht gelieferte Team- und Markenmotive sind als WebP ohne EXIF-/XMP-/IPTC-Metadaten in Hero-/Arbeiten-, Team-, Prozess- und Kontaktkontext eingebaut; reale Kundenreferenzen fehlen weiterhin.
 - Ein eigenständiger Artikel erklärt digitale Außenwerbung und verlinkt auf https://www.phinix-screens.com/. Direkter Kontakt über kontakt@phinix.media und die öffentliche Telefonnummer.
-- Der Leistungskompass enthält den neuen Bereich „Website prüfen“ mit einem rechtlich eingeordneten Impressums-Faktencheck, einem externen Complioneer-Check und einer direkten WhatsApp-Anfrage.
+- Der Leistungskompass enthält den neuen Bereich „Website prüfen“ mit einem rechtlich eingeordneten Impressums-Faktencheck, einer Checkliste und einer direkten WhatsApp-Anfrage.
 - Fünf gelieferte Phinix-Wallpaper prägen als responsive Motive die drei Hero-Slider-Szenen; zwei ergänzende Motive visualisieren den Website-Check im Artikel und auf der Startseite.
-- Jede der sechs zentralen Leistungsrubriken hat ein eigenes, lokal eingebettetes Linien-Icon für Website, Branding, Print, Marketing, SEO und PHINIX.SCREENS.
+- Jede der sieben zentralen Leistungsrubriken hat ein eigenes, lokal eingebettetes Linien-Icon für Website, Branding, Print, Marketing, SEO, PHINIX.SCREENS und 3D-Rundgänge.
 - Impressum und Datenschutz enthalten die bestätigten Unternehmensdaten statt Entwurfsplatzhaltern. Die Datenschutzangaben zur Hosting-Infrastruktur sind vor dem Domainwechsel mit dem tatsächlichen Serveranbieter abzugleichen.
 - `dist/` bleibt eine private, nicht indexierbare Vorschau. `dist-production/` ist der getrennte öffentliche Build mit Canonicals, Sitemap, freigegebener `robots.txt`, deutschen Sprachangaben und ohne WordPress-Generator-/Preview-Hinweise.
 - Dockerfile und Compose liefern ausschließlich `dist-production/` über einen gehärteten Non-Root-Nginx aus.
 
-Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und Gladbeck, individuelle Metadaten, Canonicals sowie LocalBusiness-/Service-/Breadcrumb-Daten sind umgesetzt. Unter **Design → Phinix einrichten** werden die Seiten kontrolliert als Entwürfe angelegt.
+Sechs eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und Gladbeck, individuelle Metadaten, Canonicals sowie LocalBusiness-/Service-/Breadcrumb-Daten sind umgesetzt. Unter **Design → Phinix einrichten** werden die Seiten kontrolliert als Entwürfe angelegt.
+
+## News veröffentlichen
+
+Unter **Design → Phinix einrichten** die Inhalte anlegen und die gewünschten Entwürfe veröffentlichen. Beiträge unter **Beiträge → Erstellen** anlegen. Nach der Veröffentlichung erscheinen sie auf `/news/`. Die drei neuesten Artikel stehen auch auf der Startseite. Kategorie, Auszug und Beitragsbild steuern die jeweilige Karte. Unter **Einstellungen → Allgemein → Social-Media-Profile** lassen sich die Profilziele pflegen. Artikel lassen sich über LinkedIn, X und Facebook teilen.
+
+Für einen späteren Metricool-Workflow eignet sich WordPress als redaktionelle Quelle. Ein autorisierter Dienst kann Entwürfe über die WordPress-REST-API anlegen. Nach Freigabe kann eine Metricool-Autoliste den RSS-Feed unter `https://www.phinix.media/news/feed.xml` lesen und neue Beitragslinks auf den verbundenen Social-Media-Kanälen verteilen. Den Feed erst nach dem Domain-Start in Metricool hinterlegen. [Metricool-Anleitung für RSS-Autolisten](https://help.metricool.com/how-to-link-an-rss-feed-to-an-autolist-ank6m) Zugangsdaten gehören in den jeweiligen Dienst. Es ist keine Automatisierung aktiviert. Beim statischen Docker- oder Sites-Stand werden neue Beiträge erst nach Export aus der aktuellen WordPress-Installation und erneutem Deployment sichtbar.
 
 ## Dateien
 
@@ -27,17 +33,17 @@ Fünf eigenständige Leistungsseiten, regionale Inhalte für Gelsenkirchen und G
 2. [Repository und WordPress.com – Schritt für Schritt](docs/02-repository-und-wordpress.md)
 3. [Status und benötigtes Material](docs/03-status-und-materialliste.md)
 4. [Theme-Quellcode](themes/phinix-media/)
-5. [Installierbares Theme-ZIP](output/phinix-media-0.8.0.zip)
+5. [Installierbares Theme-ZIP](https://github.com/kevin1337pro/phinix-media-website/releases/download/v0.9.0/phinix-media-0.9.0.zip)
 6. [SEO-/GEO-Plan mit 90-Tage-Maßnahmen](docs/04-seo-geo-plan-2026-09-04.md)
 7. [Google-, Apple- und KI-Sichtbarkeitsplan](docs/05-online-auffallen-google-apple-ki-2026-09-18.md)
 8. [Docker-Deployment für den Server](docs/06-docker-deployment.md)
-9. Theme-Download: GitHub-Release `v0.8.0` nach Veröffentlichung.
+9. Theme-Download: GitHub-Release `v0.9.0` nach Veröffentlichung.
 
 ZIP und Vorschauen liegen lokal in `output/` und werden nicht in Git gespeichert. Das Paket lässt sich mit `python3 scripts/package-theme.py` erneut erstellen.
 
 ## Prüfstand
 
-Version 0.8.0: Startseite, Rechtstexte, fünf Leistungsseiten und beide Ratgeber werden per HTTP im lokalen WordPress sowie in zwei getrennten statischen Exporten geprüft. Die Tests kontrollieren Hauptüberschrift, eindeutige Beschreibung, Canonical, gültiges JSON-LD, Social-Bild, sichtbare Kontaktdaten, deutsche Sprache, WebP-Nutzung, Sitemap und Robots-Regeln. Außerdem schlagen sie bei Preview-Domain, WordPress-Generator, Entwurfsplatzhaltern oder sichtbaren ChatGPT-/OpenAI-/Codex-Hinweisen im Produktions-Build fehl. Wiederholbar mit `python3 scripts/check-seo.py`, `python3 scripts/check-seo.py --static` und `python3 scripts/check-seo.py --static-production`.
+Version 0.9.0: Startseite, Rechtstexte, sechs Leistungsseiten, die News-Übersicht und drei redaktionelle Beiträge werden per HTTP im lokalen WordPress sowie in zwei getrennten statischen Exporten geprüft. Die Tests kontrollieren Hauptüberschrift, eindeutige Beschreibung, Canonical, gültiges JSON-LD, Social-Bild, sichtbare Kontaktdaten, deutsche Sprache, WebP-Nutzung, Sitemap und Robots-Regeln. Außerdem schlagen sie bei Preview-Domain, WordPress-Generator, Entwurfsplatzhaltern oder sichtbaren ChatGPT-/OpenAI-/Codex-Hinweisen im Produktions-Build fehl. Wiederholbar mit `python3 scripts/check-seo.py`, `python3 scripts/check-seo.py --static` und `python3 scripts/check-seo.py --static-production`.
 
 Vorheriger visueller Prüfstand:
 

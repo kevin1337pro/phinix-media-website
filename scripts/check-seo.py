@@ -4,7 +4,7 @@ import os
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 from urllib.request import urlopen
 from xml.etree import ElementTree
 
@@ -25,9 +25,10 @@ PAGES = json.loads((ROOT / "themes/phinix-media/content/seo-pages.json").read_te
 ARTICLES = {
     "digitale-aussenwerbung-gladbeck-phinix-screens": "Article",
     "impressum-pruefen-website-check": "BlogPosting",
+    "virtuelle-rundgaenge-branchen": "BlogPosting",
 }
 LEGAL = ["impressum", "datenschutz"]
-SLUGS = [""] + LEGAL + list(PAGES) + list(ARTICLES)
+SLUGS = ["", "news"] + LEGAL + list(PAGES) + list(ARTICLES)
 PUBLIC_PATHS = ["/" + slug + ("/" if slug else "") for slug in SLUGS]
 
 
@@ -108,6 +109,9 @@ def meta_values(page, attribute, value):
 def assert_clean_public_source(path, raw, page):
     assert page.html.get("lang") == "de-DE", (path, page.html)
     assert not meta_values(page, "name", "generator"), path
+    for anchor in page.anchors:
+        host = (urlparse(anchor.get("href", "")).hostname or "").lower()
+        assert host.removeprefix("www.") not in {"complioneer.eu", "complioneer.de"}, (path, host)
     if not PRODUCTION:
         return
     lowered = raw.lower()
@@ -137,6 +141,8 @@ for slug in SLUGS:
     page = Page()
     page.feed(raw)
     assert_clean_public_source(path, raw, page)
+    assert "[phinix_" not in raw, (path, "Unrendered theme shortcode")
+    assert {a.get("href") for a in page.anchors} >= {"https://wa.me/4917655376651", "https://www.instagram.com/phinix.media/"}, path
     assert len(page.headings) == 1, (path, page.headings)
     descriptions = meta_values(page, "name", "description")
     assert len(descriptions) == 1 and len(descriptions[0]) > 40, (path, descriptions)
@@ -168,11 +174,26 @@ for slug in SLUGS:
     assert "Buerelterstraße 27" in text and "kontakt@phinix.media" in text
     assert "aggregateRating" not in raw and "FAQPage" not in raw
 
+    if slug in {"", "news"}:
+        listed_paths = {urlparse(link.get("href", "")).path.strip("/") for link in page.anchors if "news-card__link" in link.get("class", "").split()}
+        if slug == "news":
+            assert ARTICLES.keys() <= listed_paths, (path, listed_paths)
+        else:
+            assert len(listed_paths) == 3, (path, listed_paths)
+            assert any(a.get("href", "").rstrip("/") == "https://www.instagram.com/janinemachmueller" for a in page.anchors), path
     if slug in PAGES:
         assert "Service" in types and "BreadcrumbList" in types
     elif slug in LEGAL:
         assert "Service" not in types and "BreadcrumbList" in types
     if slug in ARTICLES:
+        share_hosts = set()
+        for anchor in page.anchors:
+            url = urlparse(anchor.get("href", ""))
+            if url.path in {"/sharing/share-offsite/", "/intent/post", "/sharer/sharer.php"}:
+                share_hosts.add(url.hostname)
+                query = parse_qs(url.query)
+                assert (query.get("url") or query.get("u")) == [EXPECTED_BASE + path], (path, url)
+        assert share_hosts == {"www.linkedin.com", "x.com", "www.facebook.com"}, (path, share_hosts)
         schema_type = ARTICLES[slug]
         assert schema_type in types and "BreadcrumbList" in types and "Service" not in types
         article = next(entity for entity in graph if entity["@type"] == schema_type)
@@ -193,7 +214,6 @@ for slug in SLUGS:
                 )
             )
         if slug == "impressum-pruefen-website-check":
-            assert any(item.get("href") == "https://complioneer.eu/" for item in page.anchors)
             assert any(item.get("href", "").startswith("https://wa.me/4917655376651") for item in page.anchors)
             assert all(
                 term in text
@@ -204,7 +224,6 @@ for slug in SLUGS:
                     "fiktives, typisches Beispiel",
                     "§ 5 DDG",
                     "keine Rechtsberatung",
-                    "Complioneer",
                     "+49 176 5537 6651",
                 )
             )
@@ -260,6 +279,7 @@ for slug in SLUGS:
             "service-icon--marketing",
             "service-icon--seo",
             "service-icon--screens",
+            "service-icon--tour",
         }
         rendered_icons = {
             name
@@ -290,6 +310,14 @@ for slug in SLUGS:
     )
 
 if STATIC:
+    rss_url = EXPECTED_BASE + "/news/feed.xml"
+    channel = ElementTree.parse(STATIC_ROOT / "news/feed.xml").getroot().find("channel")
+    assert channel is not None and channel.findtext("link") == EXPECTED_BASE + "/news/"
+    expected_articles = {EXPECTED_BASE + "/" + slug + "/" for slug in ARTICLES}
+    assert expected_articles <= {item.findtext("link") for item in channel.findall("item")}
+    index = Page()
+    index.feed(get("/news/"))
+    assert any(link.get("type") == "application/rss+xml" and link.get("href") in {rss_url, "/news/feed.xml"} for link in index.links)
     robots_source = (STATIC_ROOT / "robots.txt").read_text()
     if PRODUCTION:
         assert "Disallow: /" not in robots_source
@@ -298,7 +326,8 @@ if STATIC:
         sitemap = ElementTree.parse(STATIC_ROOT / "sitemap.xml").getroot()
         sitemap_locations = {element.text for element in sitemap.findall("{*}url/{*}loc")}
         expected_locations = {PUBLIC_URL + path for path in PUBLIC_PATHS}
-        assert sitemap_locations == expected_locations, (sitemap_locations, expected_locations)
+        assert expected_locations <= sitemap_locations, (sitemap_locations, expected_locations)
+        assert all(static_file(urlparse(url).path).exists() for url in sitemap_locations)
 
         not_found_source = (STATIC_ROOT / "404.html").read_text()
         not_found = Page()

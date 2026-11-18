@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+    <title>Phinix Media – News</title>
+    <link>https://phinix-media-vorschau.kevin1337pro.chatgpt.site/news/</link>
+    <description>3D-Rundgänge, Digital Signage und Ideen für den digitalen Markenauftritt.</description>
+    <language>de-DE</language>
+    <atom:link href="https://phinix-media-vorschau.kevin1337pro.chatgpt.site/news/feed.xml" rel="self" type="application/rss+xml" />
+        <item>
+        <title>Vom Spielertunnel bis zur Hotelsuite – was virtuelle Rundgänge zeigen können</title>
+        <link>https://phinix-media-vorschau.kevin1337pro.chatgpt.site/virtuelle-rundgaenge-branchen/</link>
+        <guid isPermaLink="true">https://phinix-media-vorschau.kevin1337pro.chatgpt.site/virtuelle-rundgaenge-branchen/</guid>
+        <pubDate>Wed, 18 Nov 2026 08:00:00 +0000</pubDate>
+        <category>3D-Rundgänge</category>
+        <description>Ein Blick vom Tribünensitz beantwortet andere Fragen als ein Drohnenflug. Entdecke, wie Stadien, Hotels, Immobilien und Museen virtuelle Rundgänge einsetzen können.</description>
+    </item>
+        <item>
+        <title>2.500 bis 200.000 Euro wegen eines Impressumsfehlers?</title>
+        <link>https://phinix-media-vorschau.kevin1337pro.chatgpt.site/impressum-pruefen-website-check/</link>
+        <guid isPermaLink="true">https://phinix-media-vorschau.kevin1337pro.chatgpt.site/impressum-pruefen-website-check/</guid>
+        <pubDate>Wed, 07 Oct 2026 12:00:00 +0000</pubDate>
+        <category>Website prüfen</category>
+        <description>Welche Folgen fehlende oder veraltete Impressumsangaben wirklich haben können, was § 5 DDG verlangt und welche Punkte Unternehmen prüfen sollten.</description>
+    </item>
+        <item>
+        <title>Digitale Außenwerbung in Gladbeck: So funktioniert PHINIX.SCREENS</title>
+        <link>https://phinix-media-vorschau.kevin1337pro.chatgpt.site/digitale-aussenwerbung-gladbeck-phinix-screens/</link>
+        <guid isPermaLink="true">https://phinix-media-vorschau.kevin1337pro.chatgpt.site/digitale-aussenwerbung-gladbeck-phinix-screens/</guid>
+        <pubDate>Fri, 18 Sep 2026 12:00:00 +0000</pubDate>
+        <category>Digital Signage</category>
+        <description>Was Digital Signage und DOOH bedeuten, wie PHINIX.SCREENS die Buchung beschreibt und wie Phinix Media ein passendes Screen-Motiv gestaltet.</description>
+    </item>
+    </channel>
+</rss>

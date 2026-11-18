@@ -10,7 +10,7 @@ import re
 import sys
 from pathlib import Path
 from shutil import copyfile, copytree, rmtree
-from urllib.parse import unquote, urlparse
+from urllib.parse import quote, unquote, urlencode, urlparse
 from urllib.request import urlopen
 from xml.etree import ElementTree
 
@@ -25,25 +25,45 @@ PUBLIC_URL = os.environ.get("PHINIX_PUBLIC_URL", "https://www.phinix.media").rst
 SITE_URL = PUBLIC_URL if PRODUCTION else PREVIEW_URL
 DIST = ROOT / ("dist-production" if PRODUCTION else "dist")
 
+def published_post_paths():
+    """Use WordPress permalinks so new editorial posts survive the static export."""
+    paths = []
+    page = 1
+    while True:
+        params = urlencode({"rest_route": "/wp/v2/posts", "_fields": "link,content.protected", "status": "publish", "per_page": 100, "page": page})
+        with urlopen(ORIGIN + "/?" + params, timeout=45) as response:
+            records = json.load(response)
+            pages = int(response.headers["X-WP-TotalPages"])
+        for post in records:
+            if post["content"].get("protected"):
+                continue
+            link = urlparse(post["link"])
+            if link.netloc != urlparse(ORIGIN).netloc or link.query or ".." in Path(unquote(link.path)).parts:
+                raise ValueError(f"Invalid public post permalink: {link.path}")
+            paths.append(link.path)
+        if page >= pages:
+            return paths
+        page += 1
+
+
+assets = set()
+service_slugs = json.loads((ROOT / "themes/phinix-media/content/seo-pages.json").read_text())
+fixed_slugs = ["impressum", "datenschutz", "news", "digitale-aussenwerbung-gladbeck-phinix-screens", *service_slugs]
+public_paths = list(dict.fromkeys(["/"] + [f"/{slug}/" for slug in fixed_slugs] + published_post_paths()))
+
 if DIST.exists():
     rmtree(DIST)
 DIST.mkdir(exist_ok=True)
 
-assets = set()
-service_slugs = list(json.loads((ROOT / "themes/phinix-media/content/seo-pages.json").read_text()))
-article_slugs = [
-    "digitale-aussenwerbung-gladbeck-phinix-screens",
-    "impressum-pruefen-website-check",
-]
-legal_slugs = ["impressum", "datenschutz"]
-public_paths = ["/"] + [f"/{slug}/" for slug in legal_slugs + service_slugs + article_slugs]
 
-
-def fetch(path):
+def fetch(path, expect_404=False):
     try:
-        return urlopen(ORIGIN + path, timeout=40).read()
+        with urlopen(ORIGIN + path, timeout=40) as response:
+            if expect_404:
+                raise ValueError(f"Expected HTTP 404 for {path}")
+            return response.read()
     except Exception as error:
-        if getattr(error, "code", None) == 404:
+        if expect_404 and getattr(error, "code", None) == 404:
             return error.read()
         raise
 
@@ -71,10 +91,10 @@ def make_absolute_metadata(html):
 
 
 def export_page(path, destination, canonical_path=None, is_404=False):
-    html = fetch(path).decode("utf-8")
+    html = fetch(path, expect_404=is_404).decode("utf-8")
     assert "<html" in html and "<main" in html, "WordPress did not render a page"
     html = re.sub(
-        r'<link\b[^>]*(?:rel=["\'](?:alternate|EditURI|https://api.w.org/|dns-prefetch)["\'])[^>]*>',
+        r'<link\b(?![^>]*\bid="phinix-news-feed")[^>]*(?:rel=["\'](?:alternate|EditURI|https://api.w.org/|dns-prefetch)["\'])[^>]*>',
         "",
         html,
     )
@@ -96,6 +116,7 @@ def export_page(path, destination, canonical_path=None, is_404=False):
         assets.add(match.replace("\\/", "/"))
     # JSON and inline CSS may use escaped forward slashes.
     html = html.replace(ORIGIN.replace("/", "\\/"), ORIGIN)
+    html = html.replace(quote(ORIGIN, safe=""), quote(SITE_URL, safe=""))
     html = html.replace(ORIGIN, "")
     html = re.sub(r'<meta\b[^>]*name=["\']robots["\'][^>]*>', "", html, flags=re.I)
     html = re.sub(r'<link\b[^>]*rel=["\']canonical["\'][^>]*>', "", html, flags=re.I)
@@ -127,12 +148,26 @@ def export_page(path, destination, canonical_path=None, is_404=False):
     output.write_text(html)
 
 
-export_page("/", "index.html", "/")
-for slug in legal_slugs:
-    export_page(f"/{slug}/", f"{slug}/index.html", f"/{slug}/")
+for path in public_paths:
+    export_page(path, Path(unquote(path).strip("/")) / "index.html", path)
 export_page("/?p=999999", "404.html", is_404=True)
-for slug in service_slugs + article_slugs:
-    export_page(f"/{slug}/", f"{slug}/index.html", f"/{slug}/")
+
+# Publish the same public News feed as WordPress, with absolute destination URLs.
+feed_path = "/news/feed.xml"
+atom_ns = "http://www.w3.org/2005/Atom"
+ElementTree.register_namespace("atom", atom_ns)
+feed = ElementTree.fromstring(fetch(feed_path))
+channel = feed.find("channel")
+assert feed.tag == "rss" and channel is not None, "Invalid News feed"
+self_link = channel.find(f"{{{atom_ns}}}link[@rel='self']")
+assert self_link is not None and self_link.get("href") == ORIGIN + feed_path
+self_link.set("href", SITE_URL + feed_path)
+for element in [channel.find("link"), *channel.findall("item/link"), *channel.findall("item/guid")]:
+    assert element is not None and element.text
+    target = urlparse(element.text)
+    assert target.netloc == urlparse(ORIGIN).netloc and target.path in public_paths, target
+    element.text = SITE_URL + target.path
+ElementTree.ElementTree(feed).write(DIST / feed_path.lstrip("/"), encoding="utf-8", xml_declaration=True)
 
 if PRODUCTION:
     (DIST / "robots.txt").write_text(

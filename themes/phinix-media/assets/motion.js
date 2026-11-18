@@ -1,6 +1,63 @@
 /* Progressive enhancement: all scenes remain readable without JavaScript. */
 (() => {
   'use strict';
+  const header = document.querySelector('[data-phinix-menu]');
+  if (header) {
+    const toggle = header.querySelector('.masthead-toggle');
+    const label = toggle.querySelector('.masthead-toggle__label');
+    const groups = [...header.querySelectorAll('.masthead-dropdown')];
+    const compact = window.matchMedia('(max-width: 860px)');
+
+    function setMenu(open) {
+      toggle.setAttribute('aria-expanded', String(open));
+      label.textContent = open ? 'Schließen' : 'Menü';
+      if (!open) groups.forEach(group => { group.open = false; });
+    }
+
+    function markCurrent() {
+      header.querySelectorAll('nav a').forEach(link => {
+        const samePage = link.pathname === location.pathname;
+        const current = samePage && (!link.hash || link.hash === location.hash);
+        if (current) link.setAttribute('aria-current', link.hash ? 'location' : 'page');
+        else link.removeAttribute('aria-current');
+      });
+    }
+
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+    compact.addEventListener('change', () => setMenu(false));
+    header.addEventListener('click', event => {
+      if (event.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('pointerdown', event => {
+      if (!header.contains(event.target)) setMenu(false);
+    });
+    header.addEventListener('focusout', event => {
+      if (!event.relatedTarget) return;
+      if (!header.contains(event.relatedTarget)) setMenu(false);
+      else groups.forEach(group => {
+        if (!group.contains(event.relatedTarget)) group.open = false;
+      });
+    });
+    header.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const group = groups.find(item => item.open);
+      if (group) {
+        group.open = false;
+        group.querySelector('summary').focus();
+      } else if (compact.matches && toggle.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+    window.addEventListener('hashchange', markCurrent);
+    window.addEventListener('pageshow', () => {
+      setMenu(false);
+      markCurrent();
+    });
+    markCurrent();
+  }
+
   document.querySelectorAll('.phinix-hero').forEach((hero, instance) => {
     const panels = [...hero.querySelectorAll('.phinix-scene')];
     const controls = hero.querySelector('.scene-controls');

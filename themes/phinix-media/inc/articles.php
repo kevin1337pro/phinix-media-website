@@ -5,18 +5,20 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 function phinix_theme_picture_shortcode( $attributes ) {
     $images = array(
         'phinix-brand-stage.webp' => array( 'people', 1600, 900 ),
+        '3d-stadionmodell.webp' => array( 'articles', 1440, 810 ),
         /* Backward-compatible alias for article content installed by 0.7.0. */
         'phinix-brand-stage.jpg' => array( 'people', 1600, 900, 'phinix-brand-stage.webp' ),
         'website-pruefen-impressum-hero.webp' => array( 'articles', 1672, 941 ),
         'website-pruefen-checkliste.webp' => array( 'articles', 1536, 1024 ),
     );
-    $attributes = shortcode_atts( array( 'name' => '', 'alt' => '', 'class' => '', 'priority' => 'auto' ), $attributes, 'phinix_theme_picture' );
+    $attributes = shortcode_atts( array( 'name' => '', 'alt' => '', 'class' => '', 'priority' => 'auto', 'caption' => '' ), $attributes, 'phinix_theme_picture' );
     $name = sanitize_file_name( $attributes['name'] );
     if ( ! isset( $images[ $name ] ) ) { return ''; }
     $file = isset( $images[ $name ][3] ) ? $images[ $name ][3] : $name;
     $priority = 'high' === $attributes['priority'];
     $classes = array_filter( array_map( 'sanitize_html_class', preg_split( '/\s+/', (string) $attributes['class'] ) ) );
-    return '<figure class="phinix-article-image ' . esc_attr( implode( ' ', $classes ) ) . '"><img src="' . esc_url( get_theme_file_uri( 'assets/images/' . $images[ $name ][0] . '/' . $file ) ) . '" alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '></figure>';
+    $caption = $attributes['caption'] ? '<figcaption>' . esc_html( $attributes['caption'] ) . '</figcaption>' : '';
+    return '<figure class="phinix-article-image ' . esc_attr( implode( ' ', $classes ) ) . '"><img src="' . esc_url( get_theme_file_uri( 'assets/images/' . $images[ $name ][0] . '/' . $file ) ) . '" alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '>' . $caption . '</figure>';
 }
 add_shortcode( 'phinix_theme_picture', 'phinix_theme_picture_shortcode' );
 
@@ -136,13 +138,72 @@ function phinix_website_check_article_content() {
 <!-- wp:heading --><h2 class="wp-block-heading">Impressum prüfen: die kompakte Checkliste</h2><!-- /wp:heading -->
 <!-- wp:list {"className":"article-checklist"} --><ul class="wp-block-list article-checklist"><!-- wp:list-item --><li>Ist das Impressum eindeutig bezeichnet und von jeder Seite leicht erreichbar?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Sind Firma oder vollständiger Name und eine aktuelle Anschrift angegeben?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Stimmen Rechtsform und vertretungsberechtigte Person?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Sind E-Mail-Adresse und ein geeigneter direkter Kontaktweg vorhanden?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Sind Registergericht und Registernummer angegeben, falls erforderlich?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Sind Umsatzsteuer-ID oder Wirtschafts-ID aufgeführt, sofern vorhanden?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Sind bei erlaubnispflichtigen oder reglementierten Tätigkeiten zusätzliche Angaben nötig?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Wurde das Impressum nach Umzug, Umfirmierung oder Wechsel der Geschäftsführung aktualisiert?</li><!-- /wp:list-item --><!-- wp:list-item --><li>Passen die Angaben auch zu den geschäftlichen Social-Media-Profilen?</li><!-- /wp:list-item --></ul><!-- /wp:list -->
 <!-- wp:heading --><h2 class="wp-block-heading">Finde Auffälligkeiten, bevor sie zum Problem werden</h2><!-- /wp:heading -->
-<!-- wp:paragraph --><p>Ein Website-Check kann offensichtliche Lücken, veraltete Angaben und technische Auffälligkeiten früh sichtbar machen. Complioneer prüft Websites automatisiert auf zentrale Anforderungen an Impressum, Datenschutzerklärung und Cookie-Consent. Funde werden mit Schweregrad und Gesetzesreferenz dargestellt und in einem Compliance-Score zusammengefasst. Prüfe dort nur deine eigene Website oder Seiten, für deren Prüfung du berechtigt bist.</p><!-- /wp:paragraph -->
-<!-- wp:buttons {"className":"article-cta"} --><div class="wp-block-buttons article-cta"><!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://complioneer.eu/" target="_blank" rel="noopener noreferrer">Website mit Complioneer prüfen ↗</a></div><!-- /wp:button --><!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://wa.me/4917655376651?text=Hallo%20Phinix%20Media%2C%20ich%20m%C3%B6chte%20meine%20Website%20pr%C3%BCfen%20lassen." target="_blank" rel="noopener noreferrer">Per WhatsApp anfragen · +49 176 5537 6651</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
+<!-- wp:paragraph --><p>Ein Website-Check kann offensichtliche Lücken, veraltete Angaben und technische Auffälligkeiten früh sichtbar machen. Öffne das Impressum einmal vom Handy aus. Vergleiche die dort genannte Anschrift mit deiner letzten Rechnung und teste den Kontaktlink. Wenn du Unterstützung bei der technischen Umsetzung brauchst, erreichst du Janine direkt per WhatsApp.</p><!-- /wp:paragraph -->
+<!-- wp:buttons {"className":"article-cta"} --><div class="wp-block-buttons article-cta"><!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://wa.me/4917655376651?text=Hallo%20Phinix%20Media%2C%20ich%20m%C3%B6chte%20meine%20Website%20pr%C3%BCfen%20lassen." target="_blank" rel="noopener noreferrer">Per WhatsApp anfragen · +49 176 5537 6651</a></div><!-- /wp:button --></div><!-- /wp:buttons -->
 <!-- wp:group {"className":"article-legal-note","layout":{"type":"constrained"}} --><div class="wp-block-group article-legal-note"><!-- wp:paragraph --><p><strong>Hinweis:</strong> Dieser Beitrag enthält allgemeine Informationen und keine Rechtsberatung. Ein automatisierter oder redaktioneller Website-Check kann Hinweise auf mögliche Auffälligkeiten geben, ersetzt aber keine anwaltliche Prüfung des Einzelfalls.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p><strong>Rechtsstand: 7. Oktober 2026.</strong> Amtliche Quellen: <a href="https://www.gesetze-im-internet.de/ddg/__5.html" target="_blank" rel="noopener noreferrer">§ 5 DDG</a>, <a href="https://www.gesetze-im-internet.de/ddg/__33.html" target="_blank" rel="noopener noreferrer">§ 33 DDG</a>, <a href="https://www.gesetze-im-internet.de/uwg_2004/__13.html" target="_blank" rel="noopener noreferrer">§ 13 UWG</a> und die <a href="https://www.medienanstalt-nrw.de/aufsicht/transparenz-im-internet.html" target="_blank" rel="noopener noreferrer">Landesanstalt für Medien NRW</a>.</p><!-- /wp:paragraph --></div><!-- /wp:group -->';
+}
+
+function phinix_rundgaenge_article_content() {
+    return file_get_contents( get_theme_file_path( 'content/virtuelle-rundgaenge-branchen.html' ) );
+}
+
+/* Older installations keep the editor's copy of the Website-Check post on theme updates. */
+function phinix_is_managed_website_check( $post_id ) {
+    return $post_id && 'impressum-pruefen-website-check' === get_post_field( 'post_name', $post_id )
+        && get_post_meta( $post_id, '_phinix_article', true );
+}
+
+function phinix_is_retired_check_url( $url ) {
+    if ( ! is_string( $url ) || ! $url ) { return false; }
+    $url = trim( $url );
+    if ( preg_match( '~^(?:[\w.-]+\.)?complioneer\.(?:de|eu)(?:[/:?#]|$)~i', $url ) ) { $url = '//' . $url; }
+    $host = wp_parse_url( $url, PHP_URL_HOST );
+    return is_string( $host ) && (bool) preg_match( '~(?:^|\.)complioneer\.(?:de|eu)$~i', rtrim( $host, '.' ) );
+}
+
+add_filter( 'render_block', function ( $html, $block ) {
+    if ( false === stripos( $html, 'complioneer' ) || ! phinix_is_managed_website_check( get_the_ID() ) ) { return $html; }
+    $tags = new WP_HTML_Tag_Processor( $html );
+    while ( $tags->next_tag( 'A' ) ) {
+        if ( ! phinix_is_retired_check_url( $tags->get_attribute( 'href' ) ) ) { continue; }
+        if ( 'core/button' === $block['blockName'] && 'Website mit Complioneer prüfen ↗' === trim( wp_strip_all_tags( $html ) ) ) { return ''; }
+        // Keep custom link labels, surrounding markup and all unrelated destinations.
+        $tags->remove_attribute( 'href' );
+        $tags->remove_attribute( 'target' );
+        $tags->remove_attribute( 'rel' );
+        $tags->remove_class( 'wp-block-button__link' );
+        $tags->remove_class( 'wp-element-button' );
+    }
+    return $tags->get_updated_html();
+}, 10, 2 );
+
+function phinix_visible_article_mentions( $post_id, $mentions ) {
+    if ( ! $mentions || ! phinix_is_managed_website_check( $post_id ) ) { return $mentions; }
+    return array_values( array_filter( $mentions, function ( $mention ) {
+        return ! isset( $mention['url'] ) || ! phinix_is_retired_check_url( $mention['url'] );
+    } ) );
 }
 
 function phinix_editorial_articles() {
     return array(
+        'virtuelle-rundgaenge-branchen' => array(
+            'post_type' => 'post',
+            'title' => 'Vom Spielertunnel bis zur Hotelsuite – was virtuelle Rundgänge zeigen können',
+            'excerpt' => 'Ein Blick vom Tribünensitz beantwortet andere Fragen als ein Drohnenflug. Entdecke, wie Stadien, Hotels, Immobilien und Museen virtuelle Rundgänge einsetzen können.',
+            'content' => 'phinix_rundgaenge_article_content',
+            'seo_title' => 'Virtuelle Rundgänge für Stadien, Hotels & mehr | Phinix Media',
+            'seo_description' => 'Vom Stadion über die Hotelsuite bis zur Werkhalle. Entdecke an konkreten Beispielen, wann sich ein Drohnenfilm, eine 360°-Tour oder ein interaktives 3D-Modell lohnt.',
+            'image' => 'assets/images/articles/3d-stadionmodell.webp',
+            'image_width' => 1440,
+            'image_height' => 810,
+            'image_alt' => 'Illustration eines Stadionmodells mit Blick auf Spielfeld, Tribünen und Loge',
+            'schema_type' => 'BlogPosting',
+            'about' => array(
+                array( '@type' => 'Thing', 'name' => 'Virtueller 360°-Rundgang' ),
+                array( '@type' => 'Thing', 'name' => 'Interaktive 3D-Stadionpräsentation' ),
+                array( '@type' => 'Thing', 'name' => 'Drohnenfilm' ),
+            ),
+        ),
         'digitale-aussenwerbung-gladbeck-phinix-screens' => array(
             'post_type' => 'page',
             'title' => 'Digitale Außenwerbung in Gladbeck: So funktioniert PHINIX.SCREENS',
@@ -177,9 +238,6 @@ function phinix_editorial_articles() {
                 array( '@type' => 'Thing', 'name' => 'Impressumspflicht' ),
                 array( '@type' => 'Thing', 'name' => 'Digitale-Dienste-Gesetz' ),
                 array( '@type' => 'Thing', 'name' => 'Website-Check' ),
-            ),
-            'mentions' => array(
-                array( '@type' => 'SoftwareApplication', 'name' => 'Complioneer', 'url' => 'https://complioneer.eu/' ),
             ),
         ),
     );

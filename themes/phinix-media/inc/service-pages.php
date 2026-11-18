@@ -26,6 +26,14 @@ function phinix_service_content( $data ) {
     foreach ( $data['related'] as $slug ) {
         $out .= '<!-- wp:paragraph --><p><a href="' . esc_url( home_url( '/' . $slug . '/' ) ) . '">' . esc_html( $pages[$slug]['service'] ) . ' ↗</a></p><!-- /wp:paragraph -->';
     }
+    if ( ! empty( $data['related_article'] ) ) {
+        $article_slug = $data['related_article'];
+        $articles = phinix_editorial_articles();
+        if ( isset( $articles[ $article_slug ] ) ) {
+            $out .= '<!-- wp:heading --><h2 class="wp-block-heading">Aus unserem Blog</h2><!-- /wp:heading -->';
+            $out .= '<!-- wp:paragraph --><p><a href="' . esc_url( home_url( '/' . $article_slug . '/' ) ) . '">' . esc_html( $articles[ $article_slug ]['title'] ) . ' ↗</a></p><!-- /wp:paragraph -->';
+        }
+    }
     return $out;
 }
 function phinix_install_service_pages( $status = 'draft' ) {
@@ -44,13 +52,13 @@ function phinix_install_service_pages( $status = 'draft' ) {
 add_action( 'admin_menu', function () {
     add_theme_page( 'Phinix einrichten', 'Phinix einrichten', 'edit_theme_options', 'phinix-setup', function () {
         if ( ! current_user_can( 'edit_theme_options' ) ) { return; }
-        echo '<div class="wrap"><h1>Phinix: Inhalte einrichten</h1><p>Erstellt fünf echte Leistungsseiten, den PHINIX.SCREENS-Ratgeber, den Beitrag zum Website-Check sowie die fehlenden Rechtstextseiten als Entwürfe. Vorhandene redaktionelle Inhalte werden nicht verändert. Vom Theme verwaltete Rechtstexte und der frühere Entwurfsplatzhalter werden beim erneuten Einrichten aktualisiert. Prüfe alle Inhalte und veröffentliche sie vor dem Livegang, damit die Links funktionieren.</p><p>Bei einem aktiven SEO-Plugin trägst du Titel, Beschreibungen und Unternehmensdaten dort ein; das Theme vermeidet doppelte SEO-Ausgaben.</p>';
+        echo '<div class="wrap"><h1>Phinix: Inhalte einrichten</h1><p>Erstellt die Leistungsseiten, den News-Bereich, die zugehörigen Artikel und die fehlenden Rechtstextseiten als Entwürfe. Vorhandene redaktionelle Inhalte werden nicht verändert. Vom Theme verwaltete Rechtstexte und der frühere Entwurfsplatzhalter werden beim erneuten Einrichten aktualisiert. Prüfe alle Inhalte und veröffentliche sie vor dem Livegang, damit die Links funktionieren.</p><p>Bei einem aktiven SEO-Plugin trägst du Titel, Beschreibungen und Unternehmensdaten dort ein; das Theme vermeidet doppelte SEO-Ausgaben.</p>';
         echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="phinix_setup_pages">';
         wp_nonce_field( 'phinix_setup_pages' ); submit_button( 'Fehlende Seiten und Artikel als Entwürfe anlegen' ); echo '</form></div>';
     } );
 } );
 add_action( 'admin_post_phinix_setup_pages', function () {
     if ( ! current_user_can( 'edit_theme_options' ) || ! current_user_can( 'edit_pages' ) ) { wp_die( 'Keine Berechtigung.' ); }
-    check_admin_referer( 'phinix_setup_pages' ); phinix_install_service_pages(); phinix_install_editorial_articles(); phinix_install_legal_pages();
+    check_admin_referer( 'phinix_setup_pages' ); phinix_install_service_pages(); phinix_install_editorial_articles(); phinix_install_legal_pages(); phinix_install_news_page();
     wp_safe_redirect( admin_url( 'edit.php?post_type=page' ) ); exit;
 } );

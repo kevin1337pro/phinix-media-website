@@ -80,9 +80,9 @@ add_action( 'wp_head', function () {
     if ( $data['description'] ) {
         echo '<meta name="description" content="' . esc_attr( $data['description'] ) . '">' . "\n";
     }
+    $is_article = ! empty( $data['id'] ) && ( is_singular( 'post' ) || get_post_meta( $data['id'], '_phinix_article', true ) );
     // Jetpack normally owns social metadata on WordPress.com; do not emit a second set.
     if ( ! class_exists( 'Jetpack' ) ) {
-        $is_article = ! empty( $data['id'] ) && get_post_meta( $data['id'], '_phinix_article', true );
         $social = array( 'og:type' => $is_article ? 'article' : 'website', 'og:locale' => 'de_DE', 'og:site_name' => 'Phinix Media', 'og:title' => $data['title'], 'og:description' => $data['description'], 'og:url' => $data['url'] );
         foreach ( $social as $property => $value ) {
             echo '<meta property="' . esc_attr( $property ) . '" content="' . esc_attr( $value ) . '">' . "\n";
@@ -101,6 +101,13 @@ add_action( 'wp_head', function () {
                 $social_image_width = absint( get_post_meta( $data['id'], '_phinix_article_image_width', true ) );
                 $social_image_height = absint( get_post_meta( $data['id'], '_phinix_article_image_height', true ) );
                 $social_image_alt = get_post_meta( $data['id'], '_phinix_article_image_alt', true );
+            } elseif ( has_post_thumbnail( $data['id'] ) ) {
+                $attachment = get_post_thumbnail_id( $data['id'] );
+                $cover = wp_get_attachment_image_src( $attachment, 'large' );
+                if ( $cover ) {
+                    list( $social_image, $social_image_width, $social_image_height ) = $cover;
+                    $social_image_alt = get_post_meta( $attachment, '_wp_attachment_image_alt', true ) ?: $data['name'];
+                }
             }
         }
         if ( $social_image ) {
@@ -122,7 +129,7 @@ add_action( 'wp_head', function () {
         'telephone' => $business['phone'], 'email' => $business['email'],
         'logo' => phinix_absolute_theme_file_uri( 'assets/images/phinix-symbol-white.svg' ),
         'image' => phinix_absolute_theme_file_uri( 'assets/images/people/kevin-janine-dark.webp' ),
-        'knowsAbout' => array( 'Webdesign', 'WordPress', 'Responsive Webdesign', 'Branding', 'Corporate Design', 'Logodesign', 'Grafikdesign', 'Printdesign', 'Content-Marketing', 'Social-Media-Marketing', 'Suchmaschinenoptimierung', 'Local SEO', 'Generative Engine Optimization' ),
+        'knowsAbout' => array( 'Webdesign', 'WordPress', 'Responsive Webdesign', 'Branding', 'Corporate Design', 'Logodesign', 'Grafikdesign', 'Printdesign', 'Content-Marketing', 'Social-Media-Marketing', 'Suchmaschinenoptimierung', 'Local SEO', 'Generative Engine Optimization', 'Digital Signage', 'Virtuelle 360°-Rundgänge', '3D-Stadionpräsentationen' ),
         'address' => array( '@type' => 'PostalAddress', 'streetAddress' => $business['street'], 'postalCode' => $business['postal_code'], 'addressLocality' => $business['city'], 'addressCountry' => $business['country'] ),
         'areaServed' => array_map( function ( $name ) { return array( '@type' => 'City', 'name' => $name ); }, $business['areas'] ),
     );
@@ -139,22 +146,23 @@ add_action( 'wp_head', function () {
             $webpage['mainEntity'] = array( '@id' => $data['url'] . '#service' );
             $graph[] = array( '@type' => 'Service', '@id' => $data['url'] . '#service', 'name' => $service, 'url' => $data['url'], 'provider' => array( '@id' => $home . '#organization' ), 'areaServed' => $org['areaServed'] );
         }
-        if ( get_post_meta( get_queried_object_id(), '_phinix_article', true ) ) {
+        if ( $is_article ) {
             $article_id = $data['url'] . '#article';
             $image_path = get_post_meta( get_queried_object_id(), '_phinix_article_image', true );
             $schema_type = get_post_meta( get_queried_object_id(), '_phinix_article_schema_type', true );
-            $schema_type = in_array( $schema_type, array( 'Article', 'BlogPosting' ), true ) ? $schema_type : 'Article';
+            $schema_type = in_array( $schema_type, array( 'Article', 'BlogPosting' ), true ) ? $schema_type : 'BlogPosting';
             $about = json_decode( (string) get_post_meta( get_queried_object_id(), '_phinix_article_about', true ), true );
             $mentions = json_decode( (string) get_post_meta( get_queried_object_id(), '_phinix_article_mentions', true ), true );
             if ( ! is_array( $about ) ) { $about = array(); }
             if ( ! is_array( $mentions ) ) { $mentions = array(); }
+            $mentions = phinix_visible_article_mentions( get_queried_object_id(), $mentions );
             $webpage['mainEntity'] = array( '@id' => $article_id );
             $article = array(
                 '@type' => $schema_type, '@id' => $article_id, 'url' => $data['url'],
                 'headline' => $data['name'], 'description' => $data['description'],
                 'datePublished' => get_the_date( DATE_W3C, get_queried_object_id() ),
                 'dateModified' => get_the_modified_date( DATE_W3C, get_queried_object_id() ),
-                'image' => $image_path ? phinix_absolute_theme_file_uri( $image_path ) : null,
+                'image' => $image_path ? phinix_absolute_theme_file_uri( $image_path ) : ( get_the_post_thumbnail_url( $data['id'], 'large' ) ?: phinix_absolute_theme_file_uri( 'assets/images/people/phinix-brand-stage.webp' ) ),
                 'author' => array( '@id' => $home . '#organization' ),
                 'publisher' => array( '@id' => $home . '#organization' ),
                 'mainEntityOfPage' => array( '@id' => $data['url'] . '#webpage' ),

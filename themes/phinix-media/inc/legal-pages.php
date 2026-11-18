@@ -36,7 +36,7 @@ function phinix_imprint_content() {
 }
 
 function phinix_privacy_content() {
-    $out  = phinix_legal_paragraph( '<strong>Stand: Oktober 2026</strong>' );
+    $out  = phinix_legal_paragraph( '<strong>Stand: November 2026</strong>' );
     $out .= phinix_legal_paragraph( 'Diese Datenschutzerklärung erläutert, welche personenbezogenen Daten beim Besuch dieser Website und bei einer Kontaktaufnahme verarbeitet werden. Die öffentlich bereitgestellte Website verwendet nach aktuellem technischen Stand keine Analyse-, Marketing- oder Profiling-Dienste, keine Kontaktformulare und keine extern geladenen Schriftarten.' );
 
     $out .= phinix_legal_heading( '1. Verantwortlicher' );
@@ -51,7 +51,7 @@ function phinix_privacy_content() {
     $out .= phinix_legal_paragraph( 'Wir löschen die dabei anfallenden Daten, wenn die Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten oder berechtigten Gründe für eine weitere Speicherung bestehen.' );
 
     $out .= phinix_legal_heading( '4. Externe Links und WhatsApp' );
-    $out .= phinix_legal_paragraph( 'Diese Website enthält Links zu externen Angeboten, unter anderem zu PHINIX.SCREENS, Complioneer und WhatsApp. Eine Verbindung zum jeweiligen Anbieter wird erst hergestellt, wenn du den Link aktiv öffnest. Ab diesem Zeitpunkt gelten die Datenschutzbestimmungen des externen Anbieters. Bei WhatsApp ist insbesondere eine Verarbeitung durch den Anbieter Meta möglich. Nutze alternativ E-Mail oder Telefon, wenn du diesen Dienst nicht verwenden möchtest.' );
+    $out .= phinix_legal_paragraph( 'Diese Website enthält Links zu externen Angeboten, unter anderem zu PHINIX.SCREENS, unseren Social-Media-Profilen und WhatsApp. Eine Verbindung zum jeweiligen Anbieter wird erst hergestellt, wenn du den Link aktiv öffnest. Ab diesem Zeitpunkt gelten die Datenschutzbestimmungen des externen Anbieters. Bei WhatsApp ist insbesondere eine Verarbeitung durch den Anbieter Meta möglich. Nutze alternativ E-Mail oder Telefon, wenn du diesen Dienst nicht verwenden möchtest.' );
 
     $out .= phinix_legal_heading( '5. Cookies, Reichweitenmessung und lokale Schriftarten' );
     $out .= phinix_legal_paragraph( 'Die öffentlich zugängliche Website setzt keine Analyse- oder Marketing-Cookies ein und verwendet keine Reichweitenmessung. Die verwendete Schriftart wird lokal von derselben Website ausgeliefert; beim Seitenaufruf entsteht deshalb keine Verbindung zu einem externen Schriftanbieter. Technisch notwendige Cookies können nur in nicht öffentlichen Verwaltungs- oder Anmeldebereichen der zugrunde liegenden Software eingesetzt werden.' );

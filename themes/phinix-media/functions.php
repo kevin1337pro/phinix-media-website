@@ -38,8 +38,18 @@ require_once get_theme_file_path( 'inc/seo.php' );
 require_once get_theme_file_path( 'inc/legal-pages.php' );
 require_once get_theme_file_path( 'inc/service-pages.php' );
 require_once get_theme_file_path( 'inc/articles.php' );
+require_once get_theme_file_path( 'inc/news.php' );
+require_once get_theme_file_path( 'inc/social.php' );
 
-add_shortcode( 'phinix_breadcrumbs', function () {
+function phinix_breadcrumbs() {
     if ( ! is_singular() || is_front_page() ) { return ''; }
     return '<nav class="phinix-breadcrumbs" aria-label="Brotkrümelnavigation"><a href="' . esc_url( home_url( '/' ) ) . '">Startseite</a><span aria-hidden="true"> / </span><span aria-current="page">' . esc_html( get_the_title( get_queried_object_id() ) ) . '</span></nav>';
+}
+add_shortcode( 'phinix_breadcrumbs', 'phinix_breadcrumbs' );
+add_action( 'init', function () {
+    register_block_type( 'phinix/breadcrumbs', array(
+        'api_version' => 3,
+        'supports' => array( 'inserter' => false ),
+        'render_callback' => 'phinix_breadcrumbs',
+    ) );
 } );
