@@ -2,7 +2,7 @@ name: phinix-media
 
 services:
   website:
-    image: phinix-media-site:0.8.0
+    image: phinix-media-site:0.11.0
     build:
       context: .
       dockerfile: Dockerfile

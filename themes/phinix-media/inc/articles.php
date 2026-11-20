@@ -2,10 +2,22 @@
 /** Non-destructive installation of editorial content shipped with the theme. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+function phinix_article_srcset_attributes( $image, $width, $sizes ) {
+    if ( ! preg_match( '~^assets/images/articles/[a-z0-9-]+\.webp$~D', $image ) || $width <= 720 ) { return ''; }
+    $small = substr( $image, 0, -5 ) . '-720.webp';
+    if ( ! is_file( get_theme_file_path( $small ) ) ) { return ''; }
+    return sprintf( ' srcset="%s 720w, %s %dw" sizes="%s"',
+        esc_url( get_theme_file_uri( $small ) ), esc_url( get_theme_file_uri( $image ) ), (int) $width, esc_attr( $sizes )
+    );
+}
+
 function phinix_theme_picture_shortcode( $attributes ) {
     $images = array(
         'phinix-brand-stage.webp' => array( 'people', 1600, 900 ),
         '3d-stadionmodell.webp' => array( 'articles', 1440, 810 ),
+        'markenidentitaet-roesterei.webp' => array( 'articles', 1440, 810 ),
+        'markenidentitaet-kontaktpunkte.webp' => array( 'articles', 1440, 810 ),
+        'markenidentitaet-regal.webp' => array( 'articles', 1440, 810 ),
         /* Backward-compatible alias for article content installed by 0.7.0. */
         'phinix-brand-stage.jpg' => array( 'people', 1600, 900, 'phinix-brand-stage.webp' ),
         'website-pruefen-impressum-hero.webp' => array( 'articles', 1672, 941 ),
@@ -17,8 +29,11 @@ function phinix_theme_picture_shortcode( $attributes ) {
     $file = isset( $images[ $name ][3] ) ? $images[ $name ][3] : $name;
     $priority = 'high' === $attributes['priority'];
     $classes = array_filter( array_map( 'sanitize_html_class', preg_split( '/\s+/', (string) $attributes['class'] ) ) );
+    if ( $attributes['caption'] ) { $classes[] = 'has-caption'; }
     $caption = $attributes['caption'] ? '<figcaption>' . esc_html( $attributes['caption'] ) . '</figcaption>' : '';
-    return '<figure class="phinix-article-image ' . esc_attr( implode( ' ', $classes ) ) . '"><img src="' . esc_url( get_theme_file_uri( 'assets/images/' . $images[ $name ][0] . '/' . $file ) ) . '" alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '>' . $caption . '</figure>';
+    $path = 'assets/images/' . $images[ $name ][0] . '/' . $file;
+    $srcset = phinix_article_srcset_attributes( $path, $images[ $name ][1], '(max-width: 868px) calc(100vw - 48px), 820px' );
+    return '<figure class="phinix-article-image ' . esc_attr( implode( ' ', $classes ) ) . '"><img src="' . esc_url( get_theme_file_uri( $path ) ) . '"' . $srcset . ' alt="' . esc_attr( $attributes['alt'] ) . '" width="' . (int) $images[ $name ][1] . '" height="' . (int) $images[ $name ][2] . '" loading="' . ( $priority ? 'eager' : 'lazy' ) . '" decoding="async"' . ( $priority ? ' fetchpriority="high"' : '' ) . '>' . $caption . '</figure>';
 }
 add_shortcode( 'phinix_theme_picture', 'phinix_theme_picture_shortcode' );
 
@@ -147,6 +162,10 @@ function phinix_rundgaenge_article_content() {
     return file_get_contents( get_theme_file_path( 'content/virtuelle-rundgaenge-branchen.html' ) );
 }
 
+function phinix_markenidentitaet_article_content() {
+    return file_get_contents( get_theme_file_path( 'content/markenidentitaet-wiedererkennung.html' ) );
+}
+
 /* Older installations keep the editor's copy of the Website-Check post on theme updates. */
 function phinix_is_managed_website_check( $post_id ) {
     return $post_id && 'impressum-pruefen-website-check' === get_post_field( 'post_name', $post_id )
@@ -186,6 +205,24 @@ function phinix_visible_article_mentions( $post_id, $mentions ) {
 
 function phinix_editorial_articles() {
     return array(
+        'markenidentitaet-wiedererkennung' => array(
+            'post_type' => 'post',
+            'title' => 'Markenidentität – woran Kunden dich wiedererkennen',
+            'excerpt' => 'Würdest du deinen Lieblingskaffee ohne Namen im Regal finden? Eine fiktive Bochumer Rösterei, IKEA und Coca-Cola zeigen, wie Wiedererkennung über mehrere Kanäle funktioniert.',
+            'content' => 'phinix_markenidentitaet_article_content',
+            'seo_title' => 'Markenidentität und Wiedererkennung | Phinix Media',
+            'seo_description' => 'Was macht eine Marke wiedererkennbar? Entdecke die Psychologie dahinter an IKEA, Coca-Cola und einer Rösterei. Mit einem kurzen Test für deinen Markenauftritt.',
+            'image' => 'assets/images/articles/markenidentitaet-roesterei.webp',
+            'image_width' => 1440,
+            'image_height' => 810,
+            'image_alt' => 'Orangefarbener Kreis auf dem Ladenschild einer Rösterei mit Backsteinfassade',
+            'schema_type' => 'BlogPosting',
+            'about' => array(
+                array( '@type' => 'Thing', 'name' => 'Markenidentität' ),
+                array( '@type' => 'Thing', 'name' => 'Wiedererkennung' ),
+                array( '@type' => 'Thing', 'name' => 'Corporate Design' ),
+            ),
+        ),
         'virtuelle-rundgaenge-branchen' => array(
             'post_type' => 'post',
             'title' => 'Vom Spielertunnel bis zur Hotelsuite – was virtuelle Rundgänge zeigen können',

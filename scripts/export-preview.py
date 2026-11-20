@@ -8,9 +8,10 @@ import json
 import os
 import re
 import sys
+from html.parser import HTMLParser
 from pathlib import Path
 from shutil import copyfile, copytree, rmtree
-from urllib.parse import quote, unquote, urlencode, urlparse
+from urllib.parse import quote, unquote, urlencode, urljoin, urlparse
 from urllib.request import urlopen
 from xml.etree import ElementTree
 
@@ -171,14 +172,45 @@ for element in [channel.find("link"), *channel.findall("item/link"), *channel.fi
     element.text = SITE_URL + target.path
 ElementTree.ElementTree(feed).write(DIST / feed_path.lstrip("/"), encoding="utf-8", xml_declaration=True)
 
+class SitemapImages(HTMLParser):
+    """Collect original, described images from the rendered page's main content."""
+    def __init__(self, page_url):
+        super().__init__()
+        self.page_url = page_url
+        self.in_main = False
+        self.urls = {}
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "main":
+            self.in_main = True
+        if self.in_main and tag == "img":
+            attrs = dict(attrs)
+            if not (attrs.get("alt") or "").strip() or not attrs.get("src"):
+                return
+            image = urlparse(urljoin(self.page_url, attrs["src"]))
+            if image.netloc == urlparse(self.page_url).netloc and Path(image.path).suffix.lower() in {".webp", ".jpg", ".jpeg", ".png", ".avif"}:
+                self.urls[image.geturl()] = None
+
+    def handle_endtag(self, tag):
+        if tag == "main":
+            self.in_main = False
+
+
 if PRODUCTION:
     (DIST / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n\n" f"Sitemap: {PUBLIC_URL}/sitemap.xml\n"
     )
+    image_ns = "http://www.google.com/schemas/sitemap-image/1.1"
+    ElementTree.register_namespace("image", image_ns)
     urlset = ElementTree.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
     for path in public_paths:
         url = ElementTree.SubElement(urlset, "url")
         ElementTree.SubElement(url, "loc").text = PUBLIC_URL + path
+        images = SitemapImages(PUBLIC_URL + path)
+        images.feed((DIST / unquote(path).strip("/") / "index.html").read_text())
+        for image_url in images.urls:
+            image = ElementTree.SubElement(url, f"{{{image_ns}}}image")
+            ElementTree.SubElement(image, f"{{{image_ns}}}loc").text = image_url
     ElementTree.ElementTree(urlset).write(DIST / "sitemap.xml", encoding="unicode", xml_declaration=True)
 else:
     (DIST / "robots.txt").write_text("User-agent: *\nDisallow: /\n")

@@ -41,6 +41,7 @@ function phinix_public_news( $limit ) {
 
 function phinix_news_topic( $post ) {
     $topics = array(
+        'markenidentitaet-wiedererkennung' => 'Branding',
         'virtuelle-rundgaenge-branchen' => '3D-Rundgänge',
         'digitale-aussenwerbung-gladbeck-phinix-screens' => 'Digital Signage',
         'impressum-pruefen-website-check' => 'Website prüfen',
@@ -58,9 +59,11 @@ function phinix_news_card_image( $post ) {
     }
     $image = get_post_meta( $post->ID, '_phinix_article_image', true );
     if ( ! $image ) { return ''; }
-    return sprintf( '<img src="%s" width="%d" height="%d" alt="%s" loading="lazy" decoding="async">',
+    $width = (int) get_post_meta( $post->ID, '_phinix_article_image_width', true );
+    return sprintf( '<img src="%s"%s width="%d" height="%d" alt="%s" loading="lazy" decoding="async">',
         esc_url( get_theme_file_uri( $image ) ),
-        (int) get_post_meta( $post->ID, '_phinix_article_image_width', true ),
+        phinix_article_srcset_attributes( $image, $width, 'auto, (max-width: 600px) 90vw, (max-width: 900px) 45vw, 33vw' ),
+        $width,
         (int) get_post_meta( $post->ID, '_phinix_article_image_height', true ),
         esc_attr( get_post_meta( $post->ID, '_phinix_article_image_alt', true ) )
     );

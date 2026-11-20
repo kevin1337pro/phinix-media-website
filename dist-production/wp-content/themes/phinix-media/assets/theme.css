@@ -304,6 +304,9 @@ html { scroll-padding-top: calc(6rem + var(--wp-admin--admin-bar--height, 0px));
 }
 
 /* News and social links */
+.phinix-article-image.has-caption { aspect-ratio: auto; }
+.phinix-article-image.has-caption img { height: auto; }
+.phinix-article-image figcaption { color: #dededb; padding: .75rem 1rem; font-size: .9rem; line-height: 1.5; }
 .news-home { background: var(--paper); color: var(--ink); }
 .news-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem 2rem; flex-wrap: wrap; }
 .news-head .section-title, .news-head p { margin: 0; }

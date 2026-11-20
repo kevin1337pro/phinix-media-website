@@ -26,7 +26,9 @@ ARTICLES = {
     "digitale-aussenwerbung-gladbeck-phinix-screens": "Article",
     "impressum-pruefen-website-check": "BlogPosting",
     "virtuelle-rundgaenge-branchen": "BlogPosting",
+    "markenidentitaet-wiedererkennung": "BlogPosting",
 }
+SERVICE_AREA = {"Gelsenkirchen", "Gladbeck", "Bottrop", "Dorsten", "Bochum"}
 LEGAL = ["impressum", "datenschutz"]
 SLUGS = ["", "news"] + LEGAL + list(PAGES) + list(ARTICLES)
 PUBLIC_PATHS = ["/" + slug + ("/" if slug else "") for slug in SLUGS]
@@ -169,6 +171,8 @@ for slug in SLUGS:
     assert "LocalBusiness" in types and "WebPage" in types
     organization = next(entity for entity in graph if entity["@type"] == "LocalBusiness")
     assert organization["address"]["addressLocality"] == "Gelsenkirchen"
+    cities = {area["name"] for area in organization["areaServed"] if area["@type"] == "City"}
+    assert cities >= SERVICE_AREA, (path, cities)
     assert organization["telephone"] == "+4917655376651"
     text = " ".join(page.text)
     assert "Buerelterstraße 27" in text and "kontakt@phinix.media" in text
@@ -194,7 +198,11 @@ for slug in SLUGS:
         assert "Janine" in parse_qs(contacts[0].query)["text"][0] and "Rundgang anfragen" in text, path
     if slug in PAGES:
         assert "Service" in types and "BreadcrumbList" in types
-    elif slug in LEGAL:
+        service = next(entity for entity in graph if entity["@type"] == "Service")
+        assert service["areaServed"] == organization["areaServed"], path
+    if slug == "branding":
+        assert any(urlparse(a.get("href", "")).path == "/markenidentitaet-wiedererkennung/" for a in page.anchors), path
+    if slug in LEGAL:
         assert "Service" not in types and "BreadcrumbList" in types
     if slug in ARTICLES:
         share_hosts = set()
@@ -210,6 +218,17 @@ for slug in SLUGS:
         article = next(entity for entity in graph if entity["@type"] == schema_type)
         assert article["image"].startswith(EXPECTED_BASE + "/"), (path, article["image"])
         assert article.get("about")
+        if slug == "markenidentitaet-wiedererkennung":
+            photos = [img for img in page.images if "/articles/markenidentitaet-" in img.get("src", "")]
+            assert len({img["src"] for img in photos}) == 3, (path, photos)
+            for img in photos:
+                assert img.get("alt") and img.get("width") and img.get("height"), (path, img)
+                assert img.get("sizes") and "720w" in img.get("srcset", "") and "1440w" in img["srcset"], (path, img)
+                if STATIC:
+                    for candidate in img["srcset"].split(","):
+                        candidate_path = urlparse(candidate.split()[0]).path
+                        assert (STATIC_ROOT / candidate_path.lstrip("/")).is_file(), candidate_path
+            assert any(urlparse(a.get("href", "")).path == "/branding/" for a in page.anchors), path
         if slug == "digitale-aussenwerbung-gladbeck-phinix-screens":
             assert any(item.get("href") == "https://www.phinix-screens.com/" for item in page.anchors)
             assert all(
@@ -340,6 +359,11 @@ if STATIC:
         expected_locations = {PUBLIC_URL + path for path in PUBLIC_PATHS}
         assert expected_locations <= sitemap_locations, (sitemap_locations, expected_locations)
         assert all(static_file(urlparse(url).path).exists() for url in sitemap_locations)
+        brand_url = next(url for url in sitemap if url.findtext("{*}loc") == PUBLIC_URL + "/markenidentitaet-wiedererkennung/")
+        brand_images = brand_url.findall("{*}image/{*}loc")
+        assert len([loc for loc in brand_images if "/articles/markenidentitaet-" in loc.text]) == 3
+        for loc in sitemap.findall("{*}url/{*}image/{*}loc"):
+            assert loc.text.startswith(PUBLIC_URL + "/") and (STATIC_ROOT / urlparse(loc.text).path.lstrip("/")).is_file(), loc.text
 
         not_found_source = (STATIC_ROOT / "404.html").read_text()
         not_found = Page()

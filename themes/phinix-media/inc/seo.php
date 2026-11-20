@@ -30,8 +30,14 @@ function phinix_business_data() {
         'name' => 'Phinix Media', 'city' => 'Gelsenkirchen',
         'street' => 'Buerelterstraße 27', 'postal_code' => '45896', 'country' => 'DE',
         'phone' => '+4917655376651', 'phone_display' => '0176 55376651',
-        'email' => 'kontakt@phinix.media', 'areas' => array( 'Gelsenkirchen', 'Gladbeck' ),
+        'email' => 'kontakt@phinix.media', 'areas' => array( 'Gelsenkirchen', 'Gladbeck', 'Bottrop', 'Dorsten', 'Bochum' ),
     );
+}
+
+function phinix_service_area_text() {
+    $cities = phinix_business_data()['areas'];
+    $last = array_pop( $cities );
+    return implode( ', ', $cities ) . ' und ' . $last;
 }
 
 function phinix_absolute_theme_file_uri( $path ) {
@@ -44,8 +50,8 @@ function phinix_absolute_theme_file_uri( $path ) {
 function phinix_seo_page_data() {
     if ( is_front_page() && ! is_paged() ) {
         return array(
-            'title' => 'Werbeagentur Gelsenkirchen & Gladbeck | Phinix Media',
-            'description' => 'Werbeagentur aus dem Ruhrpott für Webdesign, WordPress, Branding, Print, Marketing und Local SEO in Gelsenkirchen, Gladbeck und im Ruhrgebiet.',
+            'title' => 'Werbeagentur in Gelsenkirchen für das Ruhrgebiet | Phinix Media',
+            'description' => 'Webdesign, Branding und lokales Marketing für Unternehmen in ' . phinix_service_area_text() . '. Sprich mit Janine über dein Projekt.',
             'url' => home_url( '/' ), 'name' => 'Phinix Media – Design, Web und Marketing',
         );
     }
@@ -133,6 +139,8 @@ add_action( 'wp_head', function () {
         'address' => array( '@type' => 'PostalAddress', 'streetAddress' => $business['street'], 'postalCode' => $business['postal_code'], 'addressLocality' => $business['city'], 'addressCountry' => $business['country'] ),
         'areaServed' => array_map( function ( $name ) { return array( '@type' => 'City', 'name' => $name ); }, $business['areas'] ),
     );
+    $instagram = get_option( 'phinix_social_instagram', phinix_social_channels()['instagram'][1] );
+    if ( $instagram ) { $org['sameAs'] = array( esc_url_raw( $instagram ) ); }
     $webpage = array( '@type' => 'WebPage', '@id' => $data['url'] . '#webpage', 'url' => $data['url'], 'name' => $data['name'], 'description' => $data['description'], 'inLanguage' => 'de-DE', 'isPartOf' => array( '@id' => $home . '#website' ) );
     $graph = array( $org, array( '@type' => 'WebSite', '@id' => $home . '#website', 'url' => $home, 'name' => 'Phinix Media', 'inLanguage' => 'de-DE', 'publisher' => array( '@id' => $home . '#organization' ) ) );
     if ( ! is_front_page() ) {
@@ -144,7 +152,7 @@ add_action( 'wp_head', function () {
         $service = get_post_meta( get_queried_object_id(), '_phinix_service', true );
         if ( $service ) {
             $webpage['mainEntity'] = array( '@id' => $data['url'] . '#service' );
-            $graph[] = array( '@type' => 'Service', '@id' => $data['url'] . '#service', 'name' => $service, 'url' => $data['url'], 'provider' => array( '@id' => $home . '#organization' ), 'areaServed' => $org['areaServed'] );
+            $graph[] = array( '@type' => 'Service', '@id' => $data['url'] . '#service', 'name' => $service, 'description' => $data['description'], 'url' => $data['url'], 'provider' => array( '@id' => $home . '#organization' ), 'areaServed' => $org['areaServed'] );
         }
         if ( $is_article ) {
             $article_id = $data['url'] . '#article';

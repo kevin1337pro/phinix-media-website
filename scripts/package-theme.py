@@ -4,7 +4,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 root = Path(__file__).resolve().parent.parent
 theme = root / 'themes' / 'phinix-media'
-output = root / 'output' / 'phinix-media-0.10.0.zip'
+output = root / 'output' / 'phinix-media-0.11.0.zip'
 output.parent.mkdir(exist_ok=True)
 images = [path for path in (theme / 'assets' / 'images').rglob('*') if path.is_file()]
 assert images
